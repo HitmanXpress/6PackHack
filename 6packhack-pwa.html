@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 6-Pack Hack | Eat Out & Get Cut</title>
+
+<!-- PWA Meta Tags -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="6-Pack Hack">
+<meta name="theme-color" content="#00ff87">
+<meta name="description" content="Eat fast food and get ripped. Your keto fast food guide — works offline at the drive-through.">
+
+<!-- PWA Manifest -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Apple Touch Icons (required for iOS home screen) -->
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080808;
+  --deep: #111111;
+  --panel: #181818;
+  --card: #1e1e1e;
+  --border: #2a2a2a;
+  --green: #00ff87;
+  --green2: #00cc6a;
+  --gold: #ffd000;
+  --red: #ff3535;
+  --orange: #ff7700;
+  --white: #f2f2f2;
+  --muted: #666;
+  --muted2: #888;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--black); color:var(--white); font-family:'Barlow',sans-serif; min-height:100vh; overflow-x:hidden; }
+
+/* HERO */
+.hero { position:relative; padding:48px 20px 36px; text-align:center; background:linear-gradient(180deg,#0d0d0d 0%,var(--black) 100%); border-bottom:1px solid var(--border); overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-80px; left:50%; transform:translateX(-50%); width:800px; height:400px; background:radial-gradient(ellipse,rgba(0,255,135,0.06) 0%,transparent 65%); pointer-events:none; }
+.hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:rgba(0,255,135,0.1); border:1px solid rgba(0,255,135,0.25); color:var(--green); font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:5px 14px; border-radius:2px; margin-bottom:18px; }
+.hero-eyebrow span { width:6px; height:6px; background:var(--green); border-radius:50%; animation:blink 1.4s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(52px,13vw,108px); line-height:0.88; letter-spacing:3px; }
+h1 em { color:var(--green); font-style:normal; display:block; }
+.hero-sub { margin-top:14px; font-size:13px; font-weight:300; color:var(--muted2); letter-spacing:1.5px; text-transform:uppercase; }
+.hero-stats { display:flex; justify-content:center; gap:clamp(20px,5vw,60px); margin-top:36px; flex-wrap:wrap; }
+.hero-stat { text-align:center; }
+.hero-stat-num { font-family:'Bebas Neue',sans-serif; font-size:38px; color:var(--green); line-height:1; }
+.hero-stat-label { font-size:10px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-top:3px; }
+
+/* FREE BANNER */
+.free-banner { background:linear-gradient(90deg,rgba(0,255,135,0.08),rgba(0,255,135,0.04)); border-top:1px solid rgba(0,255,135,0.15); border-bottom:1px solid rgba(0,255,135,0.15); padding:10px 20px; text-align:center; font-size:12px; color:var(--green2); font-weight:500; letter-spacing:.5px; }
+.free-banner strong { color:var(--green); }
+
+/* NAV */
+.nav-wrap { position:sticky; top:0; z-index:100; background:rgba(8,8,8,0.97); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 16px; }
+.nav-tabs { display:flex; overflow-x:auto; scrollbar-width:none; gap:0; max-width:900px; margin:0 auto; }
+.nav-tabs::-webkit-scrollbar { display:none; }
+.nav-tab { flex-shrink:0; background:none; border:none; border-bottom:2px solid transparent; color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:14px 16px; cursor:pointer; transition:all .2s; display:flex; align-items:center; gap:6px; white-space:nowrap; }
+.nav-tab:hover { color:var(--white); }
+.nav-tab.active { color:var(--green); border-bottom-color:var(--green); }
+.lock-icon { font-size:10px; color:var(--gold); opacity:.8; }
+
+/* MAIN */
+main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
+.section { display:none; padding-top:32px; }
+.section.active { display:block; }
+
+/* SECTION INTRO */
+.section-intro { margin-bottom:24px; padding-bottom:20px; border-bottom:1px solid var(--border); }
+.section-intro h2 { font-family:'Bebas Neue',sans-serif; font-size:42px; letter-spacing:2px; line-height:1; margin-bottom:8px; }
+.section-intro p { font-size:13px; color:var(--muted2); font-weight:300; line-height:1.6; max-width:560px; }
+
+/* RULES */
+.rules-grid { display:grid; gap:12px; grid-template-columns:1fr; }
+@media(min-width:600px){ .rules-grid { grid-template-columns:1fr 1fr; } }
+.rule-card { background:var(--card); border:1px solid var(--border); border-radius:4px; padding:20px; position:relative; overflow:hidden; transition:border-color .2s; }
+.rule-card:hover { border-color:rgba(0,255,135,0.3); }
+.rule-num { font-family:'Bebas Neue',sans-serif; font-size:52px; color:rgba(0,255,135,0.06); position:absolute; top:6px; right:12px; line-height:1; pointer-events:none; }
+.rule-title { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--green); margin-bottom:8px; }
+.rule-text { font-size:13px; color:#bbb; font-weight:300; line-height:1.6; }
+
+/* CHAIN HEADER */
+.chain-head { display:flex; align-items:center; gap:14px; margin:32px 0 16px; }
+.chain-name { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:1px; }
+.chain-divider { flex:1; height:1px; background:var(--border); }
+.chain-tag { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); background:var(--panel); border:1px solid var(--border); padding:3px 10px; border-radius:2px; }
+
+/* TABLE */
+.meal-table { width:100%; border-collapse:collapse; font-size:13px; }
+.meal-table th { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); text-align:left; padding:8px 12px; border-bottom:1px solid var(--border); background:var(--panel); }
+.meal-table td { padding:13px 12px; border-bottom:1px solid var(--border); vertical-align:top; color:#ccc; font-weight:300; line-height:1.5; }
+.meal-table tr:hover td { background:rgba(255,255,255,0.02); }
+.meal-name-cell { font-weight:600; color:var(--white); font-size:13px; min-width:130px; }
+.hack-cell { color:var(--green2); font-style:italic; font-size:12px; }
+.drink-cell { font-size:12px; color:#7ecfaa; min-width:110px; }
+.macro-cell { font-size:12px; white-space:nowrap; }
+
+/* CARDS (mobile) */
+.meal-cards { display:grid; gap:10px; }
+.meal-card { background:var(--card); border:1px solid var(--border); border-left:3px solid var(--green); border-radius:3px; padding:16px; transition:transform .2s, border-color .2s; }
+.meal-card:hover { transform:translateY(-1px); border-color:rgba(0,255,135,0.35); border-left-color:var(--green); }
+.mc-name { font-weight:700; font-size:14px; margin-bottom:4px; }
+.mc-meal { font-family:'Barlow Condensed',sans-serif; font-size:13px; color:var(--muted2); font-weight:600; letter-spacing:.5px; margin-bottom:8px; }
+.mc-hack { font-size:12px; color:var(--green2); font-style:italic; margin-bottom:10px; line-height:1.5; }
+.mc-drink { font-size:11px; color:#7ecfaa; }
+.macros-row { display:flex; gap:8px; margin-top:10px; }
+.macro-pill { flex:1; background:var(--deep); border-radius:3px; padding:6px 4px; text-align:center; }
+.macro-val { font-family:'Bebas Neue',sans-serif; font-size:18px; line-height:1; }
+.macro-val.c { color:var(--orange); }
+.macro-val.p { color:var(--green); }
+.macro-val.k { color:var(--red); }
+.macro-lbl { font-size:8px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-top:2px; }
+
+@media(max-width:599px){ .meal-table { display:none; } }
+@media(min-width:600px){ .meal-cards { display:none; } }
+
+/* DRINK CARDS */
+.drink-card { background:var(--card); border:1px solid var(--border); border-top:2px solid var(--gold); border-radius:3px; padding:18px; margin-bottom:10px; transition:border-color .2s; }
+.drink-card:hover { border-color:rgba(255,208,0,0.3); border-top-color:var(--gold); }
+.drink-name { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--gold); letter-spacing:1px; margin-bottom:6px; }
+.drink-order { font-size:13px; color:var(--white); margin-bottom:8px; line-height:1.5; }
+.drink-order strong { color:var(--gold); }
+.drink-why { font-size:12px; color:var(--muted2); font-style:italic; line-height:1.5; }
+
+/* ALPHAX CARDS */
+.alphax-card { background:linear-gradient(135deg,#1a1200,#1f1a00); border:1px solid rgba(255,208,0,0.2); border-radius:4px; padding:24px; margin-bottom:14px; position:relative; overflow:hidden; }
+.alphax-venue { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.alphax-title { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:1px; margin-bottom:10px; }
+.alphax-text { font-size:13px; color:#bbb; font-weight:300; line-height:1.65; }
+
+/* DESSERT */
+.dessert-card { background:var(--card); border:1px solid var(--border); border-left:3px solid var(--orange); border-radius:3px; padding:18px; margin-bottom:10px; }
+.dessert-name { font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--orange); letter-spacing:1px; margin-bottom:6px; }
+.dessert-text { font-size:13px; color:#bbb; font-weight:300; line-height:1.65; }
+
+/* PAYWALL */
+.paywall-overlay { position:relative; margin-top:20px; }
+.paywall-blur { filter:blur(5px); opacity:.3; pointer-events:none; user-select:none; }
+.paywall-box { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--deep); border:1px solid var(--gold); border-radius:6px; padding:28px 24px; text-align:center; width:min(380px,92vw); z-index:10; box-shadow:0 0 60px rgba(255,208,0,0.08); }
+.paywall-icon { font-size:34px; margin-bottom:10px; }
+.paywall-title { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:2px; color:var(--gold); margin-bottom:8px; }
+.paywall-sub { font-size:13px; color:var(--muted2); font-weight:300; line-height:1.6; margin-bottom:18px; }
+.paywall-features { text-align:left; margin-bottom:22px; }
+.paywall-feature { display:flex; align-items:flex-start; gap:10px; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px; color:#ccc; }
+.paywall-feature:last-child { border-bottom:none; }
+.paywall-feature .ck { color:var(--green); font-size:14px; flex-shrink:0; margin-top:1px; }
+.unlock-btn { display:block; width:100%; background:var(--gold); color:var(--black); font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; padding:14px 20px; border:none; border-radius:3px; cursor:pointer; text-decoration:none; transition:all .2s; text-align:center; }
+.unlock-btn:hover { background:#ffe44d; transform:translateY(-1px); box-shadow:0 4px 20px rgba(255,208,0,0.3); }
+.paywall-note { margin-top:10px; font-size:11px; color:var(--muted); }
+
+/* LABELS */
+.free-label { display:inline-block; background:rgba(0,255,135,0.1); color:var(--green); font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:2px 8px; border-radius:2px; border:1px solid rgba(0,255,135,0.2); margin-bottom:16px; }
+
+/* PRICE ROW */
+.price-row { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:14px; }
+.price-orig { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--muted); text-decoration:line-through; }
+.price-now { font-family:'Bebas Neue',sans-serif; font-size:38px; color:var(--green); line-height:1; }
+.price-tag { background:var(--green); color:var(--black); font-family:'Barlow Condensed',sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; }
+
+/* STICKY CTA */
+.sticky-cta { position:fixed; bottom:0; left:0; right:0; background:linear-gradient(180deg,transparent,rgba(8,8,8,0.98) 30%); padding:18px 20px 22px; z-index:200; pointer-events:none; }
+.sticky-cta-inner { max-width:420px; margin:0 auto; pointer-events:all; }
+.sticky-cta-btn { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; background:var(--gold); color:var(--black); font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; padding:15px 20px; border-radius:4px; text-decoration:none; transition:all .2s; border:none; cursor:pointer; box-shadow:0 4px 30px rgba(255,208,0,0.2); }
+.sticky-cta-btn:hover { background:#ffe44d; box-shadow:0 4px 40px rgba(255,208,0,0.35); transform:translateY(-1px); }
+.sticky-cta-sub { text-align:center; font-size:11px; color:var(--muted); margin-top:7px; }
+
+/* SECTION DIVIDER */
+.section-divider { height:1px; background:var(--border); margin:40px 0 32px; }
+.section-label { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
+
+/* ── PWA INSTALL BANNER ── */
+#pwa-install-banner {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #0f0f0f;
+  border-top: 2px solid var(--green);
+  padding: 14px 20px;
+  box-shadow: 0 -4px 30px rgba(0,255,135,0.1);
+  animation: slideUpBanner .35s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes slideUpBanner { from{transform:translateY(100%)} to{transform:translateY(0)} }
+
+#pwa-install-banner.visible { display: block; }
+
+.pwa-banner-inner {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.pwa-banner-icon { font-size: 28px; flex-shrink: 0; }
+
+.pwa-banner-text { flex: 1; min-width: 160px; }
+.pwa-banner-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.pwa-banner-sub { font-size: 12px; color: var(--muted2); font-weight: 300; }
+
+.pwa-banner-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+
+.pwa-install-btn {
+  background: var(--green);
+  color: var(--black);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all .18s;
+  white-space: nowrap;
+}
+.pwa-install-btn:hover { background: #33ffaa; transform: translateY(-1px); }
+
+.pwa-dismiss-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: 'Barlow', sans-serif;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all .18s;
+}
+.pwa-dismiss-btn:hover { color: var(--white); border-color: var(--muted); }
+
+/* iOS install instructions */
+#pwa-ios-banner {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #0f0f0f;
+  border-top: 2px solid var(--green);
+  padding: 16px 20px 20px;
+  box-shadow: 0 -4px 30px rgba(0,255,135,0.1);
+  animation: slideUpBanner .35s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+#pwa-ios-banner.visible { display: block; }
+
+.pwa-ios-inner { max-width: 480px; margin: 0 auto; }
+.pwa-ios-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: var(--green);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pwa-ios-close {
+  background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer;
+}
+.pwa-ios-steps {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.pwa-ios-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #ccc;
+  font-weight: 300;
+}
+.pwa-ios-step .step-icon { font-size: 20px; flex-shrink: 0; }
+.pwa-ios-arrow { color: var(--muted); font-size: 16px; }
+
+/* ── OFFLINE INDICATOR ── */
+#offline-bar {
+  display: none;
+  background: #1a0a0a;
+  border-bottom: 1px solid var(--red);
+  padding: 8px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--red);
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+#offline-bar.visible { display: block; }
+#offline-bar.back-online {
+  background: #0a1a0d;
+  border-bottom-color: var(--green);
+  color: var(--green);
+}
+
+/* ── INSTALL SUCCESS TOAST ── */
+#pwa-toast {
+  display: none;
+  position: fixed;
+  top: 80px; left: 50%; transform: translateX(-50%);
+  background: var(--green);
+  color: var(--black);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  padding: 10px 20px;
+  border-radius: 3px;
+  z-index: 9999;
+  white-space: nowrap;
+  animation: toastIn .3s ease forwards;
+  box-shadow: 0 4px 20px rgba(0,255,135,0.3);
+}
+@keyframes toastIn { from{opacity:0;transform:translateX(-50%) translateY(-10px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
+#pwa-toast.visible { display: block; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow"><span></span> Keto Cutting Mode — Active</div>
+  <h1>THE 6-PACK<em>HACK</em></h1>
+  <p class="hero-sub">Eat Out. Get Cut. No Excuses.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">50+</div><div class="hero-stat-label">Restaurants</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">&lt;20g</div><div class="hero-stat-label">Net Carbs</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">30g+</div><div class="hero-stat-label">Protein avg</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">7</div><div class="hero-stat-label">Categories</div></div>
+  </div>
+</header>
+
+<div class="free-banner">🔓 <strong>Free Preview:</strong> Fast Food & Rules unlocked — Upgrade for all 50+ restaurants, drinks, Alpha-X & more</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('rules',this)">The Rules</button>
+    <button class="nav-tab" onclick="showTab('fastfood',this)">Fast Food</button>
+    <button class="nav-tab" onclick="showTab('fastcasual',this)">Fast Casual <span class="lock-icon">🔒</span></button>
+    <button class="nav-tab" onclick="showTab('sitdown',this)">Sit-Down <span class="lock-icon">🔒</span></button>
+    <button class="nav-tab" onclick="showTab('ethnic',this)">Elite Ethnic <span class="lock-icon">🔒</span></button>
+    <button class="nav-tab" onclick="showTab('drinks',this)">Drinks <span class="lock-icon">🔒</span></button>
+    <button class="nav-tab" onclick="showTab('alphax',this)">ALPHA-X <span class="lock-icon">🔒</span></button>
+    <button class="nav-tab" onclick="showTab('desserts',this)">Desserts <span class="lock-icon">🔒</span></button>
+  </div>
+</div>
+
+<main>
+
+<!-- ═══════════════════════════ GOLDEN RULES ═══════════════════════════ -->
+<div id="tab-rules" class="section active">
+  <div class="section-intro">
+    <h2 style="color:var(--green)">The Golden Rules</h2>
+    <p>Master these 5 fundamentals and you can walk into any restaurant in America and stay on mission. This is the entire system in one page.</p>
+  </div>
+  <div class="rules-grid">
+    <div class="rule-card"><div class="rule-num">1</div><div class="rule-title">Protein Is Your #1 Priority</div><div class="rule-text">The building block of muscle — non-negotiable. It keeps you full, boosts your metabolism, and signals your body to repair and grow. Every meal starts with one question: "Where is the protein?"</div></div>
+    <div class="rule-card"><div class="rule-num">2</div><div class="rule-title">Carbs & Sugar Are the Enemy</div><div class="rule-text">Bread, buns, wraps, rice, potatoes, fries, sugary sauces — they spike insulin, the fat-storage hormone. Eliminate them and your body is forced to burn stored fat for fuel instead.</div></div>
+    <div class="rule-card"><div class="rule-num">3</div><div class="rule-title">Embrace Healthy Fats</div><div class="rule-text">Fat does not make you fat — sugar does. Avocado, olive oil, quality meats, cheese, and nuts are critical for hormone production (testosterone!) and keep you satisfied for hours. They are your allies.</div></div>
+    <div class="rule-card"><div class="rule-num">4</div><div class="rule-title">Master the Modification</div><div class="rule-text">"No bun." "Sauce on the side." "Extra vegetables instead of fries." "No croutons." These phrases are your secret weapons. You are always in control of what goes on your plate.</div></div>
+    <div class="rule-card" style="grid-column:1/-1"><div class="rule-num">5</div><div class="rule-title">Hydrate Like a Champion</div><div class="rule-text">Stick to water, black coffee, or unsweetened iced tea. A large Coke is 65g of pure sugar — it can undo a perfect food order in one cup. Your drink choice can make or break your meal. Never drink your calories.</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ FAST FOOD (FREE) ═══════════════════════════ -->
+<div id="tab-fastfood" class="section">
+  <div class="section-intro">
+    <h2>Fast Food <span style="color:var(--green)">Dominance</span></h2>
+    <p>Your field guide for the most common fast food chains. Every option is low-carb, high-protein, and completely on mission.</p>
+  </div>
+  <div class="free-label">✓ Free Preview — Full Access</div>
+
+  <!-- McDONALD'S -->
+  <div class="chain-head"><div class="chain-name" style="color:#ffcc00">McDonald's</div><div class="chain-divider"></div><div class="chain-tag">Fast AF</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Two Sausage McMuffins — No Muffin</td><td class="hack-cell">Eat the sausage, egg & cheese. Ditch the muffin entirely. Best fast breakfast on the menu.</td><td class="macro-cell"><span style="color:var(--orange)">~480 cal</span> · <span style="color:var(--green)">28g P</span> · <span style="color:var(--red)">4g C</span></td><td class="drink-cell">Black Coffee, Unsweet Tea, Water</td></tr>
+    <tr><td class="meal-name-cell">Double Quarter Pounder — No Bun</td><td class="hack-cell">Lettuce wrap. Mustard & pickles only. No ketchup. Add side salad with low-carb dressing.</td><td class="macro-cell"><span style="color:var(--orange)">~520 cal</span> · <span style="color:var(--green)">48g P</span> · <span style="color:var(--red)">4g C</span></td><td class="drink-cell">Black Coffee, Unsweet Tea, Water</td></tr>
+    <tr><td class="meal-name-cell">McDouble — Bunless + Side Salad</td><td class="hack-cell">Budget king. Double patty, cheese, pickles, mustard. Best value keto meal anywhere.</td><td class="macro-cell"><span style="color:var(--orange)">~360 cal</span> · <span style="color:var(--green)">36g P</span> · <span style="color:var(--red)">3g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">McDonald's</div><div class="mc-meal">Double Quarter Pounder — No Bun</div><div class="mc-hack">Lettuce wrap. Mustard & pickles. No ketchup. Side salad with low-carb dressing.</div><div class="mc-drink">☕ Black Coffee · Unsweet Tea · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">520</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">48g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">4g</div><div class="macro-lbl">Carbs</div></div></div></div>
+    <div class="meal-card"><div class="mc-name">McDonald's</div><div class="mc-meal">Two Sausage McMuffins — No Muffin</div><div class="mc-hack">Eat the sausage, egg & cheese. Ditch the muffin. Best fast breakfast on the menu.</div><div class="mc-drink">☕ Black Coffee · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">480</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">28g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">4g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- BURGER KING -->
+  <div class="chain-head"><div class="chain-name" style="color:#f5821f">Burger King</div><div class="chain-divider"></div><div class="chain-tag">Have It Your Way</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Bacon Egg & Cheese Croissan'wich — No Croissant</td><td class="hack-cell">Discard the croissant. Eat the bacon, egg, and cheese. Done.</td><td class="macro-cell"><span style="color:var(--orange)">~290 cal</span> · <span style="color:var(--green)">17g P</span> · <span style="color:var(--red)">3g C</span></td><td class="drink-cell">Black Coffee, Water</td></tr>
+    <tr><td class="meal-name-cell">Whopper — No Bun, No Ketchup</td><td class="hack-cell">Lettuce wrap or fork & knife. Add side salad. Mustard only.</td><td class="macro-cell"><span style="color:var(--orange)">~460 cal</span> · <span style="color:var(--green)">28g P</span> · <span style="color:var(--red)">5g C</span></td><td class="drink-cell">Unsweet Tea, Water</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Burger King</div><div class="mc-meal">Whopper — No Bun, No Ketchup</div><div class="mc-hack">Lettuce wrap. Mustard only. Skip mayo. Add side salad.</div><div class="mc-drink">🧊 Unsweet Tea · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">460</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">28g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">5g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- WENDY'S -->
+  <div class="chain-head"><div class="chain-name" style="color:#e2321e">Wendy's</div><div class="chain-divider"></div><div class="chain-tag">Fresh, Never Frozen</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Breakfast Baconator — No Bun</td><td class="hack-cell">Bacon, sausage, egg, cheese. Fork & knife. Beast breakfast with serious protein.</td><td class="macro-cell"><span style="color:var(--orange)">~560 cal</span> · <span style="color:var(--green)">40g P</span> · <span style="color:var(--red)">4g C</span></td><td class="drink-cell">Black Coffee, Water</td></tr>
+    <tr><td class="meal-name-cell">Dave's Double — No Bun, No Ketchup</td><td class="hack-cell">Extra lettuce and tomato. Mustard only. Side salad.</td><td class="macro-cell"><span style="color:var(--orange)">~500 cal</span> · <span style="color:var(--green)">42g P</span> · <span style="color:var(--red)">5g C</span></td><td class="drink-cell">Unsweet Tea, Water</td></tr>
+    <tr><td class="meal-name-cell">Grilled Chicken Sandwich — No Bun</td><td class="hack-cell">Lean protein. Lettuce wrap. Skip ranch — use mustard or hot sauce.</td><td class="macro-cell"><span style="color:var(--orange)">~230 cal</span> · <span style="color:var(--green)">30g P</span> · <span style="color:var(--red)">3g C</span></td><td class="drink-cell">Unsweet Tea, Water</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Wendy's</div><div class="mc-meal">Dave's Double — No Bun</div><div class="mc-hack">Extra lettuce and tomato. Mustard only. No ketchup. Side salad.</div><div class="mc-drink">🧊 Unsweet Tea · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">500</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">42g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">5g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- CHICK-FIL-A -->
+  <div class="chain-head"><div class="chain-name" style="color:#e51636">Chick-fil-A</div><div class="chain-divider"></div><div class="chain-tag">My Pleasure 💪</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Egg White Grill — No Muffin</td><td class="hack-cell">Grilled chicken + egg whites. Eat deconstructed. Zero guilt morning protein.</td><td class="macro-cell"><span style="color:var(--orange)">~270 cal</span> · <span style="color:var(--green)">26g P</span> · <span style="color:var(--red)">3g C</span></td><td class="drink-cell">Black Coffee, Unsweet Tea, Water</td></tr>
+    <tr><td class="meal-name-cell">⭐ Grilled Nuggets 12-Count</td><td class="hack-cell">BEST keto item at any fast food chain. Period. Ranch or buffalo only. Never honey mustard.</td><td class="macro-cell"><span style="color:var(--orange)">~200 cal</span> · <span style="color:var(--green)">38g P</span> · <span style="color:var(--red)">1g C</span></td><td class="drink-cell">Unsweet Tea, Diet Lemonade, Water</td></tr>
+    <tr><td class="meal-name-cell">Spicy Deluxe Grilled — No Bun</td><td class="hack-cell">Always order grilled, not fried. Lettuce wrap. Extra pickles and jalapeños. Skip all sauces.</td><td class="macro-cell"><span style="color:var(--orange)">~310 cal</span> · <span style="color:var(--green)">36g P</span> · <span style="color:var(--red)">5g C</span></td><td class="drink-cell">Unsweet Tea, Water</td></tr>
+    <tr><td class="meal-name-cell">Cobb Salad — Grilled Chicken</td><td class="hack-cell">Avocado lime ranch. Skip croutons. One of the best fast food salads in existence.</td><td class="macro-cell"><span style="color:var(--orange)">~500 cal</span> · <span style="color:var(--green)">42g P</span> · <span style="color:var(--red)">13g C</span></td><td class="drink-cell">Unsweet Tea, Water</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">Chick-fil-A ⭐</div><div class="mc-meal">Grilled Nuggets 12-Count</div><div class="mc-hack">BEST keto item at any fast food chain. Period. Ranch or buffalo only. Never honey mustard.</div><div class="mc-drink">🧊 Unsweet Tea · Diet Lemonade · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">200</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">38g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">1g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- SUBWAY -->
+  <div class="chain-head"><div class="chain-name" style="color:#008c15">Subway</div><div class="chain-divider"></div><div class="chain-tag">Build It Right</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Any Breakfast — Protein Bowl</td><td class="hack-cell">No bread, ever. Order as a bowl. Double the egg. Max all the veggies.</td><td class="macro-cell"><span style="color:var(--orange)">~300 cal</span> · <span style="color:var(--green)">24g P</span> · <span style="color:var(--red)">5g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Rotisserie Chicken Salad Bowl</td><td class="hack-cell">Max the veggies. Oil & vinegar only. Add bacon. Skip croutons and all dressings.</td><td class="macro-cell"><span style="color:var(--orange)">~340 cal</span> · <span style="color:var(--green)">38g P</span> · <span style="color:var(--red)">10g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Any Sub — Protein Bowl, Double Meat</td><td class="hack-cell">Turn any sub into a bowl. Double the meat. Oil & vinegar only. Skip all sweet sauces.</td><td class="macro-cell"><span style="color:var(--orange)">~420 cal</span> · <span style="color:var(--green)">44g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Subway</div><div class="mc-meal">Any Sub — Protein Bowl, Double Meat</div><div class="mc-hack">Bowl only. No bread. Double meat. Oil & vinegar dressing. Load all the veggies you want.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">420</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">44g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">8g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- TACO BELL -->
+  <div class="chain-head"><div class="chain-name" style="color:#702082">Taco Bell</div><div class="chain-divider"></div><div class="chain-tag">Keto the Bell</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Cheesy Breakfast Burrito — No Tortilla</td><td class="hack-cell">Ask for a bowl. Egg, sausage, cheese. Skip the tortilla and hash browns completely.</td><td class="macro-cell"><span style="color:var(--orange)">~260 cal</span> · <span style="color:var(--green)">14g P</span> · <span style="color:var(--red)">3g C</span></td><td class="drink-cell">Water, Black Coffee</td></tr>
+    <tr><td class="meal-name-cell">Power Menu Bowl — No Rice, No Beans</td><td class="hack-cell">Extra protein (chicken or steak). Fajita veggies, guac, sour cream, cheese. This works.</td><td class="macro-cell"><span style="color:var(--orange)">~430 cal</span> · <span style="color:var(--green)">28g P</span> · <span style="color:var(--red)">9g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Taco Bell</div><div class="mc-meal">Power Menu Bowl — No Rice, No Beans</div><div class="mc-hack">Extra protein. Fajita veggies, guac, sour cream, cheese. No rice, no beans, no regrets.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">430</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">28g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">9g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ FAST CASUAL (LOCKED) ═══════════════════════════ -->
+<div id="tab-fastcasual" class="section">
+  <div class="section-intro">
+    <h2>Fast Casual <span style="color:var(--gold)">Favorites</span></h2>
+    <p>Chipotle, Panera Bread, Five Guys, In-N-Out, Shake Shack, Whataburger, Carl's Jr., Jersey Mike's, Jimmy John's, Zaxby's, El Pollo Loco, Smashburger, Boston Market, Buffalo Wild Wings, Wingstop, Qdoba, and more.</p>
+  </div>
+  <div class="paywall-overlay">
+    <div class="paywall-blur">
+      <div class="chain-head"><div class="chain-name" style="color:#c8102e">Chipotle</div><div class="chain-divider"></div></div>
+      <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Drink</th></tr></thead><tbody>
+        <tr><td class="meal-name-cell">Steak Lifestyle Bowl</td><td class="hack-cell">Double steak, fajita veggies, guac, cheese, sour cream. No rice, no beans. Guac is worth it.</td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+        <tr><td class="meal-name-cell">Carnitas Keto Bowl</td><td class="hack-cell">Carnitas, extra guac, lettuce, cheese, salsa verde. Pure keto.</td><td class="drink-cell">Water</td></tr>
+        <tr><td class="meal-name-cell">In-N-Out 4x4 Protein Style</td><td class="hack-cell">Four patties, four cheese, lettuce instead of bun. No spread, add mustard.</td><td class="drink-cell">Water</td></tr>
+        <tr><td class="meal-name-cell">Five Guys Bunless Bacon Cheeseburger</td><td class="hack-cell">Bowl or lettuce wrap. Extra bacon. Free toppings: mushrooms, jalapeños, onions.</td><td class="drink-cell">Water</td></tr>
+        <tr><td class="meal-name-cell">Jersey Mike's #8 Club Supreme (Sub in a Tub)</td><td class="hack-cell">Roast beef, turkey, swiss, bacon on lettuce. Oil & vinegar dressing.</td><td class="drink-cell">Water</td></tr>
+      </tbody></table>
+    </div>
+    <div class="paywall-box">
+      <div class="paywall-icon">🔒</div>
+      <div class="paywall-title">Unlock Full Menu</div>
+      <div class="paywall-sub">Your complete field guide to eating out and staying ripped — every major chain in America covered.</div>
+      <div class="paywall-features">
+        <div class="paywall-feature"><span class="ck">✓</span>Fast Casual: Chipotle, In-N-Out, Five Guys, Shake Shack, Whataburger & more</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Sit-Down: Applebee's, Olive Garden, Texas Roadhouse, Denny's & more</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Elite Ethnic: Benihana, P.F. Chang's, Panda Express & more</div>
+        <div class="paywall-feature"><span class="ck">✓</span>The 21+ Alpha-Approved Drink Guide (9 cocktail scripts)</div>
+        <div class="paywall-feature"><span class="ck">✓</span>ALPHA-X: Luxury steakhouse & churrascaria feasts</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Crush Your Cravings: The Dessert Protocol</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Full PDF download included</div>
+      </div>
+      <div class="price-row"><span class="price-orig">$30</span><span class="price-now">$9.97</span><span class="price-tag">LAUNCH PRICE</span></div>
+      <a href="https://www.the6packhack.com/store" class="unlock-btn" target="_blank">⚡ UNLOCK FOR $9.97</a>
+      <p class="paywall-note">Price goes to $17 after launch · One-time · Instant access · Crypto accepted</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ SIT-DOWN (LOCKED) ═══════════════════════════ -->
+<div id="tab-sitdown" class="section">
+  <div class="section-intro">
+    <h2>Sit-Down <span style="color:var(--gold)">Strategies</span></h2>
+    <p>Full-service restaurants: Applebee's, Chili's, Olive Garden, Texas Roadhouse, Denny's, IHOP, Cracker Barrel, Waffle House, TGI Fridays, Ruby Tuesday, Red Robin, The Cheesecake Factory, and more.</p>
+  </div>
+  <div class="paywall-overlay">
+    <div class="paywall-blur">
+      <div class="chain-head"><div class="chain-name">Applebee's / Chili's</div><div class="chain-divider"></div></div>
+      <table class="meal-table"><thead><tr><th>Restaurant</th><th>The Hack</th><th>Drink</th></tr></thead><tbody>
+        <tr><td class="meal-name-cell">Applebee's / Chili's</td><td class="hack-cell">Grilled steak, chicken breast, or salmon. Double steamed broccoli. Bunless burgers. Avoid sugary glazes.</td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+        <tr><td class="meal-name-cell">Olive Garden</td><td class="hack-cell">Skip breadsticks and pasta. Herb-Grilled Salmon or Tuscan Sirloin. Side of steamed broccoli.</td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+        <tr><td class="meal-name-cell">Texas Roadhouse</td><td class="hack-cell">Hand-cut steak. Green beans, house salad (no croutons, oil & vinegar), sautéed mushrooms.</td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+        <tr><td class="meal-name-cell">Denny's / Waffle House</td><td class="hack-cell">T-Bone Steak & Eggs. Side of bacon or sausage. No hashbrowns, no toast, no pancakes.</td><td class="drink-cell">Black Coffee, Water</td></tr>
+      </tbody></table>
+    </div>
+    <div class="paywall-box">
+      <div class="paywall-icon">🔒</div>
+      <div class="paywall-title">Unlock Full Menu</div>
+      <div class="paywall-sub">Every sit-down restaurant strategy — exact meals, exact modifications, exact drinks.</div>
+      <div class="paywall-features">
+        <div class="paywall-feature"><span class="ck">✓</span>All sit-down restaurant strategies (10+ covered)</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Fast Casual & Elite Ethnic dining guides</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Alpha-Approved Drink Guide</div>
+        <div class="paywall-feature"><span class="ck">✓</span>ALPHA-X + Dessert Protocol</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Full PDF download included</div>
+      </div>
+      <div class="price-row"><span class="price-orig">$30</span><span class="price-now">$9.97</span><span class="price-tag">LAUNCH PRICE</span></div>
+      <a href="https://www.the6packhack.com/store" class="unlock-btn" target="_blank">⚡ UNLOCK FOR $9.97</a>
+      <p class="paywall-note">Price goes to $17 after launch · One-time · Instant access · Crypto accepted</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ ELITE ETHNIC (LOCKED) ═══════════════════════════ -->
+<div id="tab-ethnic" class="section">
+  <div class="section-intro">
+    <h2>Elite Ethnic <span style="color:var(--gold)">Dining</span></h2>
+    <p>P.F. Chang's, Panda Express, Pei Wei, Benihana, RA Sushi, On The Border, Moe's Southwest Grill, Del Taco, Chuy's, Carrabba's, Maggiano's, Taziki's, The Simple Greek, local Indian & Thai restaurants.</p>
+  </div>
+  <div class="paywall-overlay">
+    <div class="paywall-blur">
+      <div class="chain-head"><div class="chain-name">P.F. Chang's</div><div class="chain-divider"></div></div>
+      <table class="meal-table"><thead><tr><th>Restaurant</th><th>The Hack</th></tr></thead><tbody>
+        <tr><td class="meal-name-cell">P.F. Chang's</td><td class="hack-cell">Beef with Broccoli — "No sugar, no cornstarch, just soy-ginger." Pair with wok'd spinach with garlic.</td></tr>
+        <tr><td class="meal-name-cell">Benihana</td><td class="hack-cell">Hibachi Steak & Scallops. Tell chef upfront: "No rice, no sugary sauces. Soy sauce, butter, and garlic only."</td></tr>
+        <tr><td class="meal-name-cell">Panda Express</td><td class="hack-cell">Super Greens base + Black Pepper Angus Steak. Lowest carb count on the entire menu.</td></tr>
+        <tr><td class="meal-name-cell">Local Indian Restaurants</td><td class="hack-cell">Look for "Tandoori" section. Clay oven cooked — juicy, flavorful, no heavy carb-filled sauce.</td></tr>
+      </tbody></table>
+    </div>
+    <div class="paywall-box">
+      <div class="paywall-icon">🔒</div>
+      <div class="paywall-title">Unlock Full Menu</div>
+      <div class="paywall-sub">Walk into any ethnic restaurant in America and know exactly what to order to stay on mission.</div>
+      <div class="paywall-features">
+        <div class="paywall-feature"><span class="ck">✓</span>14+ ethnic restaurant guides with exact order scripts</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Full Fast Casual & Sit-Down guides</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Alpha-Approved Drink Guide</div>
+        <div class="paywall-feature"><span class="ck">✓</span>ALPHA-X + Dessert Protocol</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Full PDF download included</div>
+      </div>
+      <div class="price-row"><span class="price-orig">$30</span><span class="price-now">$9.97</span><span class="price-tag">LAUNCH PRICE</span></div>
+      <a href="https://www.the6packhack.com/store" class="unlock-btn" target="_blank">⚡ UNLOCK FOR $9.97</a>
+      <p class="paywall-note">Price goes to $17 after launch · One-time · Instant access · Crypto accepted</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ DRINKS (LOCKED) ═══════════════════════════ -->
+<div id="tab-drinks" class="section">
+  <div class="section-intro">
+    <h2 style="color:var(--gold)">The 21+ Alpha-Approved<br>Drink Menu</h2>
+    <p>Alcohol is a toxin your body prioritizes over burning fat. Heavy drinking will sabotage progress. But a well-planned social life is part of the mission. When you drink, you drink with strategy. All beer, sugary cocktails, and regular mixers are officially off the menu.</p>
+  </div>
+  <div class="paywall-overlay">
+    <div class="paywall-blur">
+      <div class="drink-card"><div class="drink-name">The Classic Soda-Water Highball</div><div class="drink-order"><strong>Your Order:</strong> "[Spirit] with soda water and a lime." Best: Tito's Vodka, Tanqueray Gin, Bourbon, Don Julio Blanco, Bacardi Superior Rum.</div><div class="drink-why">Clear spirits have zero carbs. Soda water is just bubbly water. Impossible to mess up.</div></div>
+      <div class="drink-card"><div class="drink-name">The "007" Americano</div><div class="drink-order"><strong>Your Order:</strong> "I'd like a Gin and Soda with a lemon twist, served in a rocks glass."</div><div class="drink-why">Tanqueray or Hendrick's adds botanical complexity. Crisp, aromatic, distinctly adult. Zero carbs.</div></div>
+      <div class="drink-card"><div class="drink-name">Bourbon & Bubbles</div><div class="drink-order"><strong>Your Order:</strong> "Double Maker's Mark on the rocks, soda water on the side."</div><div class="drink-why">Full bourbon flavor. You control the dilution. Encourages sipping, not slamming.</div></div>
+      <div class="drink-card"><div class="drink-name">The Dry Martini</div><div class="drink-order"><strong>Your Order:</strong> "A Tito's Martini, extra dry, with a twist."</div><div class="drink-why">Extra dry = very little vermouth. Almost pure chilled vodka. Clean, potent, undeniably stylish.</div></div>
+    </div>
+    <div class="paywall-box">
+      <div class="paywall-icon">🥃</div>
+      <div class="paywall-title">Unlock The Drink Guide</div>
+      <div class="paywall-sub">9 approved zero-carb drinks with exact word-for-word ordering scripts so you never blow your physique at a bar.</div>
+      <div class="paywall-features">
+        <div class="paywall-feature"><span class="ck">✓</span>9 approved cocktail scripts (Highball, Martini, Old Fashioned, Lemon Drop, & more)</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Wine selection guide — "dry" is your code word</div>
+        <div class="paywall-feature"><span class="ck">✓</span>The Keto Old Fashioned modification</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Full 50+ restaurant food guide</div>
+        <div class="paywall-feature"><span class="ck">✓</span>ALPHA-X + Dessert Protocol</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Full PDF download included</div>
+      </div>
+      <div class="price-row"><span class="price-orig">$30</span><span class="price-now">$9.97</span><span class="price-tag">LAUNCH PRICE</span></div>
+      <a href="https://www.the6packhack.com/store" class="unlock-btn" target="_blank">⚡ UNLOCK FOR $9.97</a>
+      <p class="paywall-note">Price goes to $17 after launch · One-time · Instant access · Crypto accepted</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ ALPHA-X (LOCKED) ═══════════════════════════ -->
+<div id="tab-alphax" class="section">
+  <div class="section-intro">
+    <h2>ALPHA-X <span style="color:var(--gold)">Program</span></h2>
+    <p>Think you've mastered the 6-Pack Hack? This is the next level — for the dedicated lifter who wants to feast like a king while forging an iron physique. Dine like an Alpha.</p>
+    <p style="margin-top:10px; color:var(--gold); font-size:12px; font-weight:600; letter-spacing:2px;">★ LIMITED TO FIRST 1,000 CUSTOMERS ★</p>
+  </div>
+  <div class="paywall-overlay">
+    <div class="paywall-blur">
+      <div class="alphax-card"><div class="alphax-venue">High-End Steakhouse · Ruth's Chris / Morton's</div><div class="alphax-title">The Titan's Tomahawk Feast</div><div class="alphax-text">Order the largest bone-in ribeye — often a 32-40oz Tomahawk. Rich in high-quality protein and creatine. Refuse all potatoes and creams. Double portions of steamed asparagus and garlic-sautéed spinach. Add a broiled lobster tail with drawn butter for an even bigger anabolic punch. You're not just eating — you're building.</div></div>
+      <div class="alphax-card"><div class="alphax-venue">Premier Seafood House · Truluck's / Oceanaire</div><div class="alphax-title">Poseidon's Platter</div><div class="alphax-text">This isn't a meal — it's a statement. Order the grandest seafood tower: colossal King Crab legs, jumbo shrimp, fresh oysters, and split lobster tails. Pure lean protein packed with zinc and iodine. Condiments: lemon wedges, fresh horseradish, and melted butter only. A decadent, zero-guilt assault of the highest-quality protein from the sea.</div></div>
+      <div class="alphax-card"><div class="alphax-venue">Brazilian Churrascaria · Fogo de Chão</div><div class="alphax-title">The Endless Meat Gauntlet</div><div class="alphax-text">All-you-can-eat protein paradise. Signal the gauchos and never stop. Focus exclusively on Picanha (prime sirloin), Filet Mignon, and Cordeiro (lamb chops). Wave off bread, fried sides, and the salad bar. Your plate should have one thing: meat. A true test of carnivorous spirit.</div></div>
+    </div>
+    <div class="paywall-box">
+      <div class="paywall-icon">👑</div>
+      <div class="paywall-title">Unlock ALPHA-X</div>
+      <div class="paywall-sub">Luxury dining hacks for serious lifters. Feast like royalty at steakhouses, seafood houses, and churrascarias without breaking your physique.</div>
+      <div class="paywall-features">
+        <div class="paywall-feature"><span class="ck">✓</span>The Titan's Tomahawk Feast (High-End Steakhouse)</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Poseidon's Platter (Premier Seafood House)</div>
+        <div class="paywall-feature"><span class="ck">✓</span>The Endless Meat Gauntlet (Churrascaria)</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Full 50+ restaurant food guide</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Drink Guide + Dessert Protocol</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Full PDF download included</div>
+      </div>
+      <div class="price-row"><span class="price-orig">$30</span><span class="price-now">$9.97</span><span class="price-tag">LAUNCH PRICE</span></div>
+      <a href="https://www.the6packhack.com/store" class="unlock-btn" target="_blank">⚡ UNLOCK FOR $9.97</a>
+      <p class="paywall-note">Price goes to $17 after launch · One-time · Instant access · Crypto accepted</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ DESSERTS (LOCKED) ═══════════════════════════ -->
+<div id="tab-desserts" class="section">
+  <div class="section-intro">
+    <h2>Crush Your Cravings: <span style="color:var(--orange)">Dessert Protocol</span></h2>
+    <p>A craving doesn't mean you're weak — it means you're human. A true Alpha doesn't let cravings derail the mission. You outsmart them.</p>
+    <p style="margin-top:8px; font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:1px; color:var(--red);">THE RULES: No flour. No sugar. No crusts. No ice cream.</p>
+  </div>
+  <div class="paywall-overlay">
+    <div class="paywall-blur">
+      <div class="dessert-card"><div class="dessert-name">The Classic: Berries & Heavy Cream</div><div class="dessert-text">Ask for mixed berries — strawberries, raspberries, blackberries. Specify: "No sugar dusting, no sweet syrup." Ask for a side of real, unsweetened heavy whipped cream (not the aerosol kind). Sweetness hit + quality fats = satisfied and still on mission.</div></div>
+      <div class="dessert-card"><div class="dessert-name">The Power Move: The Cheese Plate</div><div class="dessert-text">Order the cheese platter at nicer spots. Hard and soft cheeses — brie, cheddar, goat cheese. If it comes with almonds or walnuts, you're in business. Completely ignore the crackers, bread, honey, and sugary fruit pastes. High-fat, high-protein finisher that feels decadent.</div></div>
+      <div class="dessert-card"><div class="dessert-name">The Simple Finisher: A Perfect Sip</div><div class="dessert-text">Sometimes the best dessert isn't a food. A bold black decaf coffee or straight espresso signals the end of the meal. Want it more dessert-like? Ask for a splash of heavy cream (not milk) — rich, satisfying, crushes lingering cravings with fat, not sugar.</div></div>
+    </div>
+    <div class="paywall-box">
+      <div class="paywall-icon">🍓</div>
+      <div class="paywall-title">Unlock Dessert Protocol</div>
+      <div class="paywall-sub">End every meal on a high note without compromising your results — ever again.</div>
+      <div class="paywall-features">
+        <div class="paywall-feature"><span class="ck">✓</span>3 approved dessert protocols with exact ordering scripts</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Full 50+ restaurant food guide</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Alpha-Approved Drink Guide + ALPHA-X</div>
+        <div class="paywall-feature"><span class="ck">✓</span>Full PDF download included</div>
+      </div>
+      <div class="price-row"><span class="price-orig">$30</span><span class="price-now">$9.97</span><span class="price-tag">LAUNCH PRICE</span></div>
+      <a href="https://www.the6packhack.com/store" class="unlock-btn" target="_blank">⚡ UNLOCK FOR $9.97</a>
+      <p class="paywall-note">Price goes to $17 after launch · One-time · Instant access · Crypto accepted</p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- STICKY CTA (locked tabs only) -->
+<div class="sticky-cta" id="stickyCta" style="display:none">
+  <div class="sticky-cta-inner">
+    <a href="https://www.the6packhack.com/store" class="sticky-cta-btn" target="_blank">🔓 UNLOCK ALL 50+ RESTAURANTS — $9.97</a>
+    <div class="sticky-cta-sub">Launch price · Goes to $17 soon · Instant access · Crypto accepted</div>
+  </div>
+</div>
+
+<script>
+const LOCKED = ['fastcasual','sitdown','ethnic','drinks','alphax','desserts'];
+
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('stickyCta').style.display = LOCKED.includes(id) ? 'block' : 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<!-- ── OFFLINE BAR ── -->
+<div id="offline-bar">⚡ You're offline — app still works! All your free content is cached.</div>
+
+<!-- ── PWA INSTALL BANNER (Android / Chrome) ── -->
+<div id="pwa-install-banner">
+  <div class="pwa-banner-inner">
+    <div class="pwa-banner-icon">📱</div>
+    <div class="pwa-banner-text">
+      <div class="pwa-banner-title">Add to Your Home Screen</div>
+      <div class="pwa-banner-sub">Works offline at the drive-through — no wifi needed</div>
+    </div>
+    <div class="pwa-banner-actions">
+      <button class="pwa-install-btn" id="pwa-install-btn">⚡ INSTALL</button>
+      <button class="pwa-dismiss-btn" id="pwa-dismiss-btn">Later</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── iOS INSTALL INSTRUCTIONS ── -->
+<div id="pwa-ios-banner">
+  <div class="pwa-ios-inner">
+    <div class="pwa-ios-title">
+      Add to Home Screen
+      <button class="pwa-ios-close" id="pwa-ios-close">×</button>
+    </div>
+    <div class="pwa-ios-steps">
+      <div class="pwa-ios-step"><span class="step-icon">1️⃣</span> Tap the <strong style="color:var(--white)">Share</strong> button</div>
+      <div class="pwa-ios-arrow">→</div>
+      <div class="pwa-ios-step"><span class="step-icon">2️⃣</span> Tap <strong style="color:var(--white)">"Add to Home Screen"</strong></div>
+      <div class="pwa-ios-arrow">→</div>
+      <div class="pwa-ios-step"><span class="step-icon">3️⃣</span> Tap <strong style="color:var(--white)">Add</strong> — done! 🎯</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── INSTALL SUCCESS TOAST ── -->
+<div id="pwa-toast">✅ APP INSTALLED — CHECK YOUR HOME SCREEN!</div>
+
+<script>
+// ══════════════════════════════════════════
+//  PWA — SERVICE WORKER REGISTRATION
+// ══════════════════════════════════════════
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered:', reg.scope))
+      .catch(err => console.log('SW failed:', err));
+  });
+}
+
+// ══════════════════════════════════════════
+//  OFFLINE / ONLINE INDICATOR
+// ══════════════════════════════════════════
+const offlineBar = document.getElementById('offline-bar');
+
+function updateOnlineStatus() {
+  if (!navigator.onLine) {
+    offlineBar.textContent = '⚡ You\'re offline — app still works! All your free content is cached.';
+    offlineBar.classList.remove('back-online');
+    offlineBar.classList.add('visible');
+  } else {
+    if (offlineBar.classList.contains('visible')) {
+      offlineBar.textContent = '✅ You\'re back online!';
+      offlineBar.classList.add('back-online');
+      setTimeout(() => offlineBar.classList.remove('visible'), 3000);
+    }
+  }
+}
+
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+
+// ══════════════════════════════════════════
+//  INSTALL PROMPT — Android / Chrome
+// ══════════════════════════════════════════
+let deferredPrompt = null;
+const installBanner = document.getElementById('pwa-install-banner');
+const installBtn    = document.getElementById('pwa-install-btn');
+const dismissBtn    = document.getElementById('pwa-dismiss-btn');
+const toast         = document.getElementById('pwa-toast');
+
+// Catch the beforeinstallprompt event before browser shows its own
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  // Don't show if already dismissed recently
+  const dismissed = localStorage.getItem('pwa_dismissed');
+  if (dismissed) {
+    const daysSince = (Date.now() - parseInt(dismissed)) / (1000*60*60*24);
+    if (daysSince < 3) return;
+  }
+
+  // Show banner after 3 seconds
+  setTimeout(() => installBanner.classList.add('visible'), 3000);
+});
+
+installBtn.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  installBanner.classList.remove('visible');
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  if (outcome === 'accepted') {
+    showToast();
+  }
+  deferredPrompt = null;
+});
+
+dismissBtn.addEventListener('click', () => {
+  installBanner.classList.remove('visible');
+  localStorage.setItem('pwa_dismissed', Date.now().toString());
+});
+
+// ══════════════════════════════════════════
+//  iOS INSTALL INSTRUCTIONS
+// ══════════════════════════════════════════
+const iosBanner = document.getElementById('pwa-ios-banner');
+const iosClose  = document.getElementById('pwa-ios-close');
+
+function isIOS() {
+  return /iphone|ipad|ipod/i.test(navigator.userAgent);
+}
+
+function isInStandaloneMode() {
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+}
+
+// Show iOS instructions if on iOS, not already installed, not dismissed
+if (isIOS() && !isInStandaloneMode()) {
+  const iosDismissed = localStorage.getItem('pwa_ios_dismissed');
+  if (!iosDismissed) {
+    setTimeout(() => iosBanner.classList.add('visible'), 4000);
+  }
+}
+
+iosClose.addEventListener('click', () => {
+  iosBanner.classList.remove('visible');
+  localStorage.setItem('pwa_ios_dismissed', Date.now().toString());
+});
+
+// ══════════════════════════════════════════
+//  INSTALL SUCCESS HANDLER
+// ══════════════════════════════════════════
+window.addEventListener('appinstalled', () => {
+  installBanner.classList.remove('visible');
+  showToast();
+});
+
+function showToast() {
+  toast.classList.add('visible');
+  setTimeout(() => toast.classList.remove('visible'), 4000);
+}
+</script>
+
+</body>
+</html>

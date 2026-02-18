@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>6 Pack Hack Icon Generator</title>
+<style>
+body { background:#111; color:#f2f2f2; font-family:Arial,sans-serif; padding:40px 20px; display:flex; flex-direction:column; align-items:center; gap:32px; }
+h2 { font-family:Arial,sans-serif; color:#00ff87; letter-spacing:2px; text-align:center; margin:0; }
+.icons-row { display:flex; gap:40px; align-items:flex-end; flex-wrap:wrap; justify-content:center; }
+.icon-wrap { display:flex; flex-direction:column; align-items:center; gap:12px; }
+.icon-label { font-size:12px; color:#888; letter-spacing:2px; text-transform:uppercase; }
+canvas { border-radius:22%; box-shadow:0 8px 40px rgba(0,255,135,0.2); }
+.btn { background:#ffd000; color:#000; font-size:15px; font-weight:700; letter-spacing:1px; padding:12px 28px; border:none; border-radius:3px; cursor:pointer; transition:all .2s; }
+.btn:hover { background:#ffe44d; transform:translateY(-1px); }
+.btns { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+.note { font-size:12px; color:#666; text-align:center; max-width:400px; line-height:1.6; }
+</style>
+</head>
+<body>
+
+<h2>6-PACK HACK<br>PWA Icon Generator</h2>
+
+<div class="icons-row">
+  <div class="icon-wrap">
+    <canvas id="icon512" width="512" height="512"></canvas>
+    <div class="icon-label">512 × 512</div>
+  </div>
+  <div class="icon-wrap">
+    <canvas id="icon192" width="192" height="192" style="width:192px;height:192px;"></canvas>
+    <div class="icon-label">192 × 192</div>
+  </div>
+</div>
+
+<div class="btns">
+  <button class="btn" onclick="download('icon512', 'icon-512.png')">⬇ Download icon-512.png</button>
+  <button class="btn" onclick="download('icon192', 'icon-192.png')">⬇ Download icon-192.png</button>
+</div>
+
+<p class="note">Upload both files to your Squarespace file storage alongside sw.js and manifest.json. These become the app icon on your users' home screens.</p>
+
+<script>
+function drawIcon(canvasId, size) {
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext('2d');
+  const s = size;
+  const cx = s / 2;
+  const cy = s / 2;
+  const pad = s * 0.06;
+
+  // ── BACKGROUND ──
+  // Rounded square bg (full canvas — clipping handles the rounding at OS level)
+  ctx.fillStyle = '#080808';
+  ctx.fillRect(0, 0, s, s);
+
+  // Subtle radial glow
+  const glow = ctx.createRadialGradient(cx, cy * 0.7, 0, cx, cy * 0.7, s * 0.55);
+  glow.addColorStop(0, 'rgba(0,255,135,0.12)');
+  glow.addColorStop(1, 'rgba(0,255,135,0)');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, s, s);
+
+  // ── TOP ACCENT BAR ──
+  ctx.fillStyle = '#00ff87';
+  ctx.fillRect(pad, pad, s - pad * 2, s * 0.022);
+
+  // ── "6" — giant display number ──
+  ctx.save();
+  ctx.fillStyle = '#00ff87';
+  ctx.font = `900 ${s * 0.62}px Arial Black, Arial`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  // Slight shadow for depth
+  ctx.shadowColor = 'rgba(0,255,135,0.4)';
+  ctx.shadowBlur = s * 0.06;
+  ctx.fillText('6', cx, cy * 0.9);
+  ctx.restore();
+
+  // ── "PACK" text under the 6 ──
+  ctx.save();
+  ctx.fillStyle = '#ffffff';
+  ctx.font = `900 ${s * 0.155}px Arial Black, Arial`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.letterSpacing = `${s * 0.015}px`;
+  ctx.fillText('PACK', cx, cy * 1.52);
+  ctx.restore();
+
+  // ── "HACK" text below PACK ──
+  ctx.save();
+  ctx.fillStyle = '#ffd000';
+  ctx.font = `900 ${s * 0.155}px Arial Black, Arial`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('HACK', cx, cy * 1.76);
+  ctx.restore();
+
+  // ── Bottom green line ──
+  ctx.fillStyle = '#00ff87';
+  ctx.fillRect(pad, s - pad - s * 0.022, s - pad * 2, s * 0.022);
+
+  // ── Small lightning bolt beside "6" for energy ──
+  const bx = cx + s * 0.21;
+  const by = cy * 0.62;
+  const bs = s * 0.09;
+  ctx.save();
+  ctx.fillStyle = '#ffd000';
+  ctx.shadowColor = 'rgba(255,208,0,0.6)';
+  ctx.shadowBlur = s * 0.03;
+  ctx.beginPath();
+  ctx.moveTo(bx + bs * 0.4,  by);
+  ctx.lineTo(bx,             by + bs * 0.55);
+  ctx.lineTo(bx + bs * 0.32, by + bs * 0.55);
+  ctx.lineTo(bx - bs * 0.08, by + bs * 1.1);
+  ctx.lineTo(bx + bs * 0.62, by + bs * 0.45);
+  ctx.lineTo(bx + bs * 0.28, by + bs * 0.45);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+// Draw both icons on load
+drawIcon('icon512', 512);
+drawIcon('icon192', 192);
+
+function download(canvasId, filename) {
+  const canvas = document.getElementById(canvasId);
+  const link = document.createElement('a');
+  link.download = filename;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+</script>
+</body>
+</html>
