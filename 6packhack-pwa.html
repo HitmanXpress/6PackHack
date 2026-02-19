@@ -148,6 +148,14 @@ main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
 .paywall-overlay { position:relative; margin-top:20px; }
 .paywall-blur { filter:blur(5px); opacity:.3; pointer-events:none; user-select:none; }
 .paywall-box { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--deep); border:1px solid var(--gold); border-radius:6px; padding:28px 24px; text-align:center; width:min(380px,92vw); z-index:10; box-shadow:0 0 60px rgba(255,208,0,0.08); }
+
+/* UNLOCKED STATE */
+body.app-unlocked .paywall-blur { filter:none !important; opacity:1 !important; pointer-events:all !important; user-select:auto !important; }
+body.app-unlocked .paywall-box { display:none !important; }
+body.app-unlocked .paywall-overlay { position:static !important; }
+body.app-unlocked .lock-icon { display:none !important; }
+body.app-unlocked .sticky-cta { display:none !important; }
+body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
 .paywall-icon { font-size:34px; margin-bottom:10px; }
 .paywall-title { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:2px; color:var(--gold); margin-bottom:8px; }
 .paywall-sub { font-size:15px; color:#d0d0d0; font-weight:400; line-height:1.6; margin-bottom:18px; }
@@ -982,7 +990,8 @@ function showTab(id, btn) {
 // Run unlock on every page load if key is stored
 window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('spk_unlocked') === '1') {
-    unlockApp();
+    // Small delay to ensure all DOM is ready
+    setTimeout(() => unlockApp(), 100);
   }
 });
 </script>
@@ -1272,31 +1281,8 @@ function showLicenseMsg(type, text) {
 }
 
 function unlockApp() {
-  // Remove all paywall blurs — show full content
-  document.querySelectorAll('.paywall-blur').forEach(el => {
-    el.style.cssText = 'filter:none !important; opacity:1 !important; pointer-events:all !important; user-select:auto !important;';
-  });
-
-  // Hide all paywall boxes
-  document.querySelectorAll('.paywall-box').forEach(el => {
-    el.style.cssText = 'display:none !important;';
-  });
-
-  // Remove paywall-overlay position so content flows normally
-  document.querySelectorAll('.paywall-overlay').forEach(el => {
-    el.style.cssText = 'position:static !important; margin-top:0 !important;';
-  });
-
-  // Remove lock icons from nav tabs
-  document.querySelectorAll('.lock-icon').forEach(el => el.remove());
-
-  // Hide already purchased button
-  const apBtn = document.getElementById('alreadyPurchasedBtn');
-  if (apBtn) apBtn.style.display = 'none';
-
-  // Hide sticky CTA
-  const cta = document.querySelector('.sticky-cta');
-  if (cta) cta.style.display = 'none';
+  // Add unlocked class to body — CSS handles everything
+  document.body.classList.add('app-unlocked');
 
   // Update free banner
   const banner = document.querySelector('.free-banner');
