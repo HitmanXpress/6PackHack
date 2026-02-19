@@ -726,9 +726,18 @@ function showTab(id, btn) {
   document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + id).classList.add('active');
   btn.classList.add('active');
-  document.getElementById('stickyCta').style.display = LOCKED.includes(id) ? 'block' : 'none';
+  // Only show sticky CTA if NOT unlocked
+  const isUnlocked = localStorage.getItem('spk_unlocked') === '1';
+  document.getElementById('stickyCta').style.display = (!isUnlocked && LOCKED.includes(id)) ? 'block' : 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// Run unlock on every page load if key is stored
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('spk_unlocked') === '1') {
+    unlockApp();
+  }
+});
 </script>
 <!-- ALREADY PURCHASED FLOATING BUTTON -->
 <button class="already-purchased-btn" id="alreadyPurchasedBtn" onclick="openUnlockModal()">🔑<br>Enter Your Key</button>
@@ -961,11 +970,6 @@ document.getElementById('unlockModal').addEventListener('click', function(e) {
 // ══════════════════════════════════════════
 //  LICENSE KEY SYSTEM
 // ══════════════════════════════════════════
-
-// Check on load if already unlocked
-if (localStorage.getItem('spk_unlocked') === '1') {
-  unlockApp();
-}
 
 async function activateLicense() {
   const input = document.getElementById('lic-input');
