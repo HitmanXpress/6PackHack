@@ -50,7 +50,9 @@ body { background:var(--black); color:#f0f0f0; font-family:'Barlow',sans-serif; 
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(52px,13vw,108px); line-height:0.88; letter-spacing:3px; }
 h1 em { color:var(--green); font-style:normal; display:block; }
-.hero-sub { margin-top:14px; font-size:13px; font-weight:300; color:var(--muted2); letter-spacing:1.5px; text-transform:uppercase; }
+/* TYPEWRITER */
+.hero-sub { margin-top:14px; font-size:13px; font-weight:300; color:var(--muted2); letter-spacing:1.5px; text-transform:uppercase; min-height:20px; }
+.typewriter-cursor { display:inline-block; width:2px; height:13px; background:var(--green); margin-left:3px; vertical-align:middle; animation:blink 0.8s infinite; }
 .hero-stats { display:flex; justify-content:center; gap:clamp(20px,5vw,60px); margin-top:36px; flex-wrap:wrap; }
 .hero-stat { text-align:center; }
 .hero-stat-num { font-family:'Bebas Neue',sans-serif; font-size:38px; color:var(--green); line-height:1; }
@@ -351,7 +353,7 @@ main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
 <header class="hero">
   <div class="hero-eyebrow"><span></span> Keto Cutting Mode  Active <span></span></div>
   <h1>THE 6-PACK<em>HACK</em></h1>
-  <p class="hero-sub">Eat Out. Get Cut. No Excuses.</p>
+  <p class="hero-sub" id="typewriter-text"></p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="hero-stat-num">50+</div><div class="hero-stat-label">Restaurants</div></div>
     <div class="hero-stat"><div class="hero-stat-num">&lt;20g</div><div class="hero-stat-label">Net Carbs</div></div>
@@ -933,6 +935,29 @@ function unlockApp() {
   // Show success toast
   showToast();
 }
+
+// ══════════════════════════════════════════
+//  TYPEWRITER EFFECT
+// ══════════════════════════════════════════
+(function() {
+  const el = document.getElementById('typewriter-text');
+  if (!el) return;
+  const text = 'EAT OUT. GET CUT. NO EXCUSES.';
+  let i = 0;
+  const cursor = document.createElement('span');
+  cursor.className = 'typewriter-cursor';
+  el.appendChild(cursor);
+  setTimeout(() => {
+    const interval = setInterval(() => {
+      el.insertBefore(document.createTextNode(text[i]), cursor);
+      i++;
+      if (i >= text.length) {
+        clearInterval(interval);
+        setTimeout(() => cursor.style.display = 'none', 1500);
+      }
+    }, 65);
+  }, 800);
+})();
 
 // ══════════════════════════════════════════
 //  INSTALL SUCCESS HANDLER
