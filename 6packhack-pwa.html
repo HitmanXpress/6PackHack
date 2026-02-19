@@ -395,8 +395,8 @@ main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
     <button class="nav-tab" onclick="showTab('sitdown',this)">Sit-Down <span class="lock-icon">🔒</span></button>
     <button class="nav-tab" onclick="showTab('ethnic',this)">Elite Ethnic <span class="lock-icon">🔒</span></button>
     <button class="nav-tab" onclick="showTab('drinks',this)">Drinks <span class="lock-icon">🔒</span></button>
-    <button class="nav-tab" onclick="showTab('alphax',this)">ALPHA-X <span style="font-size:9px; color:var(--gold); letter-spacing:1px;">SOON</span></button>
     <button class="nav-tab" onclick="showTab('desserts',this)">Desserts <span class="lock-icon">🔒</span></button>
+    <button class="nav-tab" onclick="showTab('alphax',this)">ALPHA-X <span style="font-size:9px; color:var(--gold); letter-spacing:1px;">SOON</span></button>
   </div>
 </div>
 
@@ -654,23 +654,6 @@ main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
   </div>
 </div>
 
-<!-- ═══════════════════════════ ALPHA-X (COMING SOON) ═══════════════════════════ -->
-<div id="tab-alphax" class="section">
-  <div style="text-align:center; padding:60px 20px;">
-    <div style="font-size:64px; margin-bottom:20px;">👑</div>
-    <div style="font-family:'Bebas Neue',sans-serif; font-size:48px; letter-spacing:3px; color:var(--gold); line-height:1; margin-bottom:12px;">ALPHA-X</div>
-    <div style="font-family:'Barlow Condensed',sans-serif; font-size:16px; letter-spacing:4px; text-transform:uppercase; color:var(--muted2); margin-bottom:30px;">COMING SOON</div>
-    <div style="background:linear-gradient(135deg,#1a1200,#1f1a00); border:1px solid rgba(255,208,0,0.3); border-radius:8px; padding:30px 24px; max-width:400px; margin:0 auto 30px;">
-      <p style="font-size:16px; color:#e0e0e0; line-height:1.7; margin-bottom:16px;">The next level of the 6-Pack Hack is in development. ALPHA-X will be a fully personalized coaching program — custom meal plans, daily featured meals, and elite dining protocols built around <em>your</em> goals.</p>
-      <p style="font-size:14px; color:var(--gold); font-weight:600; letter-spacing:1px;">This will not be $9.97.</p>
-    </div>
-    <div style="background:rgba(0,255,135,0.06); border:1px solid rgba(0,255,135,0.2); border-radius:6px; padding:20px 24px; max-width:400px; margin:0 auto;">
-      <div style="font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:10px;">Get Early Access</div>
-      <p style="font-size:14px; color:#c0c0c0; line-height:1.6;">Current members of the 6-Pack Hack will get first notification and a founding member discount when ALPHA-X launches.</p>
-    </div>
-  </div>
-</div>
-
 <!-- ═══════════════════════════ DESSERTS (LOCKED) ═══════════════════════════ -->
 <div id="tab-desserts" class="section">
   <div class="section-intro">
@@ -703,6 +686,24 @@ main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
         <button class="license-btn" onclick="activateLicense()">UNLOCK</button>
       </div>
       <div class="license-msg" id="lic-msg">Enter the key from your purchase email</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ ALPHA-X (COMING SOON) ═══════════════════════════ -->
+<div id="tab-alphax" class="section">
+  <div style="text-align:center; padding:60px 20px;">
+    <div style="font-size:64px; margin-bottom:20px;">👑</div>
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:48px; letter-spacing:3px; color:var(--gold); line-height:1; margin-bottom:12px;">ALPHA-X</div>
+    <div style="font-family:'Barlow Condensed',sans-serif; font-size:16px; letter-spacing:4px; text-transform:uppercase; color:var(--muted2); margin-bottom:30px;">COMING SOON</div>
+    <div style="background:linear-gradient(135deg,#1a1200,#1f1a00); border:1px solid rgba(255,208,0,0.3); border-radius:8px; padding:30px 24px; max-width:400px; margin:0 auto 30px;">
+      <p style="font-size:16px; color:#e0e0e0; line-height:1.7; margin-bottom:16px;">The next level of the 6-Pack Hack is in development. ALPHA-X will be a fully personalized coaching program — custom meal plans, daily featured meals, and elite dining protocols built around <em>your</em> goals.</p>
+      <p style="font-size:14px; color:var(--gold); font-weight:600; letter-spacing:1px;">This will not be $9.97.</p>
+    </div>
+    <div style="background:rgba(0,255,135,0.06); border:1px solid rgba(0,255,135,0.2); border-radius:6px; padding:20px 24px; max-width:400px; margin:0 auto;">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:10px;">Get Early Access</div>
+      <p style="font-size:14px; color:#c0c0c0; line-height:1.6;">Current members of the 6-Pack Hack will get first notification and a founding member discount when ALPHA-X launches.</p>
     </div>
   </div>
 </div>
@@ -1020,12 +1021,19 @@ function showLicenseMsg(type, text) {
 }
 
 function unlockApp() {
-  // Remove all paywalls
-  document.querySelectorAll('.paywall-overlay').forEach(overlay => {
-    const blur = overlay.querySelector('.paywall-blur');
-    const box  = overlay.querySelector('.paywall-box');
-    if (blur) { blur.style.filter = 'none'; blur.style.opacity = '1'; blur.style.pointerEvents = 'all'; blur.style.userSelect = 'auto'; }
-    if (box)  { box.style.display = 'none'; }
+  // Remove all paywall blurs — show full content
+  document.querySelectorAll('.paywall-blur').forEach(el => {
+    el.style.cssText = 'filter:none !important; opacity:1 !important; pointer-events:all !important; user-select:auto !important;';
+  });
+
+  // Hide all paywall boxes
+  document.querySelectorAll('.paywall-box').forEach(el => {
+    el.style.cssText = 'display:none !important;';
+  });
+
+  // Remove paywall-overlay position so content flows normally
+  document.querySelectorAll('.paywall-overlay').forEach(el => {
+    el.style.cssText = 'position:static !important; margin-top:0 !important;';
   });
 
   // Remove lock icons from nav tabs
@@ -1042,7 +1050,7 @@ function unlockApp() {
   // Update free banner
   const banner = document.querySelector('.free-banner');
   if (banner) {
-    banner.innerHTML = '✅ <strong>Full Access Unlocked</strong> — All 50+ restaurants, drinks, Alpha-X & more';
+    banner.innerHTML = '✅ <strong>Full Access Unlocked</strong> — All 50+ restaurants, drinks & more';
     banner.style.background = 'linear-gradient(90deg,rgba(0,255,135,0.15),rgba(0,255,135,0.08))';
   }
 
