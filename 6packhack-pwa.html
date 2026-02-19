@@ -196,7 +196,7 @@ main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
 .unlock-modal-close:hover { color:var(--white); border-color:var(--muted); }
 
 /* ALREADY PURCHASED FLOATING BUTTON */
-.already-purchased-btn { position:fixed; top:16px; right:16px; z-index:500; background:rgba(255,208,0,0.12); border:1px solid rgba(255,208,0,0.4); color:var(--gold); font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:7px 14px; border-radius:3px; cursor:pointer; transition:all .2s; backdrop-filter:blur(8px); }
+.already-purchased-btn { position:fixed; top:16px; right:16px; z-index:500; background:rgba(255,208,0,0.12); border:1px solid rgba(255,208,0,0.4); color:var(--gold); font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:8px 14px; border-radius:4px; cursor:pointer; transition:all .2s; backdrop-filter:blur(8px); text-align:center; line-height:1.4; }
 .already-purchased-btn:hover { background:rgba(255,208,0,0.2); border-color:var(--gold); }
 .license-divider { display:flex; align-items:center; gap:10px; margin:14px 0; }
 .license-divider::before, .license-divider::after { content:''; flex:1; height:1px; background:var(--border); }
@@ -730,7 +730,7 @@ function showTab(id, btn) {
 }
 </script>
 <!-- ALREADY PURCHASED FLOATING BUTTON -->
-<button class="already-purchased-btn" id="alreadyPurchasedBtn" onclick="openUnlockModal()">🔑 Already Purchased?</button>
+<button class="already-purchased-btn" id="alreadyPurchasedBtn" onclick="openUnlockModal()">🔑<br>Enter Your Key</button>
 
 <!-- UNLOCK MODAL -->
 <div class="unlock-modal-backdrop" id="unlockModal">
