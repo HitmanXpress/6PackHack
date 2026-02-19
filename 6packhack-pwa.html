@@ -146,7 +146,7 @@ main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
 
 /* PAYWALL */
 .paywall-overlay { position:relative; margin-top:20px; }
-.paywall-blur { filter:blur(5px); opacity:.3; pointer-events:none; user-select:none; }
+.paywall-blur { filter:none; opacity:1; pointer-events:all; user-select:auto; }
 .paywall-box { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--deep); border:1px solid var(--gold); border-radius:6px; padding:28px 24px; text-align:center; width:min(380px,92vw); z-index:10; box-shadow:0 0 60px rgba(255,208,0,0.08); }
 
 /* UNLOCKED STATE */
@@ -624,9 +624,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
     <h2>Fast Casual <span style="color:var(--gold)">Favorites</span></h2>
     <p>Your complete guide to fast casual chains. More options, more flavor, same mission — high protein, healthy fats, zero guilt.</p>
   </div>
-  <div class="paywall-overlay">
-    <div class="paywall-blur">
-
+  
   <!-- CHIPOTLE -->
   <div class="chain-head"><div class="chain-name" style="color:#c8102e">Chipotle</div><div class="chain-divider"></div><div class="chain-tag">Bowl Life</div></div>
   <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
@@ -728,8 +726,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
     <div class="meal-card"><div class="mc-name">Smashburger</div><div class="mc-meal">Double Smash — Lettuce Wrap</div><div class="mc-hack">Double patties, cheddar, grilled onions, tomato, pickles, extra mayo. Lettuce wrap. The smash = incredible fat-seared crust. No bun needed.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">560</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">42g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">8g</div><div class="macro-lbl">Carbs</div></div></div></div>
   </div>
 
-    </div>
-    <div class="paywall-box">
+
       <div class="paywall-icon">🔒</div>
       <div class="paywall-title">Unlock Full Menu</div>
       <div class="paywall-sub">Get instant access to all 50+ restaurants, drinks guide, and dessert protocol.</div>
@@ -746,9 +743,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
     <h2>Sit-Down <span style="color:var(--gold)">Strategies</span></h2>
     <p>Full-service restaurants are actually easier to hack than fast food — you have a real server, real options, and real control. Use it.</p>
   </div>
-  <div class="paywall-overlay">
-    <div class="paywall-blur">
-
+  
   <!-- APPLEBEE'S / CHILI'S -->
   <div class="chain-head"><div class="chain-name" style="color:#c8102e">Applebee's</div><div class="chain-divider"></div><div class="chain-tag">Casual Done Right</div></div>
   <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
@@ -821,8 +816,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
     <div class="meal-card"><div class="mc-name">Cheesecake Factory</div><div class="mc-meal">Steak Diane</div><div class="mc-hack">Beef medallions in mushroom-cream sauce (healthy fat). Skip all potatoes/pasta. Double asparagus or broccoli. Accidentally keto and absolutely delicious.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">640</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">48g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">10g</div><div class="macro-lbl">Carbs</div></div></div></div>
   </div>
 
-    </div>
-    <div class="paywall-box">
+
       <div class="paywall-icon">🔒</div>
       <div class="paywall-title">Unlock Full Menu</div>
       <div class="paywall-sub">Get instant access to all 50+ restaurants, drinks guide, and dessert protocol.</div>
@@ -839,9 +833,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
     <h2>Elite Ethnic <span style="color:var(--gold)">Dining</span></h2>
     <p>Every cuisine on earth has keto-friendly options if you know what to order. Here's your cheat code for every major ethnic restaurant category.</p>
   </div>
-  <div class="paywall-overlay">
-    <div class="paywall-blur">
-
+  
   <!-- MEXICAN -->
   <div class="chain-head"><div class="chain-name" style="color:#c8102e">Mexican Restaurants</div><div class="chain-divider"></div><div class="chain-tag">Guac Everything</div></div>
   <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
@@ -904,8 +896,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
     <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">Outback ⭐</div><div class="mc-meal">Ribeye 12oz — Extra Butter</div><div class="mc-hack">Ribeye = highest fat steak. Extra butter on top. Sautéed mushrooms + broccoli. Skip all potatoes. Don't touch the Bloomin' Onion or bread.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">740</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">60g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">4g</div><div class="macro-lbl">Carbs</div></div></div></div>
   </div>
 
-    </div>
-    <div class="paywall-box">
+
       <div class="paywall-icon">🔒</div>
       <div class="paywall-title">Unlock Full Menu</div>
       <div class="paywall-sub">Get instant access to all 50+ restaurants, drinks guide, and dessert protocol.</div>
@@ -923,9 +914,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
     <p>You can drink and still stay lean — if you know exactly what to order. These are your approved zero-carb cocktail scripts. Read them. Own them. Never blow your physique at a bar again.</p>
     <p style="margin-top:8px; font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:1px; color:var(--red);">THE RULE: Zero sugar. Zero juice. Zero soda mixers. Spirits only.</p>
   </div>
-  <div class="paywall-overlay">
-    <div class="paywall-blur">
-
+  
   <!-- THE CLASSICS -->
   <div class="chain-head"><div class="chain-name" style="color:var(--gold)">The Classics</div><div class="chain-divider"></div><div class="chain-tag">Always Works</div></div>
   <table class="meal-table"><thead><tr><th>Drink</th><th>Your Order Script</th><th>Carbs</th><th>Why It Works</th></tr></thead><tbody>
@@ -971,8 +960,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
     <tr><td class="meal-name-cell">🚫 Piña Colada / Daiquiri</td><td class="hack-cell">Blended drinks are carb disasters — pineapple juice, coconut cream, simple syrup. 40-60g of sugar per drink. One of these wipes out an entire day of clean eating. Never.</td><td class="macro-cell"><span style="color:var(--red)">40-60g carbs</span></td><td class="drink-cell">Never. Just vodka soda.</td></tr>
   </tbody></table>
 
-    </div>
-    <div class="paywall-box">
+
       <div class="paywall-icon">🔒</div>
       <div class="paywall-title">Unlock Full Menu</div>
       <div class="paywall-sub">Get instant access to all 50+ restaurants, drinks guide, and dessert protocol.</div>
@@ -990,9 +978,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
     <p>A craving doesn't mean you're weak — it means you're human. A true Alpha doesn't let cravings derail the mission. You outsmart them.</p>
     <p style="margin-top:8px; font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:1px; color:var(--red);">THE RULES: No flour. No sugar. No crusts. No ice cream. Fat is your dessert.</p>
   </div>
-  <div class="paywall-overlay">
-    <div class="paywall-blur">
-
+  
   <!-- THE PROTOCOLS -->
   <div class="chain-head"><div class="chain-name" style="color:var(--orange)">The 3 Approved Protocols</div><div class="chain-divider"></div><div class="chain-tag">End Strong</div></div>
 
@@ -1014,8 +1000,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
     <div class="meal-card"><div class="mc-name">Dessert Protocol</div><div class="mc-meal">The Cheese Plate</div><div class="mc-hack">Brie, cheddar, goat cheese, almonds, walnuts. Ignore crackers, bread, honey. High-fat, high-protein, feels indulgent. Most alpha dessert at any table.</div><div class="mc-drink">🍷 Pair with Dry Red Wine or Espresso</div><div class="macros-row"><div class="macro-pill"><div class="macro-val k">4g</div><div class="macro-lbl">Carbs</div></div><div class="macro-pill"><div class="macro-val p">16g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val c">320</div><div class="macro-lbl">Cals</div></div></div></div>
   </div>
 
-    </div>
-    <div class="paywall-box">
+
       <div class="paywall-icon">🔒</div>
       <div class="paywall-title">Unlock Full Menu</div>
       <div class="paywall-sub">Get instant access to all 50+ restaurants, drinks guide, and dessert protocol.</div>
