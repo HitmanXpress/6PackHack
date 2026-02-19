@@ -497,199 +497,349 @@ main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
 <div id="tab-fastcasual" class="section">
   <div class="section-intro">
     <h2>Fast Casual <span style="color:var(--gold)">Favorites</span></h2>
-    <p>Chipotle, Panera Bread, Five Guys, In-N-Out, Shake Shack, Whataburger, Carl's Jr., Jersey Mike's, Jimmy John's, Zaxby's, El Pollo Loco, Smashburger, Boston Market, Buffalo Wild Wings, Wingstop, Qdoba, and more.</p>
+    <p>Your complete guide to fast casual chains. More options, more flavor, same mission — high protein, healthy fats, zero guilt.</p>
   </div>
-  <div class="paywall-overlay">
-    <div class="paywall-blur">
-      <div class="chain-head"><div class="chain-name" style="color:#c8102e">Chipotle</div><div class="chain-divider"></div></div>
-      <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Drink</th></tr></thead><tbody>
-        <tr><td class="meal-name-cell">Steak Lifestyle Bowl</td><td class="hack-cell">Double steak, fajita veggies, guac, cheese, sour cream. No rice, no beans. Guac is worth it.</td><td class="drink-cell">Water, Unsweet Tea</td></tr>
-        <tr><td class="meal-name-cell">Carnitas Keto Bowl</td><td class="hack-cell">Carnitas, extra guac, lettuce, cheese, salsa verde. Pure keto.</td><td class="drink-cell">Water</td></tr>
-        <tr><td class="meal-name-cell">In-N-Out 4x4 Protein Style</td><td class="hack-cell">Four patties, four cheese, lettuce instead of bun. No spread, add mustard.</td><td class="drink-cell">Water</td></tr>
-        <tr><td class="meal-name-cell">Five Guys Bunless Bacon Cheeseburger</td><td class="hack-cell">Bowl or lettuce wrap. Extra bacon. Free toppings: mushrooms, jalapeños, onions.</td><td class="drink-cell">Water</td></tr>
-        <tr><td class="meal-name-cell">Jersey Mike's #8 Club Supreme (Sub in a Tub)</td><td class="hack-cell">Roast beef, turkey, swiss, bacon on lettuce. Oil & vinegar dressing.</td><td class="drink-cell">Water</td></tr>
-      </tbody></table>
-    </div>
-    <div class="paywall-box">
-      <div class="paywall-icon">🔒</div>
-      <div class="paywall-title">Unlock Full Menu</div>
-      <div class="paywall-sub">Your complete field guide to eating out and staying ripped — every major chain in America covered.</div>
-      <div class="paywall-features">
-        <div class="paywall-feature"><span class="ck">✓</span>Fast Casual: Chipotle, In-N-Out, Five Guys, Shake Shack, Whataburger & more</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Sit-Down: Applebee's, Olive Garden, Texas Roadhouse, Denny's & more</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Elite Ethnic: Benihana, P.F. Chang's, Panda Express & more</div>
-        <div class="paywall-feature"><span class="ck">✓</span>The 21+ Alpha-Approved Drink Guide (9 cocktail scripts)</div>
-        <div class="paywall-feature"><span class="ck">✓</span>ALPHA-X: Luxury steakhouse & churrascaria feasts</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Crush Your Cravings: The Dessert Protocol</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Full PDF download included</div>
-      </div>
-      <div class="price-row"><span class="price-orig">$30</span><span class="price-now">$9.97</span><span class="price-tag">LAUNCH PRICE</span></div>
-      <a href="https://hitmanxpress.gumroad.com/l/iwreac" class="unlock-btn" target="_blank">⚡ UNLOCK FULL MENU — $9.97</a>
-      <p class="paywall-note">Launch price · Goes to $17 soon · One-time · Instant access · Crypto accepted</p>
-      <div class="license-divider"><span>Already purchased? Enter your key</span></div>
-      <div class="license-input-wrap">
-        <input class="license-input" type="text" placeholder="Enter license key (e.g. XXXX-XXXX-XXXX)" id="lic-input" autocomplete="off" autocorrect="off" autocapitalize="characters" />
-        <button class="license-btn" onclick="activateLicense()">UNLOCK</button>
-      </div>
-      <div class="license-msg" id="lic-msg">Enter the key from your purchase email</div>
-    </div>
+
+  <!-- CHIPOTLE -->
+  <div class="chain-head"><div class="chain-name" style="color:#c8102e">Chipotle</div><div class="chain-divider"></div><div class="chain-tag">Bowl Life</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Double Steak Keto Bowl</td><td class="hack-cell">Double steak, fajita veggies, extra guac, sour cream, cheese, lettuce. No rice, no beans — ever. Guac is avocado fat, always say yes. Load the sour cream too.</td><td class="macro-cell"><span style="color:var(--orange)">~640 cal</span> · <span style="color:var(--green)">52g P</span> · <span style="color:var(--red)">12g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Carnitas Fat Bowl</td><td class="hack-cell">Carnitas, extra guac, cheese, sour cream, salsa verde, extra lettuce, jalapeños. Carnitas is fattier than chicken — that's a good thing. Skip the rice and beans.</td><td class="macro-cell"><span style="color:var(--orange)">~620 cal</span> · <span style="color:var(--green)">42g P</span> · <span style="color:var(--red)">10g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Barbacoa Power Bowl</td><td class="hack-cell">Barbacoa, fajita veggies, guac, sour cream, cheese, hot salsa, lettuce. No rice, no beans. Barbacoa is slow-cooked beef — rich flavor, serious protein.</td><td class="macro-cell"><span style="color:var(--orange)">~590 cal</span> · <span style="color:var(--green)">44g P</span> · <span style="color:var(--red)">11g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">Chipotle ⭐</div><div class="mc-meal">Double Steak Keto Bowl</div><div class="mc-hack">Double steak, fajita veggies, extra guac, sour cream, cheese, lettuce. No rice, no beans. Guac = avocado = always yes.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">640</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">52g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">12g</div><div class="macro-lbl">Carbs</div></div></div></div>
+    <div class="meal-card"><div class="mc-name">Chipotle</div><div class="mc-meal">Carnitas Fat Bowl</div><div class="mc-hack">Carnitas, extra guac, cheese, sour cream, salsa verde, jalapeños, lettuce. No rice, no beans. Load the healthy fats.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">620</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">42g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">10g</div><div class="macro-lbl">Carbs</div></div></div></div>
   </div>
+
+  <!-- IN-N-OUT -->
+  <div class="chain-head"><div class="chain-name" style="color:#d62300">In-N-Out</div><div class="chain-divider"></div><div class="chain-tag">Protein Style</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">⭐ Double-Double Protein Style</td><td class="hack-cell">Two patties, two cheese, lettuce wrap instead of bun. Add mayo, extra onion, tomato, pickles. No spread — it has sugar. Mayo is your fat here. Best fast food burger in America.</td><td class="macro-cell"><span style="color:var(--orange)">~520 cal</span> · <span style="color:var(--green)">37g P</span> · <span style="color:var(--red)">11g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">4x4 Protein Style</td><td class="hack-cell">Four patties, four cheese, lettuce wrap. Extra mayo, grilled onions, tomato, pickles. This is an absolute protein bomb. No spread, no ketchup.</td><td class="macro-cell"><span style="color:var(--orange)">~750 cal</span> · <span style="color:var(--green)">60g P</span> · <span style="color:var(--red)">14g C</span></td><td class="drink-cell">Water</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">In-N-Out ⭐</div><div class="mc-meal">Double-Double Protein Style</div><div class="mc-hack">Lettuce wrap, two patties, two cheese. Extra mayo, grilled onions, tomato, pickles. No spread — it has sugar. Best fast food burger in America.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">520</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">37g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">11g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- FIVE GUYS -->
+  <div class="chain-head"><div class="chain-name" style="color:#d62300">Five Guys</div><div class="chain-divider"></div><div class="chain-tag">Load It Up</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Bacon Cheeseburger — Lettuce Wrap</td><td class="hack-cell">Lettuce wrap or bowl. Extra bacon, extra cheese, mayo, grilled onions, mushrooms, jalapeños, green peppers, tomato, pickles. ALL toppings are FREE — load every single one. Mayo is essential.</td><td class="macro-cell"><span style="color:var(--orange)">~580 cal</span> · <span style="color:var(--green)">40g P</span> · <span style="color:var(--red)">10g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Little Bacon Cheeseburger — Lettuce Wrap</td><td class="hack-cell">Same deal — lettuce wrap, load every free topping. Mayo, grilled onions, mushrooms, jalapeños. Lighter option if you had a big breakfast.</td><td class="macro-cell"><span style="color:var(--orange)">~430 cal</span> · <span style="color:var(--green)">28g P</span> · <span style="color:var(--red)">7g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Five Guys</div><div class="mc-meal">Bacon Cheeseburger — Lettuce Wrap</div><div class="mc-hack">Lettuce wrap. Extra bacon, cheese, mayo, grilled onions, mushrooms, jalapeños, tomato, pickles. All toppings FREE — load every one.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">580</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">40g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">10g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- SHAKE SHACK -->
+  <div class="chain-head"><div class="chain-name" style="color:#6ba539">Shake Shack</div><div class="chain-divider"></div><div class="chain-tag">No Bun No Problem</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Double ShackBurger — No Bun</td><td class="hack-cell">Lettuce wrap. Two patties, cheese, tomato, lettuce, pickles, extra mayo. Ask for extra ShackSauce on the side (check carbs) or stick to mayo. Load the veggies.</td><td class="macro-cell"><span style="color:var(--orange)">~540 cal</span> · <span style="color:var(--green)">38g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">SmokeShack — No Bun</td><td class="hack-cell">Lettuce wrap. Bacon, cherry peppers, cheese, extra mayo. The cherry peppers add zero-carb heat and serious flavor. Skip the bun entirely.</td><td class="macro-cell"><span style="color:var(--orange)">~490 cal</span> · <span style="color:var(--green)">32g P</span> · <span style="color:var(--red)">7g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Shake Shack</div><div class="mc-meal">Double ShackBurger — No Bun</div><div class="mc-hack">Lettuce wrap. Two patties, cheese, tomato, pickles, extra mayo. Load the veggies. Skip the bun entirely.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">540</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">38g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">8g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- WHATABURGER -->
+  <div class="chain-head"><div class="chain-name" style="color:#f5821f">Whataburger</div><div class="chain-divider"></div><div class="chain-tag">Texas Size</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Double Meat Whataburger — No Bun</td><td class="hack-cell">Lettuce wrap. Two patties, cheese, tomato, grilled onions, jalapeños, pickles, extra mayo. Whataburger's patties are huge — this is a serious meal. No ketchup.</td><td class="macro-cell"><span style="color:var(--orange)">~620 cal</span> · <span style="color:var(--green)">48g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Breakfast on a Bun — No Bun</td><td class="hack-cell">Egg, sausage or bacon, cheese. Fork and knife or lettuce wrap. Add mayo. Skip the bun. Best breakfast in Texas, period.</td><td class="macro-cell"><span style="color:var(--orange)">~420 cal</span> · <span style="color:var(--green)">26g P</span> · <span style="color:var(--red)">4g C</span></td><td class="drink-cell">Black Coffee, Water</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Whataburger</div><div class="mc-meal">Double Meat — No Bun</div><div class="mc-hack">Lettuce wrap. Two huge patties, cheese, grilled onions, jalapeños, pickles, extra mayo. No ketchup. This is a serious meal.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">620</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">48g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">8g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- JERSEY MIKE'S -->
+  <div class="chain-head"><div class="chain-name" style="color:#c8102e">Jersey Mike's</div><div class="chain-divider"></div><div class="chain-tag">Sub in a Tub</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">#8 Club Supreme — Sub in a Tub</td><td class="hack-cell">Roast beef, turkey, provolone, bacon on a bed of lettuce. Oil & vinegar dressing + mayo. Load every veggie. Sub in a tub = no bread, all the flavor.</td><td class="macro-cell"><span style="color:var(--orange)">~480 cal</span> · <span style="color:var(--green)">44g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">#13 The Original Italian — Sub in a Tub</td><td class="hack-cell">Ham, prosciuttini, cappacuolo, salami, pepperoni, provolone on lettuce. Oil & vinegar + mayo. The Italian Mike's Way without the bread is one of the best keto meals anywhere.</td><td class="macro-cell"><span style="color:var(--orange)">~520 cal</span> · <span style="color:var(--green)">38g P</span> · <span style="color:var(--red)">6g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Jersey Mike's</div><div class="mc-meal">#13 Original Italian — Sub in a Tub</div><div class="mc-hack">All the Italian meats + provolone on lettuce. Oil & vinegar + mayo. Load every veggie. No bread — all flavor.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">520</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">38g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">6g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- WINGSTOP -->
+  <div class="chain-head"><div class="chain-name" style="color:#d62300">Wingstop</div><div class="chain-divider"></div><div class="chain-tag">Wing Commander</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">10 Classic Wings — Naked or Dry Rub</td><td class="hack-cell">Order NAKED (no breading) or dry rub flavors only. Lemon pepper, Cajun, or Hawaiian dry rub. Sauced wings have sugar. Ranch dipping sauce — always. Skip ALL fries and sides.</td><td class="macro-cell"><span style="color:var(--orange)">~540 cal</span> · <span style="color:var(--green)">52g P</span> · <span style="color:var(--red)">2g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Boneless Wings — Naked Only</td><td class="hack-cell">Naked boneless only — no breading. Lemon pepper dry rub. Ranch on the side. Be aware: boneless have slightly more carbs than classic. Classic wings are the better keto choice.</td><td class="macro-cell"><span style="color:var(--orange)">~420 cal</span> · <span style="color:var(--green)">38g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">Wingstop ⭐</div><div class="mc-meal">10 Classic Wings — Naked / Dry Rub</div><div class="mc-hack">Naked wings (no breading) or dry rub only. Lemon pepper or Cajun. Ranch dipping sauce always. Skip all fries. Sauced wings have sugar — avoid.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">540</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">52g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">2g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- BUFFALO WILD WINGS -->
+  <div class="chain-head"><div class="chain-name" style="color:#f5821f">Buffalo Wild Wings</div><div class="chain-divider"></div><div class="chain-tag">BWW</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Traditional Wings — Naked or Dry Seasoning</td><td class="hack-cell">Traditional wings, naked or dry seasoning only. Medium, Hot, or Lemon Pepper dry are lowest carb. Ranch or blue cheese dipping sauce — both are healthy fats. Skip all sweet sauces (BBQ, teriyaki, Asian zing = sugar bombs).</td><td class="macro-cell"><span style="color:var(--orange)">~480 cal</span> · <span style="color:var(--green)">46g P</span> · <span style="color:var(--red)">3g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Grilled Chicken Sandwich — No Bun</td><td class="hack-cell">Lettuce wrap. Grilled not fried. Extra avocado, bacon, cheese, mayo, jalapeños. Ranch on the side. No sweet sauces.</td><td class="macro-cell"><span style="color:var(--orange)">~390 cal</span> · <span style="color:var(--green)">34g P</span> · <span style="color:var(--red)">6g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Buffalo Wild Wings</div><div class="mc-meal">Traditional Wings — Naked/Dry Rub</div><div class="mc-hack">Naked or dry seasoning only. Ranch or blue cheese dip — both healthy fats. Skip all sweet sauces. No fries.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">480</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">46g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">3g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- PANERA BREAD -->
+  <div class="chain-head"><div class="chain-name" style="color:#5b9b31">Panera Bread</div><div class="chain-divider"></div><div class="chain-tag">Skip the Bread</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Green Goddess Salad — Chicken</td><td class="hack-cell">Grilled chicken, avocado, cucumber, tomato. Get the Green Goddess dressing — it's avocado based. Skip croutons. Load the avocado. One of the best fast casual salads for healthy fats.</td><td class="macro-cell"><span style="color:var(--orange)">~490 cal</span> · <span style="color:var(--green)">36g P</span> · <span style="color:var(--red)">14g C</span></td><td class="drink-cell">Water, Unsweet Tea, Black Coffee</td></tr>
+    <tr><td class="meal-name-cell">Fuji Apple Salad — No Apple, No Dressing</td><td class="hack-cell">Chicken, gorgonzola, pecans, lettuce. Ask them to hold the apples and the poppyseed dressing (sugar). Get olive oil & vinegar or Caesar instead. The cheese and pecans are your healthy fats.</td><td class="macro-cell"><span style="color:var(--orange)">~420 cal</span> · <span style="color:var(--green)">32g P</span> · <span style="color:var(--red)">10g C</span></td><td class="drink-cell">Water, Black Coffee</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Panera</div><div class="mc-meal">Green Goddess Salad — Chicken</div><div class="mc-hack">Grilled chicken, avocado, cucumber, tomato. Green Goddess dressing (avocado-based). Skip croutons. Best healthy fat salad at any fast casual chain.</div><div class="mc-drink">🧊 Water · Black Coffee</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">490</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">36g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">14g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- SMASHBURGER -->
+  <div class="chain-head"><div class="chain-name" style="color:#e31837">Smashburger</div><div class="chain-divider"></div><div class="chain-tag">Smash It</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Double Smash — Lettuce Wrap</td><td class="hack-cell">Double smashed patties, cheddar, grilled onions, tomato, pickles, extra mayo. Lettuce wrap. The smash technique creates incredible crust — all that fat and flavor. No bun needed.</td><td class="macro-cell"><span style="color:var(--orange)">~560 cal</span> · <span style="color:var(--green)">42g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Smashburger</div><div class="mc-meal">Double Smash — Lettuce Wrap</div><div class="mc-hack">Double patties, cheddar, grilled onions, tomato, pickles, extra mayo. Lettuce wrap. The smash = incredible fat-seared crust. No bun needed.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">560</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">42g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">8g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
 </div>
 
 <!-- ═══════════════════════════ SIT-DOWN (LOCKED) ═══════════════════════════ -->
 <div id="tab-sitdown" class="section">
   <div class="section-intro">
     <h2>Sit-Down <span style="color:var(--gold)">Strategies</span></h2>
-    <p>Full-service restaurants: Applebee's, Chili's, Olive Garden, Texas Roadhouse, Denny's, IHOP, Cracker Barrel, Waffle House, TGI Fridays, Ruby Tuesday, Red Robin, The Cheesecake Factory, and more.</p>
+    <p>Full-service restaurants are actually easier to hack than fast food — you have a real server, real options, and real control. Use it.</p>
   </div>
-  <div class="paywall-overlay">
-    <div class="paywall-blur">
-      <div class="chain-head"><div class="chain-name">Applebee's / Chili's</div><div class="chain-divider"></div></div>
-      <table class="meal-table"><thead><tr><th>Restaurant</th><th>The Hack</th><th>Drink</th></tr></thead><tbody>
-        <tr><td class="meal-name-cell">Applebee's / Chili's</td><td class="hack-cell">Grilled steak, chicken breast, or salmon. Double steamed broccoli. Bunless burgers. Avoid sugary glazes.</td><td class="drink-cell">Water, Unsweet Tea</td></tr>
-        <tr><td class="meal-name-cell">Olive Garden</td><td class="hack-cell">Skip breadsticks and pasta. Herb-Grilled Salmon or Tuscan Sirloin. Side of steamed broccoli.</td><td class="drink-cell">Water, Unsweet Tea</td></tr>
-        <tr><td class="meal-name-cell">Texas Roadhouse</td><td class="hack-cell">Hand-cut steak. Green beans, house salad (no croutons, oil & vinegar), sautéed mushrooms.</td><td class="drink-cell">Water, Unsweet Tea</td></tr>
-        <tr><td class="meal-name-cell">Denny's / Waffle House</td><td class="hack-cell">T-Bone Steak & Eggs. Side of bacon or sausage. No hashbrowns, no toast, no pancakes.</td><td class="drink-cell">Black Coffee, Water</td></tr>
-      </tbody></table>
-    </div>
-    <div class="paywall-box">
-      <div class="paywall-icon">🔒</div>
-      <div class="paywall-title">Unlock Full Menu</div>
-      <div class="paywall-sub">Every sit-down restaurant strategy — exact meals, exact modifications, exact drinks.</div>
-      <div class="paywall-features">
-        <div class="paywall-feature"><span class="ck">✓</span>All sit-down restaurant strategies (10+ covered)</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Fast Casual & Elite Ethnic dining guides</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Alpha-Approved Drink Guide</div>
-        <div class="paywall-feature"><span class="ck">✓</span>ALPHA-X + Dessert Protocol</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Full PDF download included</div>
-      </div>
-      <div class="price-row"><span class="price-orig">$30</span><span class="price-now">$9.97</span><span class="price-tag">LAUNCH PRICE</span></div>
-      <a href="https://hitmanxpress.gumroad.com/l/iwreac" class="unlock-btn" target="_blank">⚡ UNLOCK FULL MENU — $9.97</a>
-      <p class="paywall-note">Launch price · Goes to $17 soon · One-time · Instant access · Crypto accepted</p>
-      <div class="license-divider"><span>Already purchased? Enter your key</span></div>
-      <div class="license-input-wrap">
-        <input class="license-input" type="text" placeholder="Enter license key (e.g. XXXX-XXXX-XXXX)" id="lic-input" autocomplete="off" autocorrect="off" autocapitalize="characters" />
-        <button class="license-btn" onclick="activateLicense()">UNLOCK</button>
-      </div>
-      <div class="license-msg" id="lic-msg">Enter the key from your purchase email</div>
-    </div>
+
+  <!-- APPLEBEE'S / CHILI'S -->
+  <div class="chain-head"><div class="chain-name" style="color:#c8102e">Applebee's</div><div class="chain-divider"></div><div class="chain-tag">Casual Done Right</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Sirloin Steak — Double Veggies</td><td class="hack-cell">Order the 7oz or 9oz sirloin. Sub all sides for double steamed broccoli or green beans. Add extra butter on the veggies. No potatoes, no fries, no rice. Ask for extra butter on the steak too.</td><td class="macro-cell"><span style="color:var(--orange)">~520 cal</span> · <span style="color:var(--green)">48g P</span> · <span style="color:var(--red)">10g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Grilled Chicken Salad — No Croutons</td><td class="hack-cell">Grilled chicken, avocado if available, extra cheese, bacon. Ranch or Caesar dressing — use it generously. Skip croutons and any sweet dressings. Ask for extra avocado.</td><td class="macro-cell"><span style="color:var(--orange)">~480 cal</span> · <span style="color:var(--green)">40g P</span> · <span style="color:var(--red)">12g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Applebee's</div><div class="mc-meal">Sirloin — Double Broccoli</div><div class="mc-hack">Sirloin steak, double steamed broccoli, extra butter on everything. No potatoes. Add grilled mushrooms if available. Simple and effective.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">520</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">48g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">10g</div><div class="macro-lbl">Carbs</div></div></div></div>
   </div>
+
+  <!-- CHILI'S -->
+  <div class="chain-head"><div class="chain-name" style="color:#c8102e">Chili's</div><div class="chain-divider"></div><div class="chain-tag">Baby Back Approved</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Baby Back Ribs — Half Rack</td><td class="hack-cell">Half rack of ribs. Ask for sauce on the side — BBQ sauce is loaded with sugar, use sparingly or skip. Double broccoli or green beans as sides. Ribs are pure fat and protein — a legitimately great keto meal.</td><td class="macro-cell"><span style="color:var(--orange)">~590 cal</span> · <span style="color:var(--green)">44g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Oldtimer Burger — No Bun</td><td class="hack-cell">Lettuce wrap. Extra cheese, bacon, mayo, grilled onions, jalapeños, tomato, pickles. Chili's will absolutely load it up for you — just ask. No ketchup.</td><td class="macro-cell"><span style="color:var(--orange)">~550 cal</span> · <span style="color:var(--green)">38g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">Chili's ⭐</div><div class="mc-meal">Baby Back Ribs — Half Rack</div><div class="mc-hack">Half rack, sauce on the side (BBQ = sugar). Double broccoli. Ribs are pure fat and protein — a legitimately great keto sit-down meal.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">590</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">44g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">8g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- TEXAS ROADHOUSE -->
+  <div class="chain-head"><div class="chain-name" style="color:#8b0000">Texas Roadhouse</div><div class="chain-divider"></div><div class="chain-tag">Don't Touch the Rolls</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">⭐ Ribeye 12oz — Loaded Sides</td><td class="hack-cell">The ribeye is the highest fat cut — order it. Sides: sautéed mushrooms + steamed broccoli with butter. House salad with ranch, no croutons. Do NOT touch the rolls. Butter on everything else though.</td><td class="macro-cell"><span style="color:var(--orange)">~720 cal</span> · <span style="color:var(--green)">58g P</span> · <span style="color:var(--red)">12g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Dallas Filet — Mushroom Sauce</td><td class="hack-cell">Filet mignon with mushroom sauce (check for sugar — ask). Steamed broccoli with butter. Sautéed mushrooms. House salad, ranch, no croutons. Lean protein + fat sides = perfect balance.</td><td class="macro-cell"><span style="color:var(--orange)">~620 cal</span> · <span style="color:var(--green)">52g P</span> · <span style="color:var(--red)">10g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Grilled Salmon — Herb Crust</td><td class="hack-cell">Salmon is loaded with omega-3 healthy fats. Ask for extra butter. Green beans and house salad with ranch. One of the cleanest high-fat meals on any casual dining menu.</td><td class="macro-cell"><span style="color:var(--orange)">~540 cal</span> · <span style="color:var(--green)">46g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">Texas Roadhouse ⭐</div><div class="mc-meal">Ribeye 12oz — Loaded Sides</div><div class="mc-hack">Ribeye is highest fat cut. Sautéed mushrooms + steamed broccoli with butter. Ranch salad, no croutons. Do NOT touch the rolls.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">720</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">58g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">12g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- OLIVE GARDEN -->
+  <div class="chain-head"><div class="chain-name" style="color:#4a7c3f">Olive Garden</div><div class="chain-divider"></div><div class="chain-tag">Skip the Breadsticks</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Herb-Grilled Salmon</td><td class="hack-cell">Grilled salmon — rich in omega-3 fats. Ask for extra butter. Skip the pasta sides entirely — get steamed broccoli. Do NOT touch the breadsticks. House salad with Italian dressing (hold the croutons).</td><td class="macro-cell"><span style="color:var(--orange)">~560 cal</span> · <span style="color:var(--green)">48g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Tuscan Sirloin</td><td class="hack-cell">Sirloin steak with Tuscan butter — get extra of that butter, it's a healthy fat. Skip all pasta and potatoes. Double the broccoli or asparagus. The Tuscan butter alone makes this worth it.</td><td class="macro-cell"><span style="color:var(--orange)">~580 cal</span> · <span style="color:var(--green)">50g P</span> · <span style="color:var(--red)">6g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Olive Garden</div><div class="mc-meal">Herb-Grilled Salmon</div><div class="mc-hack">Salmon + extra butter. Skip all pasta, get broccoli. No breadsticks — ever. Italian salad dressing, no croutons. Omega-3 fat bomb.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">560</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">48g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">8g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- DENNY'S -->
+  <div class="chain-head"><div class="chain-name" style="color:#d62300">Denny's</div><div class="chain-divider"></div><div class="chain-tag">All Day Breakfast</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">T-Bone Steak & Eggs</td><td class="hack-cell">T-Bone steak + 2-3 eggs any style (scrambled with cheese or fried). Skip ALL sides — no hashbrowns, no toast, no pancakes. Ask for avocado on the side. Extra butter for the eggs.</td><td class="macro-cell"><span style="color:var(--orange)">~620 cal</span> · <span style="color:var(--green)">52g P</span> · <span style="color:var(--red)">4g C</span></td><td class="drink-cell">Black Coffee, Water</td></tr>
+    <tr><td class="meal-name-cell">Slamburger — No Bun</td><td class="hack-cell">Double beef patty, bacon, cheese, mayo, lettuce wrap. Add grilled onions, tomato, jalapeños. No bun, no fries. This is a serious keto burger meal at a great price.</td><td class="macro-cell"><span style="color:var(--orange)">~520 cal</span> · <span style="color:var(--green)">40g P</span> · <span style="color:var(--red)">6g C</span></td><td class="drink-cell">Black Coffee, Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Build Your Own Omelette</td><td class="hack-cell">3-egg omelette. Fill it: bacon, sausage, ham, cheese, mushrooms, onions, jalapeños, spinach, avocado. Ask for extra cheese inside. Skip ALL sides. This is the ultimate breakfast keto meal.</td><td class="macro-cell"><span style="color:var(--orange)">~560 cal</span> · <span style="color:var(--green)">38g P</span> · <span style="color:var(--red)">6g C</span></td><td class="drink-cell">Black Coffee, Water</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">Denny's ⭐</div><div class="mc-meal">T-Bone Steak & Eggs</div><div class="mc-hack">T-Bone + 3 eggs scrambled with cheese. Avocado on the side. Extra butter. Skip all hashbrowns, toast, and pancakes. Pure protein and fat.</div><div class="mc-drink">☕ Black Coffee · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">620</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">52g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">4g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- IHOP -->
+  <div class="chain-head"><div class="chain-name" style="color:#003087">IHOP</div><div class="chain-divider"></div><div class="chain-tag">Skip the Pancakes</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Sirloin Tips & Eggs</td><td class="hack-cell">Sirloin steak tips + eggs. Sub all sides for extra eggs or sliced avocado. Ask for extra butter. No pancakes, no toast, no hashbrowns. Steak and eggs is the original keto breakfast.</td><td class="macro-cell"><span style="color:var(--orange)">~580 cal</span> · <span style="color:var(--green)">46g P</span> · <span style="color:var(--red)">4g C</span></td><td class="drink-cell">Black Coffee, Water</td></tr>
+    <tr><td class="meal-name-cell">Loaded Omelette</td><td class="hack-cell">3-egg omelette loaded with bacon, ham, sausage, cheese, mushrooms, onions, peppers, jalapeños. Skip the sides. Ask for avocado and sour cream on top. The fat from the fillings will keep you full for hours.</td><td class="macro-cell"><span style="color:var(--orange)">~540 cal</span> · <span style="color:var(--green)">36g P</span> · <span style="color:var(--red)">6g C</span></td><td class="drink-cell">Black Coffee, Water</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">IHOP</div><div class="mc-meal">Sirloin Tips & Eggs</div><div class="mc-hack">Steak tips + eggs, extra butter, sliced avocado. Sub all sides. No pancakes, no toast, no hashbrowns. Steak and eggs = original keto breakfast.</div><div class="mc-drink">☕ Black Coffee · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">580</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">46g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">4g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- CHEESECAKE FACTORY -->
+  <div class="chain-head"><div class="chain-name" style="color:#b8860b">Cheesecake Factory</div><div class="chain-divider"></div><div class="chain-tag">Avoid the Menu Size</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Skinnylicious Grilled Salmon</td><td class="hack-cell">They have a "Skinnylicious" menu — use it. Grilled salmon with cucumber, tomato. Ask for extra avocado and olive oil. Skip the wonton strips. Massive omega-3 healthy fat meal at a reasonable calorie count.</td><td class="macro-cell"><span style="color:var(--orange)">~590 cal</span> · <span style="color:var(--green)">46g P</span> · <span style="color:var(--red)">14g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Steak Diane</td><td class="hack-cell">Medallions of beef in a rich mushroom-cream sauce (loaded with fat). Skip all potatoes and pasta sides. Double the asparagus or broccoli. This dish is accidentally keto and absolutely delicious.</td><td class="macro-cell"><span style="color:var(--orange)">~640 cal</span> · <span style="color:var(--green)">48g P</span> · <span style="color:var(--red)">10g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Cheesecake Factory</div><div class="mc-meal">Steak Diane</div><div class="mc-hack">Beef medallions in mushroom-cream sauce (healthy fat). Skip all potatoes/pasta. Double asparagus or broccoli. Accidentally keto and absolutely delicious.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">640</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">48g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">10g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
 </div>
 
 <!-- ═══════════════════════════ ELITE ETHNIC (LOCKED) ═══════════════════════════ -->
 <div id="tab-ethnic" class="section">
   <div class="section-intro">
     <h2>Elite Ethnic <span style="color:var(--gold)">Dining</span></h2>
-    <p>P.F. Chang's, Panda Express, Pei Wei, Benihana, RA Sushi, On The Border, Moe's Southwest Grill, Del Taco, Chuy's, Carrabba's, Maggiano's, Taziki's, The Simple Greek, local Indian & Thai restaurants.</p>
+    <p>Every cuisine on earth has keto-friendly options if you know what to order. Here's your cheat code for every major ethnic restaurant category.</p>
   </div>
-  <div class="paywall-overlay">
-    <div class="paywall-blur">
-      <div class="chain-head"><div class="chain-name">P.F. Chang's</div><div class="chain-divider"></div></div>
-      <table class="meal-table"><thead><tr><th>Restaurant</th><th>The Hack</th></tr></thead><tbody>
-        <tr><td class="meal-name-cell">P.F. Chang's</td><td class="hack-cell">Beef with Broccoli — "No sugar, no cornstarch, just soy-ginger." Pair with wok'd spinach with garlic.</td></tr>
-        <tr><td class="meal-name-cell">Benihana</td><td class="hack-cell">Hibachi Steak & Scallops. Tell chef upfront: "No rice, no sugary sauces. Soy sauce, butter, and garlic only."</td></tr>
-        <tr><td class="meal-name-cell">Panda Express</td><td class="hack-cell">Super Greens base + Black Pepper Angus Steak. Lowest carb count on the entire menu.</td></tr>
-        <tr><td class="meal-name-cell">Local Indian Restaurants</td><td class="hack-cell">Look for "Tandoori" section. Clay oven cooked — juicy, flavorful, no heavy carb-filled sauce.</td></tr>
-      </tbody></table>
-    </div>
-    <div class="paywall-box">
-      <div class="paywall-icon">🔒</div>
-      <div class="paywall-title">Unlock Full Menu</div>
-      <div class="paywall-sub">Walk into any ethnic restaurant in America and know exactly what to order to stay on mission.</div>
-      <div class="paywall-features">
-        <div class="paywall-feature"><span class="ck">✓</span>14+ ethnic restaurant guides with exact order scripts</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Full Fast Casual & Sit-Down guides</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Alpha-Approved Drink Guide</div>
-        <div class="paywall-feature"><span class="ck">✓</span>ALPHA-X + Dessert Protocol</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Full PDF download included</div>
-      </div>
-      <div class="price-row"><span class="price-orig">$30</span><span class="price-now">$9.97</span><span class="price-tag">LAUNCH PRICE</span></div>
-      <a href="https://hitmanxpress.gumroad.com/l/iwreac" class="unlock-btn" target="_blank">⚡ UNLOCK FULL MENU — $9.97</a>
-      <p class="paywall-note">Launch price · Goes to $17 soon · One-time · Instant access · Crypto accepted</p>
-      <div class="license-divider"><span>Already purchased? Enter your key</span></div>
-      <div class="license-input-wrap">
-        <input class="license-input" type="text" placeholder="Enter license key (e.g. XXXX-XXXX-XXXX)" id="lic-input" autocomplete="off" autocorrect="off" autocapitalize="characters" />
-        <button class="license-btn" onclick="activateLicense()">UNLOCK</button>
-      </div>
-      <div class="license-msg" id="lic-msg">Enter the key from your purchase email</div>
-    </div>
+
+  <!-- MEXICAN -->
+  <div class="chain-head"><div class="chain-name" style="color:#c8102e">Mexican Restaurants</div><div class="chain-divider"></div><div class="chain-tag">Guac Everything</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Carne Asada — No Tortilla</td><td class="hack-cell">Grilled steak, guacamole, sour cream, cheese, salsa verde, jalapeños, grilled onions, tomato. Ask for everything in a bowl or on a plate — no tortilla, no rice, no beans. Load the guac and sour cream. Best keto Mexican order.</td><td class="macro-cell"><span style="color:var(--orange)">~620 cal</span> · <span style="color:var(--green)">48g P</span> · <span style="color:var(--red)">10g C</span></td><td class="drink-cell">Water, Unsweet Tea, Topo Chico</td></tr>
+    <tr><td class="meal-name-cell">Fajitas — No Tortilla</td><td class="hack-cell">Grilled steak or chicken, bell peppers, onions, mushrooms. Ask for ALL the fat toppings on the side: guacamole, sour cream, shredded cheese, jalapeños. Skip the tortillas and rice entirely.</td><td class="macro-cell"><span style="color:var(--orange)">~560 cal</span> · <span style="color:var(--green)">44g P</span> · <span style="color:var(--red)">12g C</span></td><td class="drink-cell">Water, Topo Chico</td></tr>
+    <tr><td class="meal-name-cell">Chile Verde</td><td class="hack-cell">Pork or chicken in green chile sauce — this is often naturally low carb. Ask what's in the sauce. Skip all rice and beans. Add a side of guacamole and sour cream. The chile fat content makes this incredibly satisfying.</td><td class="macro-cell"><span style="color:var(--orange)">~480 cal</span> · <span style="color:var(--green)">40g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Topo Chico</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">Mexican ⭐</div><div class="mc-meal">Carne Asada — No Tortilla</div><div class="mc-hack">Grilled steak in a bowl. Load the guac, sour cream, cheese, jalapeños, grilled onions, salsa verde. No tortilla, no rice, no beans. Best keto Mexican order.</div><div class="mc-drink">🧊 Topo Chico · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">620</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">48g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">10g</div><div class="macro-lbl">Carbs</div></div></div></div>
   </div>
+
+  <!-- JAPANESE / HIBACHI -->
+  <div class="chain-head"><div class="chain-name" style="color:#d62300">Japanese / Hibachi</div><div class="chain-divider"></div><div class="chain-tag">Benihana Approved</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">⭐ Hibachi Steak + Shrimp — No Rice</td><td class="hack-cell">Hibachi steak and shrimp cooked in butter and garlic — both are healthy fats. Sub rice for double vegetables (zucchini, mushrooms, onions). Ask for extra yum yum sauce on the side (check carbs) or use the ginger dipping sauce. This is a premium keto meal.</td><td class="macro-cell"><span style="color:var(--orange)">~680 cal</span> · <span style="color:var(--green)">58g P</span> · <span style="color:var(--red)">12g C</span></td><td class="drink-cell">Water, Unsweet Tea, Sake (dry)</td></tr>
+    <tr><td class="meal-name-cell">Sashimi Platter</td><td class="hack-cell">Raw fish — pure protein and omega-3 fat. Salmon sashimi is best (highest fat). Tuna, yellowtail, and salmon. Soy sauce on the side. No rice, no tempura. Wasabi and ginger are zero carb. Order extra salmon.</td><td class="macro-cell"><span style="color:var(--orange)">~380 cal</span> · <span style="color:var(--green)">52g P</span> · <span style="color:var(--red)">4g C</span></td><td class="drink-cell">Water, Green Tea, Dry Sake</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">Hibachi ⭐</div><div class="mc-meal">Steak + Shrimp — No Rice</div><div class="mc-hack">Hibachi steak and shrimp in garlic butter. Sub rice for double veggies (zucchini, mushrooms, onions). Ginger dipping sauce. Premium keto meal.</div><div class="mc-drink">🧊 Water · Dry Sake</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">680</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">58g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">12g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- CHINESE -->
+  <div class="chain-head"><div class="chain-name" style="color:#c8102e">Chinese Restaurants</div><div class="chain-divider"></div><div class="chain-tag">P.F. Chang's Style</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Beef with Broccoli — No Sauce</td><td class="hack-cell">Beef and broccoli, ask for sauce on the side or light sauce (most Chinese sauces have sugar). Steamed is better than stir-fried in this case. No rice, no noodles. Add extra broccoli. Soy sauce on the side is fine.</td><td class="macro-cell"><span style="color:var(--orange)">~380 cal</span> · <span style="color:var(--green)">36g P</span> · <span style="color:var(--red)">14g C</span></td><td class="drink-cell">Water, Hot Green Tea</td></tr>
+    <tr><td class="meal-name-cell">Moo Shu Pork — No Pancakes</td><td class="hack-cell">Pork, cabbage, egg, mushrooms, scallions stir-fried together. Skip the pancakes and hoisin sauce — both are carbs. Ask for extra egg. The pork fat here is your friend.</td><td class="macro-cell"><span style="color:var(--orange)">~340 cal</span> · <span style="color:var(--green)">28g P</span> · <span style="color:var(--red)">10g C</span></td><td class="drink-cell">Water, Hot Green Tea</td></tr>
+    <tr><td class="meal-name-cell">Egg Drop Soup + Protein</td><td class="hack-cell">Egg drop soup is low carb and has healthy fat from the eggs. Pair with steamed protein — chicken, shrimp, or beef. Ask for no thickener (cornstarch) in the soup. Simple, clean, effective.</td><td class="macro-cell"><span style="color:var(--orange)">~320 cal</span> · <span style="color:var(--green)">30g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Hot Green Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Chinese</div><div class="mc-meal">Beef with Broccoli — Light Sauce</div><div class="mc-hack">Beef and broccoli, sauce on side. No rice, no noodles. Extra broccoli. Soy sauce on the side is fine. Ask for steamed over stir-fried if possible.</div><div class="mc-drink">🍵 Hot Green Tea · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">380</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">36g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">14g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- PANDA EXPRESS -->
+  <div class="chain-head"><div class="chain-name" style="color:#d62300">Panda Express</div><div class="chain-divider"></div><div class="chain-tag">Plate Hack</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Bowl — String Bean Chicken + Broccoli Beef</td><td class="hack-cell">Order a bowl (not plate). String Bean Chicken Breast + Broccoli Beef as your two proteins. Choose Super Greens (mixed veggies) as your side instead of rice or noodles. This is legitimately one of the best fast Chinese keto combos.</td><td class="macro-cell"><span style="color:var(--orange)">~420 cal</span> · <span style="color:var(--green)">36g P</span> · <span style="color:var(--red)">18g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Grilled Teriyaki Chicken — Super Greens</td><td class="hack-cell">Grilled chicken (not fried) + Super Greens side. Teriyaki sauce has sugar — ask for it on the side and use sparingly. The grilled chicken here is surprisingly clean protein.</td><td class="macro-cell"><span style="color:var(--orange)">~340 cal</span> · <span style="color:var(--green)">36g P</span> · <span style="color:var(--red)">12g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Panda Express</div><div class="mc-meal">String Bean Chicken + Broccoli Beef Bowl</div><div class="mc-hack">Bowl with Super Greens (not rice/noodles). String Bean Chicken + Broccoli Beef. Best fast Chinese keto combo anywhere.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">420</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">36g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">18g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- ITALIAN -->
+  <div class="chain-head"><div class="chain-name" style="color:#4a7c3f">Italian Restaurants</div><div class="chain-divider"></div><div class="chain-tag">Carrabba's Style</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Grilled Fish or Chicken — Olive Oil</td><td class="hack-cell">Any grilled protein — salmon, sea bass, chicken breast. Ask for extra olive oil and garlic drizzle. Skip all pasta sides. Get roasted vegetables or sautéed spinach in olive oil and garlic. The olive oil is liquid gold — it's a healthy fat.</td><td class="macro-cell"><span style="color:var(--orange)">~520 cal</span> · <span style="color:var(--green)">46g P</span> · <span style="color:var(--red)">8g C</span></td><td class="drink-cell">Water, Dry Red Wine (1 glass)</td></tr>
+    <tr><td class="meal-name-cell">Branzino or Salmon — Whole Roasted</td><td class="hack-cell">Whole roasted fish with olive oil, garlic, lemon, capers. Pure omega-3 fat. Ask for sautéed broccolini or spinach in olive oil on the side. Skip the bread and pasta entirely. This is Italian keto at its finest.</td><td class="macro-cell"><span style="color:var(--orange)">~580 cal</span> · <span style="color:var(--green)">52g P</span> · <span style="color:var(--red)">4g C</span></td><td class="drink-cell">Water, Dry White Wine (1 glass)</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Italian</div><div class="mc-meal">Grilled Salmon — Olive Oil & Garlic</div><div class="mc-hack">Grilled salmon, extra olive oil and garlic drizzle. Sautéed spinach in olive oil on the side. Skip all pasta and bread. Olive oil = liquid healthy fat.</div><div class="mc-drink">🍷 Dry Red Wine · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">520</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">46g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">8g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
+  <!-- OUTBACK STEAKHOUSE -->
+  <div class="chain-head"><div class="chain-name" style="color:#8b0000">Outback Steakhouse</div><div class="chain-divider"></div><div class="chain-tag">No Bloomin' Onion</div></div>
+  <table class="meal-table"><thead><tr><th>Meal</th><th>The Hack</th><th>Macros</th><th>Drink</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">⭐ Victoria's Filet — Loaded</td><td class="hack-cell">Filet mignon, medium-rare. Sides: steamed broccoli with butter + sautéed mushrooms. House salad with ranch, no croutons. Ask for extra butter on both steak and broccoli. Do NOT touch the Bloomin' Onion or bread.</td><td class="macro-cell"><span style="color:var(--orange)">~680 cal</span> · <span style="color:var(--green)">54g P</span> · <span style="color:var(--red)">10g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+    <tr><td class="meal-name-cell">Ribeye 12oz — Extra Butter</td><td class="hack-cell">Ribeye is the highest fat steak on the menu. Order it. Extra butter on top. Steamed veggies, sautéed mushrooms. Skip all potatoes. The fat in the ribeye is what makes this a top-tier keto meal.</td><td class="macro-cell"><span style="color:var(--orange)">~740 cal</span> · <span style="color:var(--green)">60g P</span> · <span style="color:var(--red)">4g C</span></td><td class="drink-cell">Water, Unsweet Tea</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">Outback ⭐</div><div class="mc-meal">Ribeye 12oz — Extra Butter</div><div class="mc-hack">Ribeye = highest fat steak. Extra butter on top. Sautéed mushrooms + broccoli. Skip all potatoes. Don't touch the Bloomin' Onion or bread.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">740</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">60g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">4g</div><div class="macro-lbl">Carbs</div></div></div></div>
+  </div>
+
 </div>
 
 <!-- ═══════════════════════════ DRINKS (LOCKED) ═══════════════════════════ -->
 <div id="tab-drinks" class="section">
   <div class="section-intro">
-    <h2 style="color:var(--gold)">The 21+ Alpha-Approved<br>Drink Menu</h2>
-    <p>Alcohol is a toxin your body prioritizes over burning fat. Heavy drinking will sabotage progress. But a well-planned social life is part of the mission. When you drink, you drink with strategy. All beer, sugary cocktails, and regular mixers are officially off the menu.</p>
+    <h2>The 21+ <span style="color:var(--gold)">Drink Guide</span></h2>
+    <p>You can drink and still stay lean — if you know exactly what to order. These are your approved zero-carb cocktail scripts. Read them. Own them. Never blow your physique at a bar again.</p>
+    <p style="margin-top:8px; font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:1px; color:var(--red);">THE RULE: Zero sugar. Zero juice. Zero soda mixers. Spirits only.</p>
   </div>
-  <div class="paywall-overlay">
-    <div class="paywall-blur">
-      <div class="drink-card"><div class="drink-name">The Classic Soda-Water Highball</div><div class="drink-order"><strong>Your Order:</strong> "[Spirit] with soda water and a lime." Best: Tito's Vodka, Tanqueray Gin, Bourbon, Don Julio Blanco, Bacardi Superior Rum.</div><div class="drink-why">Clear spirits have zero carbs. Soda water is just bubbly water. Impossible to mess up.</div></div>
-      <div class="drink-card"><div class="drink-name">The "007" Americano</div><div class="drink-order"><strong>Your Order:</strong> "I'd like a Gin and Soda with a lemon twist, served in a rocks glass."</div><div class="drink-why">Tanqueray or Hendrick's adds botanical complexity. Crisp, aromatic, distinctly adult. Zero carbs.</div></div>
-      <div class="drink-card"><div class="drink-name">Bourbon & Bubbles</div><div class="drink-order"><strong>Your Order:</strong> "Double Maker's Mark on the rocks, soda water on the side."</div><div class="drink-why">Full bourbon flavor. You control the dilution. Encourages sipping, not slamming.</div></div>
-      <div class="drink-card"><div class="drink-name">The Dry Martini</div><div class="drink-order"><strong>Your Order:</strong> "A Tito's Martini, extra dry, with a twist."</div><div class="drink-why">Extra dry = very little vermouth. Almost pure chilled vodka. Clean, potent, undeniably stylish.</div></div>
-    </div>
-    <div class="paywall-box">
-      <div class="paywall-icon">🥃</div>
-      <div class="paywall-title">Unlock The Drink Guide</div>
-      <div class="paywall-sub">9 approved zero-carb drinks with exact word-for-word ordering scripts so you never blow your physique at a bar.</div>
-      <div class="paywall-features">
-        <div class="paywall-feature"><span class="ck">✓</span>9 approved cocktail scripts (Highball, Martini, Old Fashioned, Lemon Drop, & more)</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Wine selection guide — "dry" is your code word</div>
-        <div class="paywall-feature"><span class="ck">✓</span>The Keto Old Fashioned modification</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Full 50+ restaurant food guide</div>
-        <div class="paywall-feature"><span class="ck">✓</span>ALPHA-X + Dessert Protocol</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Full PDF download included</div>
-      </div>
-      <div class="price-row"><span class="price-orig">$30</span><span class="price-now">$9.97</span><span class="price-tag">LAUNCH PRICE</span></div>
-      <a href="https://hitmanxpress.gumroad.com/l/iwreac" class="unlock-btn" target="_blank">⚡ UNLOCK FULL MENU — $9.97</a>
-      <p class="paywall-note">Launch price · Goes to $17 soon · One-time · Instant access · Crypto accepted</p>
-      <div class="license-divider"><span>Already purchased? Enter your key</span></div>
-      <div class="license-input-wrap">
-        <input class="license-input" type="text" placeholder="Enter license key (e.g. XXXX-XXXX-XXXX)" id="lic-input" autocomplete="off" autocorrect="off" autocapitalize="characters" />
-        <button class="license-btn" onclick="activateLicense()">UNLOCK</button>
-      </div>
-      <div class="license-msg" id="lic-msg">Enter the key from your purchase email</div>
-    </div>
+
+  <!-- THE CLASSICS -->
+  <div class="chain-head"><div class="chain-name" style="color:var(--gold)">The Classics</div><div class="chain-divider"></div><div class="chain-tag">Always Works</div></div>
+  <table class="meal-table"><thead><tr><th>Drink</th><th>Your Order Script</th><th>Carbs</th><th>Why It Works</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">⭐ Vodka Soda</td><td class="hack-cell">"A Tito's soda water with a lime squeeze — no simple syrup." Pure vodka + carbonated water. Zero sugar, zero carbs. If they put juice in it, send it back. This is your go-to survival drink anywhere.</td><td class="macro-cell"><span style="color:var(--green)">~0g carbs</span> · <span style="color:var(--orange)">~96 cal</span></td><td class="drink-cell">The universal keto bar drink</td></tr>
+    <tr><td class="meal-name-cell">Dry Martini</td><td class="hack-cell">"A Tito's Martini, extra dry, with a twist." Extra dry = almost no vermouth. Pure chilled vodka. Clean, potent, undeniably stylish. Never order a regular martini — "regular" means more sugary vermouth.</td><td class="macro-cell"><span style="color:var(--green)">~1g carbs</span> · <span style="color:var(--orange)">~140 cal</span></td><td class="drink-cell">The power move order</td></tr>
+    <tr><td class="meal-name-cell">Whiskey Neat / On the Rocks</td><td class="hack-cell">"Bulleit Bourbon neat" or "Johnnie Walker Black, one rock." Straight whiskey has zero carbs. No mixer needed. Sip slowly. This is the most masculine, most keto-friendly drink at any bar.</td><td class="macro-cell"><span style="color:var(--green)">~0g carbs</span> · <span style="color:var(--orange)">~105 cal</span></td><td class="drink-cell">Zero carb, max respect</td></tr>
+    <tr><td class="meal-name-cell">Rum & Diet</td><td class="hack-cell">"Bacardi Silver and Diet Coke — no splash of anything else." White rum + diet mixer. The diet soda handles the sweetness with zero sugar. Not ideal but completely acceptable in a pinch.</td><td class="macro-cell"><span style="color:var(--green)">~0g carbs</span> · <span style="color:var(--orange)">~100 cal</span></td><td class="drink-cell">Acceptable keto mixer</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">The Classics ⭐</div><div class="mc-meal">Vodka Soda — Your Go-To</div><div class="mc-hack">"A Tito's soda water with a lime squeeze — no simple syrup." Zero sugar, zero carbs. If they put juice in it, send it back. Universal survival drink anywhere.</div><div class="mc-drink">🍸 ~0g Carbs · ~96 Calories</div><div class="macros-row"><div class="macro-pill"><div class="macro-val k">0g</div><div class="macro-lbl">Carbs</div></div><div class="macro-pill"><div class="macro-val p">0g</div><div class="macro-lbl">Sugar</div></div><div class="macro-pill"><div class="macro-val c">96</div><div class="macro-lbl">Cals</div></div></div></div>
+    <div class="meal-card"><div class="mc-name">The Classics</div><div class="mc-meal">Whiskey Neat / On the Rocks</div><div class="mc-hack">"Bulleit Bourbon neat" or "Johnnie Walker Black, one rock." Zero carbs. No mixer. Sip slowly. Most masculine, most keto drink at any bar.</div><div class="mc-drink">🥃 ~0g Carbs · ~105 Calories</div><div class="macros-row"><div class="macro-pill"><div class="macro-val k">0g</div><div class="macro-lbl">Carbs</div></div><div class="macro-pill"><div class="macro-val p">0g</div><div class="macro-lbl">Sugar</div></div><div class="macro-pill"><div class="macro-val c">105</div><div class="macro-lbl">Cals</div></div></div></div>
   </div>
+
+  <!-- ELEVATED ORDERS -->
+  <div class="chain-head"><div class="chain-name" style="color:var(--gold)">Elevated Orders</div><div class="chain-divider"></div><div class="chain-tag">Stand Out</div></div>
+  <table class="meal-table"><thead><tr><th>Drink</th><th>Your Order Script</th><th>Carbs</th><th>Why It Works</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Keto Old Fashioned</td><td class="hack-cell">"Bulleit Rye, one sugar-free simple syrup, Angostura bitters, large ice cube." Ask if they have sugar-free simple syrup. If not: "Just the rye, a few dashes of bitters, and a large ice." The bitters add complexity with almost zero carbs.</td><td class="macro-cell"><span style="color:var(--green)">~2g carbs</span> · <span style="color:var(--orange)">~130 cal</span></td><td class="drink-cell">The sophisticated order</td></tr>
+    <tr><td class="meal-name-cell">Tequila & Soda</td><td class="hack-cell">"Espolon Blanco, soda water, fresh lime — no agave, no simple syrup." Blanco tequila is the cleanest spirit. Zero carbs. The lime and carbonation make it feel like a cocktail without the sugar hit.</td><td class="macro-cell"><span style="color:var(--green)">~0g carbs</span> · <span style="color:var(--orange)">~100 cal</span></td><td class="drink-cell">Mexican restaurant go-to</td></tr>
+    <tr><td class="meal-name-cell">Skinny Margarita</td><td class="hack-cell">"Espolon Blanco, fresh lime juice only, soda water, salt rim — no triple sec, no agave, no sweet and sour." The traditional margarita has 30g+ carbs from triple sec and mix. This version has under 4g. Order it exactly as written.</td><td class="macro-cell"><span style="color:var(--green)">~3g carbs</span> · <span style="color:var(--orange)">~110 cal</span></td><td class="drink-cell">The social order</td></tr>
+    <tr><td class="meal-name-cell">Gin & Soda</td><td class="hack-cell">"Hendrick's gin, soda water, cucumber slice." Gin is zero carbs. Soda water is zero carbs. The cucumber is theater. Looks and tastes like a craft cocktail — nobody knows it's basically zero sugar.</td><td class="macro-cell"><span style="color:var(--green)">~0g carbs</span> · <span style="color:var(--orange)">~100 cal</span></td><td class="drink-cell">The craft cocktail look</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Elevated</div><div class="mc-meal">Skinny Margarita</div><div class="mc-hack">"Espolon Blanco, fresh lime only, soda water, salt rim — no triple sec, no agave, no sweet and sour." Under 4g carbs vs 30g+ in a regular margarita.</div><div class="mc-drink">🍹 ~3g Carbs · ~110 Calories</div><div class="macros-row"><div class="macro-pill"><div class="macro-val k">3g</div><div class="macro-lbl">Carbs</div></div><div class="macro-pill"><div class="macro-val p">0g</div><div class="macro-lbl">Sugar</div></div><div class="macro-pill"><div class="macro-val c">110</div><div class="macro-lbl">Cals</div></div></div></div>
+    <div class="meal-card"><div class="mc-name">Elevated</div><div class="mc-meal">Keto Old Fashioned</div><div class="mc-hack">"Bulleit Rye, sugar-free simple syrup, Angostura bitters, large ice." If no sugar-free syrup: rye + bitters + large ice. Sophisticated and clean.</div><div class="mc-drink">🥃 ~2g Carbs · ~130 Calories</div><div class="macros-row"><div class="macro-pill"><div class="macro-val k">2g</div><div class="macro-lbl">Carbs</div></div><div class="macro-pill"><div class="macro-val p">0g</div><div class="macro-lbl">Sugar</div></div><div class="macro-pill"><div class="macro-val c">130</div><div class="macro-lbl">Cals</div></div></div></div>
+  </div>
+
+  <!-- WINE & BEER -->
+  <div class="chain-head"><div class="chain-name" style="color:var(--gold)">Wine & Beer</div><div class="chain-divider"></div><div class="chain-tag">Know Your Options</div></div>
+  <table class="meal-table"><thead><tr><th>Drink</th><th>Your Order Script</th><th>Carbs</th><th>Why It Works</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">Dry Red Wine</td><td class="hack-cell">"A glass of your driest Cabernet or Pinot Noir." Dry = low residual sugar. Cab, Pinot Noir, Merlot, Malbec. Avoid: Moscato, Riesling, Zinfandel — all high sugar. One glass is fine. Two is the limit on mission nights.</td><td class="macro-cell"><span style="color:var(--green)">~3-4g carbs</span> · <span style="color:var(--orange)">~125 cal</span></td><td class="drink-cell">Best wine for keto</td></tr>
+    <tr><td class="meal-name-cell">Dry White Wine</td><td class="hack-cell">"A glass of your driest Sauvignon Blanc or Chardonnay." Dry white wines are low sugar. Avoid: Moscato, Riesling, White Zinfandel. Champagne and Prosecco brut are also acceptable — brut means dry.</td><td class="macro-cell"><span style="color:var(--green)">~3-4g carbs</span> · <span style="color:var(--orange)">~121 cal</span></td><td class="drink-cell">Light social option</td></tr>
+    <tr><td class="meal-name-cell">Light Beer — Last Resort</td><td class="hack-cell">If you must drink beer: Michelob Ultra (2.6g carbs), Miller Lite (3.2g), Bud Select 55 (1.8g). Regular beer has 12-15g carbs. IPAs can have 20g+. One light beer is survivable. Never drink regular beer on mission.</td><td class="macro-cell"><span style="color:var(--green)">~2-3g carbs</span> · <span style="color:var(--orange)">~95 cal</span></td><td class="drink-cell">Last resort only</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card"><div class="mc-name">Wine</div><div class="mc-meal">Dry Red — Cab or Pinot Noir</div><div class="mc-hack">"Your driest Cabernet or Pinot Noir." Dry = low sugar. Avoid Moscato, Riesling, Zinfandel. One glass fine, two is the limit on mission nights.</div><div class="mc-drink">🍷 ~3-4g Carbs · ~125 Calories</div><div class="macros-row"><div class="macro-pill"><div class="macro-val k">4g</div><div class="macro-lbl">Carbs</div></div><div class="macro-pill"><div class="macro-val p">0g</div><div class="macro-lbl">Sugar</div></div><div class="macro-pill"><div class="macro-val c">125</div><div class="macro-lbl">Cals</div></div></div></div>
+  </div>
+
+  <!-- NEVER ORDER -->
+  <div class="chain-head"><div class="chain-name" style="color:var(--red)">NEVER ORDER THESE</div><div class="chain-divider"></div><div class="chain-tag">Sugar Bombs</div></div>
+  <table class="meal-table"><thead><tr><th>Drink</th><th>Why It Destroys You</th><th>Carbs</th><th>Alternative</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">🚫 Regular Margarita</td><td class="hack-cell">Triple sec + sweet and sour mix + agave syrup. This is basically a sugar smoothie with alcohol. One margarita can have 30-45g of pure sugar. It will spike your insulin, kick you out of fat burning, and leave you craving more sugar.</td><td class="macro-cell"><span style="color:var(--red)">30-45g carbs</span></td><td class="drink-cell">Order the Skinny version</td></tr>
+    <tr><td class="meal-name-cell">🚫 Mojito</td><td class="hack-cell">Simple syrup + sugar + more sugar. A standard mojito has 24-30g of sugar. The mint and lime fool you into thinking it's healthy. It's not. It's a sugar bomb with rum in it.</td><td class="macro-cell"><span style="color:var(--red)">24-30g carbs</span></td><td class="drink-cell">Order tequila soda with mint</td></tr>
+    <tr><td class="meal-name-cell">🚫 Piña Colada / Daiquiri</td><td class="hack-cell">Blended drinks are carb disasters — pineapple juice, coconut cream, simple syrup. 40-60g of sugar per drink. One of these wipes out an entire day of clean eating. Never.</td><td class="macro-cell"><span style="color:var(--red)">40-60g carbs</span></td><td class="drink-cell">Never. Just vodka soda.</td></tr>
+  </tbody></table>
+
 </div>
 
 <!-- ═══════════════════════════ DESSERTS (LOCKED) ═══════════════════════════ -->
 <div id="tab-desserts" class="section">
   <div class="section-intro">
-    <h2>Crush Your Cravings: <span style="color:var(--orange)">Dessert Protocol</span></h2>
+    <h2>Dessert <span style="color:var(--orange)">Protocol</span></h2>
     <p>A craving doesn't mean you're weak — it means you're human. A true Alpha doesn't let cravings derail the mission. You outsmart them.</p>
-    <p style="margin-top:8px; font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:1px; color:var(--red);">THE RULES: No flour. No sugar. No crusts. No ice cream.</p>
+    <p style="margin-top:8px; font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:1px; color:var(--red);">THE RULES: No flour. No sugar. No crusts. No ice cream. Fat is your dessert.</p>
   </div>
-  <div class="paywall-overlay">
-    <div class="paywall-blur">
-      <div class="dessert-card"><div class="dessert-name">The Classic: Berries & Heavy Cream</div><div class="dessert-text">Ask for mixed berries — strawberries, raspberries, blackberries. Specify: "No sugar dusting, no sweet syrup." Ask for a side of real, unsweetened heavy whipped cream (not the aerosol kind). Sweetness hit + quality fats = satisfied and still on mission.</div></div>
-      <div class="dessert-card"><div class="dessert-name">The Power Move: The Cheese Plate</div><div class="dessert-text">Order the cheese platter at nicer spots. Hard and soft cheeses — brie, cheddar, goat cheese. If it comes with almonds or walnuts, you're in business. Completely ignore the crackers, bread, honey, and sugary fruit pastes. High-fat, high-protein finisher that feels decadent.</div></div>
-      <div class="dessert-card"><div class="dessert-name">The Simple Finisher: A Perfect Sip</div><div class="dessert-text">Sometimes the best dessert isn't a food. A bold black decaf coffee or straight espresso signals the end of the meal. Want it more dessert-like? Ask for a splash of heavy cream (not milk) — rich, satisfying, crushes lingering cravings with fat, not sugar.</div></div>
-    </div>
-    <div class="paywall-box">
-      <div class="paywall-icon">🍓</div>
-      <div class="paywall-title">Unlock Dessert Protocol</div>
-      <div class="paywall-sub">End every meal on a high note without compromising your results — ever again.</div>
-      <div class="paywall-features">
-        <div class="paywall-feature"><span class="ck">✓</span>3 approved dessert protocols with exact ordering scripts</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Full 50+ restaurant food guide</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Alpha-Approved Drink Guide + ALPHA-X</div>
-        <div class="paywall-feature"><span class="ck">✓</span>Full PDF download included</div>
-      </div>
-      <div class="price-row"><span class="price-orig">$30</span><span class="price-now">$9.97</span><span class="price-tag">LAUNCH PRICE</span></div>
-      <a href="https://hitmanxpress.gumroad.com/l/iwreac" class="unlock-btn" target="_blank">⚡ UNLOCK FULL MENU — $9.97</a>
-      <p class="paywall-note">Launch price · Goes to $17 soon · One-time · Instant access · Crypto accepted</p>
-      <div class="license-divider"><span>Already purchased? Enter your key</span></div>
-      <div class="license-input-wrap">
-        <input class="license-input" type="text" placeholder="Enter license key (e.g. XXXX-XXXX-XXXX)" id="lic-input" autocomplete="off" autocorrect="off" autocapitalize="characters" />
-        <button class="license-btn" onclick="activateLicense()">UNLOCK</button>
-      </div>
-      <div class="license-msg" id="lic-msg">Enter the key from your purchase email</div>
-    </div>
-  </div>
-</div>
 
+  <!-- THE PROTOCOLS -->
+  <div class="chain-head"><div class="chain-name" style="color:var(--orange)">The 3 Approved Protocols</div><div class="chain-divider"></div><div class="chain-tag">End Strong</div></div>
+
+  <div class="dessert-card"><div class="dessert-name">🍓 Protocol 1: Berries & Heavy Cream</div><div class="dessert-text">Ask for mixed berries — strawberries, raspberries, blackberries, blueberries. Say exactly this: "No sugar dusting, no sweet syrup, no ice cream." Ask for a side of real unsweetened heavy whipped cream — not the aerosol stuff, real cream. The fat in the heavy cream satisfies the craving, the berries give you sweetness. Total sugar is minimal. This works at almost any sit-down restaurant.</div></div>
+
+  <div class="dessert-card"><div class="dessert-name">🧀 Protocol 2: The Cheese Plate</div><div class="dessert-text">Order the cheese platter — available at most nicer restaurants and many bars. Hard and soft cheeses: brie, cheddar, goat cheese, gorgonzola, manchego. If it comes with almonds or walnuts, you're in business — those are healthy fats. Completely ignore the crackers, bread, honey, and sugary fruit pastes that come with it. High-fat, high-protein, feels indulgent. This is the most alpha dessert at any table.</div></div>
+
+  <div class="dessert-card"><div class="dessert-name">☕ Protocol 3: The Perfect Sip Finish</div><div class="dessert-text">Sometimes the best dessert isn't food — it's a signal that the meal is complete. A bold black decaf coffee or straight espresso does this perfectly. Want it more dessert-like? Ask for a splash of heavy cream (not milk, not half and half — heavy cream). Rich, warm, satisfying. Crushes lingering sugar cravings with fat, not sugar. Zero carbs. The perfect mission-complete signal.</div></div>
+
+  <!-- FAST FOOD DESSERT HACKS -->
+  <div class="chain-head"><div class="chain-name" style="color:var(--orange)">Fast Food Dessert Hacks</div><div class="chain-divider"></div><div class="chain-tag">Drive-Thru Approved</div></div>
+  <table class="meal-table"><thead><tr><th>Where</th><th>The Hack</th><th>Carbs</th><th>Notes</th></tr></thead><tbody>
+    <tr><td class="meal-name-cell">McDonald's — Side Salad + Ranch</td><td class="hack-cell">No dessert menu item is clean at McDonald's. Instead: order a side salad with ranch and a black coffee. The fat in the ranch kills the craving. It sounds wrong — it works.</td><td class="macro-cell"><span style="color:var(--green)">~4g carbs</span></td><td class="drink-cell">Craving killer</td></tr>
+    <tr><td class="meal-name-cell">Chick-fil-A — Fruit Cup, No Whip</td><td class="hack-cell">Their fruit cup is one of the cleaner fast food options. Get it without whipped topping (which has added sugar). Real fruit — still has natural sugar but manageable if you've been clean all day.</td><td class="macro-cell"><span style="color:var(--orange)">~14g carbs</span></td><td class="drink-cell">Occasional only</td></tr>
+    <tr><td class="meal-name-cell">Any Drive-Thru — Black Coffee</td><td class="hack-cell">The universal dessert hack. Black coffee signals the end of eating, stops cravings instantly, and has zero carbs. Add heavy cream if available for extra fat satisfaction. This works every time at every chain.</td><td class="macro-cell"><span style="color:var(--green)">~0g carbs</span></td><td class="drink-cell">Always available</td></tr>
+  </tbody></table>
+  <div class="meal-cards">
+    <div class="meal-card" style="border-left-color:var(--gold)"><div class="mc-name">Dessert Protocol ⭐</div><div class="mc-meal">Berries & Heavy Cream</div><div class="mc-hack">Mixed berries, no sugar dusting. Real unsweetened heavy whipped cream on the side. Fat + sweetness = craving destroyed. Works at almost any sit-down restaurant.</div><div class="mc-drink">☕ Pair with Decaf Espresso</div><div class="macros-row"><div class="macro-pill"><div class="macro-val k">8g</div><div class="macro-lbl">Carbs</div></div><div class="macro-pill"><div class="macro-val p">2g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val c">180</div><div class="macro-lbl">Cals</div></div></div></div>
+    <div class="meal-card"><div class="mc-name">Dessert Protocol</div><div class="mc-meal">The Cheese Plate</div><div class="mc-hack">Brie, cheddar, goat cheese, almonds, walnuts. Ignore crackers, bread, honey. High-fat, high-protein, feels indulgent. Most alpha dessert at any table.</div><div class="mc-drink">🍷 Pair with Dry Red Wine or Espresso</div><div class="macros-row"><div class="macro-pill"><div class="macro-val k">4g</div><div class="macro-lbl">Carbs</div></div><div class="macro-pill"><div class="macro-val p">16g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val c">320</div><div class="macro-lbl">Cals</div></div></div></div>
+  </div>
+
+</div>
 
 <!-- ═══════════════════════════ ALPHA-X (COMING SOON) ═══════════════════════════ -->
 <div id="tab-alphax" class="section">
