@@ -175,7 +175,29 @@ main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
 .sticky-cta-btn:hover { background:#ffe44d; box-shadow:0 4px 40px rgba(255,208,0,0.35); transform:translateY(-1px); }
 .sticky-cta-sub { text-align:center; font-size:11px; color:var(--muted); margin-top:7px; }
 
-/* LICENSE KEY INPUT */
+/* UNLOCK MODAL */
+.unlock-modal-backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9000; backdrop-filter:blur(4px); }
+.unlock-modal-backdrop.visible { display:flex; align-items:center; justify-content:center; padding:20px; }
+.unlock-modal { background:var(--deep); border:1px solid var(--gold); border-radius:8px; padding:32px 24px; width:min(420px,95vw); text-align:center; animation:modalIn .25s ease; }
+@keyframes modalIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.unlock-modal-icon { font-size:42px; margin-bottom:12px; }
+.unlock-modal-title { font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:2px; color:var(--gold); margin-bottom:8px; }
+.unlock-modal-sub { font-size:15px; color:#d0d0d0; margin-bottom:24px; line-height:1.6; }
+.unlock-modal-input-wrap { display:flex; gap:8px; margin-bottom:10px; }
+.unlock-modal-input { flex:1; background:#111; border:1px solid var(--border); border-radius:3px; padding:13px 14px; font-family:'Barlow Condensed',sans-serif; font-size:16px; letter-spacing:2px; color:var(--white); outline:none; text-transform:uppercase; transition:border-color .2s; }
+.unlock-modal-input::placeholder { color:#444; letter-spacing:1px; text-transform:none; font-size:13px; }
+.unlock-modal-input:focus { border-color:rgba(255,208,0,0.5); }
+.unlock-modal-btn { background:var(--gold); color:var(--black); font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:1px; padding:13px 20px; border:none; border-radius:3px; cursor:pointer; white-space:nowrap; transition:all .18s; }
+.unlock-modal-btn:hover { background:#ffe44d; }
+.unlock-modal-msg { font-size:13px; color:var(--muted); min-height:20px; margin-bottom:16px; }
+.unlock-modal-msg.error { color:var(--red); }
+.unlock-modal-msg.success { color:var(--green); }
+.unlock-modal-close { background:none; border:1px solid var(--border); color:var(--muted); font-size:13px; padding:8px 20px; border-radius:3px; cursor:pointer; transition:all .18s; }
+.unlock-modal-close:hover { color:var(--white); border-color:var(--muted); }
+
+/* ALREADY PURCHASED FLOATING BUTTON */
+.already-purchased-btn { position:fixed; top:16px; right:16px; z-index:500; background:rgba(255,208,0,0.12); border:1px solid rgba(255,208,0,0.4); color:var(--gold); font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:7px 14px; border-radius:3px; cursor:pointer; transition:all .2s; backdrop-filter:blur(8px); }
+.already-purchased-btn:hover { background:rgba(255,208,0,0.2); border-color:var(--gold); }
 .license-divider { display:flex; align-items:center; gap:10px; margin:14px 0; }
 .license-divider::before, .license-divider::after { content:''; flex:1; height:1px; background:var(--border); }
 .license-divider span { font-size:11px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; white-space:nowrap; }
@@ -707,6 +729,24 @@ function showTab(id, btn) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
+<!-- ALREADY PURCHASED FLOATING BUTTON -->
+<button class="already-purchased-btn" id="alreadyPurchasedBtn" onclick="openUnlockModal()">🔑 Already Purchased?</button>
+
+<!-- UNLOCK MODAL -->
+<div class="unlock-modal-backdrop" id="unlockModal">
+  <div class="unlock-modal">
+    <div class="unlock-modal-icon">🔑</div>
+    <div class="unlock-modal-title">Enter Your Key</div>
+    <div class="unlock-modal-sub">Enter the license key from your purchase email to unlock all 50+ restaurants instantly.</div>
+    <div class="unlock-modal-input-wrap">
+      <input class="unlock-modal-input" type="text" id="modal-lic-input" placeholder="Paste your license key here" autocomplete="off" autocorrect="off" autocapitalize="characters" />
+      <button class="unlock-modal-btn" onclick="activateLicenseModal()">UNLOCK</button>
+    </div>
+    <div class="unlock-modal-msg" id="modal-lic-msg"></div>
+    <button class="unlock-modal-close" onclick="closeUnlockModal()">Cancel</button>
+  </div>
+</div>
+
 <!-- ── OFFLINE BAR ── -->
 <div id="offline-bar">⚡ You're offline — app still works! All your free content is cached.</div>
 
@@ -848,6 +888,56 @@ iosClose.addEventListener('click', () => {
 });
 
 // ══════════════════════════════════════════
+//  UNLOCK MODAL FUNCTIONS
+// ══════════════════════════════════════════
+function openUnlockModal() {
+  document.getElementById('unlockModal').classList.add('visible');
+  setTimeout(() => document.getElementById('modal-lic-input').focus(), 100);
+}
+
+function closeUnlockModal() {
+  document.getElementById('unlockModal').classList.remove('visible');
+  document.getElementById('modal-lic-msg').textContent = '';
+  document.getElementById('modal-lic-input').value = '';
+}
+
+async function activateLicenseModal() {
+  const input = document.getElementById('modal-lic-input');
+  const msg   = document.getElementById('modal-lic-msg');
+  const key   = input.value.trim().toUpperCase();
+
+  if (!key) { msg.className = 'unlock-modal-msg error'; msg.textContent = 'Please enter your license key'; return; }
+
+  msg.className = 'unlock-modal-msg'; msg.textContent = 'Verifying...';
+
+  try {
+    const response = await fetch('https://api.gumroad.com/v2/licenses/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ product_id: 'iwreac', license_key: key, increment_uses_count: 'false' })
+    });
+    const data = await response.json();
+    if (data.success) {
+      localStorage.setItem('spk_unlocked', '1');
+      localStorage.setItem('spk_key', key);
+      msg.className = 'unlock-modal-msg success'; msg.textContent = '✅ Key verified! Unlocking...';
+      setTimeout(() => { closeUnlockModal(); unlockApp(); }, 1000);
+    } else {
+      msg.className = 'unlock-modal-msg error'; msg.textContent = '❌ Invalid key — check your purchase email and try again.';
+    }
+  } catch(e) {
+    const storedKey = localStorage.getItem('spk_key');
+    if (storedKey && storedKey === key) { closeUnlockModal(); unlockApp(); }
+    else { msg.className = 'unlock-modal-msg error'; msg.textContent = 'Connection error — check your internet and try again.'; }
+  }
+}
+
+// Close modal on backdrop click
+document.getElementById('unlockModal').addEventListener('click', function(e) {
+  if (e.target === this) closeUnlockModal();
+});
+
+// ══════════════════════════════════════════
 //  LICENSE KEY SYSTEM
 // ══════════════════════════════════════════
 
@@ -920,6 +1010,10 @@ function unlockApp() {
 
   // Remove lock icons from nav tabs
   document.querySelectorAll('.lock-icon').forEach(el => el.remove());
+
+  // Hide already purchased button
+  const apBtn = document.getElementById('alreadyPurchasedBtn');
+  if (apBtn) apBtn.style.display = 'none';
 
   // Hide sticky CTA
   const cta = document.querySelector('.sticky-cta');
