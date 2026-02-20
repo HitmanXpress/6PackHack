@@ -154,7 +154,9 @@ body.app-unlocked .paywall-blur { filter:none !important; opacity:1 !important; 
 body.app-unlocked .paywall-box { display:none !important; }
 body.app-unlocked .paywall-overlay { position:static !important; }
 body.app-unlocked .lock-icon { display:none !important; }
-body.app-unlocked body.app-unlocked #alreadyPurchasedBtn { display:block; }
+body.app-unlocked .sticky-cta { display:none !important; }
+body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
+#alreadyPurchasedBtn { display:block; }
 .paywall-icon { font-size:34px; margin-bottom:10px; }
 .paywall-title { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:2px; color:var(--gold); margin-bottom:8px; }
 .paywall-sub { font-size:15px; color:#d0d0d0; font-weight:400; line-height:1.6; margin-bottom:18px; }
@@ -1222,6 +1224,113 @@ function showTab(id, btn) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+function openUnlockModal() {
+  document.getElementById('unlockModal').classList.add('visible');
+  setTimeout(() => document.getElementById('modal-lic-input').focus(), 100);
+}
+
+function closeUnlockModal() {
+  document.getElementById('unlockModal').classList.remove('visible');
+  document.getElementById('modal-lic-msg').textContent = '';
+  document.getElementById('modal-lic-input').value = '';
+}
+
+
+async function activateLicenseModal() {
+  const input = document.getElementById('modal-lic-input');
+  const msg   = document.getElementById('modal-lic-msg');
+  const key   = input.value.trim().toUpperCase();
+  if (!key) { msg.className = 'unlock-modal-msg error'; msg.textContent = 'Please enter your license key'; return; }
+  msg.className = 'unlock-modal-msg'; msg.textContent = 'Verifying...';
+  doUnlock(key, (ok) => {
+    if (ok) {
+      msg.className = 'unlock-modal-msg success'; msg.textContent = '✅ Unlocking...';
+      setTimeout(() => { closeUnlockModal(); unlockApp(); }, 800);
+    } else {
+      msg.className = 'unlock-modal-msg error'; msg.textContent = '❌ Invalid key — copy it exactly from your Gumroad receipt.';
+    }
+  });
+}
+
+// Close modal on backdrop click
+document.getElementById('unlockModal').addEventListener('click', function(e) {
+  if (e.target === this) closeUnlockModal();
+});
+
+// ══════════════════════════════════════════
+//  LICENSE KEY SYSTEM
+// ══════════════════════════════════════════
+
+async function activateLicense() {
+  const input = document.getElementById('lic-input');
+  const msg   = document.getElementById('lic-msg');
+  const key   = input ? input.value.trim().toUpperCase() : '';
+  if (!key) { showLicenseMsg('error', 'Please enter your license key'); return; }
+  showLicenseMsg('', 'Verifying...');
+  doUnlock(key, (ok) => {
+    if (ok) {
+      showLicenseMsg('success', '✅ Unlocking...');
+      setTimeout(() => unlockApp(), 800);
+    } else {
+      showLicenseMsg('error', '❌ Invalid key — copy it exactly from your Gumroad receipt.');
+    }
+  });
+}
+
+// Core unlock validator — accepts any real Gumroad key format (XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX)
+// Gumroad API blocks CORS from GitHub Pages so we validate format directly
+function doUnlock(key, callback) {
+  // Accept any key that has dashes and is at least 16 chars — covers all Gumroad formats
+  const looksValid = key.length >= 16 && key.includes('-');
+  if (looksValid) {
+    localStorage.setItem('spk_unlocked', '1');
+    localStorage.setItem('spk_key', key);
+    callback(true);
+  } else {
+    callback(false);
+  }
+}
+
+function showLicenseMsg(type, text) {
+  // Update all license msg elements on page
+  document.querySelectorAll('.license-msg').forEach(el => {
+    el.textContent = text;
+    el.className = 'license-msg' + (type ? ' ' + type : '');
+  });
+}
+
+function unlockApp() {
+  // Mark body as unlocked — CSS and JS both check this
+  document.body.setAttribute('data-unlocked', '1');
+
+  // 1. Hide sticky CTA permanently
+  const cta = document.getElementById('stickyCta');
+  if (cta) cta.style.cssText = 'display:none !important';
+
+  // 2. Hide key button
+  const keyBtn = document.getElementById('alreadyPurchasedBtn');
+  if (keyBtn) keyBtn.style.cssText = 'display:none !important';
+
+  // 3. Remove all lock icons from nav
+  document.querySelectorAll('.lock-icon').forEach(el => el.remove());
+
+  // 4. Update banner
+  const banner = document.querySelector('.free-banner');
+  if (banner) {
+    banner.innerHTML = '✅ <strong>Full Access Unlocked</strong> — All 50+ restaurants, drinks, desserts & more <span style="opacity:0.4;font-size:10px;">v3.0</span>';
+    banner.style.background = 'linear-gradient(90deg,rgba(0,255,135,0.15),rgba(0,255,135,0.08))';
+  }
+
+  // 5. Show toast
+  showToast();
+}0+ restaurants, drinks, desserts & more <span style="opacity:0.4;font-size:10px;">v3.0</span>';
+    banner.style.background = 'linear-gradient(90deg,rgba(0,255,135,0.15),rgba(0,255,135,0.08))';
+  }
+
+  // 5. Show toast
+  showToast();
+}
+
 </script>
 <!-- ALREADY PURCHASED FLOATING BUTTON -->
 <button class="already-purchased-btn" id="alreadyPurchasedBtn" onclick="openUnlockModal()">🔑<br>Enter Your Key</button>
@@ -1384,111 +1493,8 @@ iosClose.addEventListener('click', () => {
 // ══════════════════════════════════════════
 //  UNLOCK MODAL FUNCTIONS
 // ══════════════════════════════════════════
-function openUnlockModal() {
-  document.getElementById('unlockModal').classList.add('visible');
-  setTimeout(() => document.getElementById('modal-lic-input').focus(), 100);
-}
 
-function closeUnlockModal() {
-  document.getElementById('unlockModal').classList.remove('visible');
-  document.getElementById('modal-lic-msg').textContent = '';
-  document.getElementById('modal-lic-input').value = '';
-}
 
-async function activateLicenseModal() {
-  const input = document.getElementById('modal-lic-input');
-  const msg   = document.getElementById('modal-lic-msg');
-  const key   = input.value.trim().toUpperCase();
-  if (!key) { msg.className = 'unlock-modal-msg error'; msg.textContent = 'Please enter your license key'; return; }
-  msg.className = 'unlock-modal-msg'; msg.textContent = 'Verifying...';
-  doUnlock(key, (ok) => {
-    if (ok) {
-      msg.className = 'unlock-modal-msg success'; msg.textContent = '✅ Unlocking...';
-      setTimeout(() => { closeUnlockModal(); unlockApp(); }, 800);
-    } else {
-      msg.className = 'unlock-modal-msg error'; msg.textContent = '❌ Invalid key — copy it exactly from your Gumroad receipt.';
-    }
-  });
-}
-
-// Close modal on backdrop click
-document.getElementById('unlockModal').addEventListener('click', function(e) {
-  if (e.target === this) closeUnlockModal();
-});
-
-// ══════════════════════════════════════════
-//  LICENSE KEY SYSTEM
-// ══════════════════════════════════════════
-
-async function activateLicense() {
-  const input = document.getElementById('lic-input');
-  const msg   = document.getElementById('lic-msg');
-  const key   = input ? input.value.trim().toUpperCase() : '';
-  if (!key) { showLicenseMsg('error', 'Please enter your license key'); return; }
-  showLicenseMsg('', 'Verifying...');
-  doUnlock(key, (ok) => {
-    if (ok) {
-      showLicenseMsg('success', '✅ Unlocking...');
-      setTimeout(() => unlockApp(), 800);
-    } else {
-      showLicenseMsg('error', '❌ Invalid key — copy it exactly from your Gumroad receipt.');
-    }
-  });
-}
-
-// Core unlock validator — accepts any real Gumroad key format (XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX)
-// Gumroad API blocks CORS from GitHub Pages so we validate format directly
-function doUnlock(key, callback) {
-  // Gumroad keys are 35 chars: 8-8-8-8 hex with dashes, e.g. A1B2C3D4-E5F6A7B8-C9D0E1F2-A3B4C5D6
-  const gumroadFormat = /^[A-Z0-9]{8}-[A-Z0-9]{8}-[A-Z0-9]{8}-[A-Z0-9]{8}$/;
-  if (gumroadFormat.test(key)) {
-    localStorage.setItem('spk_unlocked', '1');
-    localStorage.setItem('spk_key', key);
-    callback(true);
-  } else {
-    callback(false);
-  }
-}
-
-function showLicenseMsg(type, text) {
-  // Update all license msg elements on page
-  document.querySelectorAll('.license-msg').forEach(el => {
-    el.textContent = text;
-    el.className = 'license-msg' + (type ? ' ' + type : '');
-  });
-}
-
-function unlockApp() {
-  // Mark body as unlocked — CSS and JS both check this
-  document.body.setAttribute('data-unlocked', '1');
-
-  // 1. Hide sticky CTA permanently
-  const cta = document.getElementById('stickyCta');
-  if (cta) cta.style.cssText = 'display:none !important';
-
-  // 2. Hide key button
-  const keyBtn = document.getElementById('alreadyPurchasedBtn');
-  if (keyBtn) keyBtn.style.cssText = 'display:none !important';
-
-  // 3. Remove all lock icons from nav
-  document.querySelectorAll('.lock-icon').forEach(el => el.remove());
-
-  // 4. Update banner
-  const banner = document.querySelector('.free-banner');
-  if (banner) {
-    banner.innerHTML = '✅ <strong>Full Access Unlocked</strong> — All 50+ restaurants, drinks, desserts & more <span style="opacity:0.4;font-size:10px;">v3.0</span>';
-    banner.style.background = 'linear-gradient(90deg,rgba(0,255,135,0.15),rgba(0,255,135,0.08))';
-  }
-
-  // 5. Show toast
-  showToast();
-}0+ restaurants, drinks, desserts & more <span style="opacity:0.4;font-size:10px;">v3.0</span>';
-    banner.style.background = 'linear-gradient(90deg,rgba(0,255,135,0.15),rgba(0,255,135,0.08))';
-  }
-
-  // 5. Show toast
-  showToast();
-}
 
 // Run unlock on page load if already purchased
 window.addEventListener('DOMContentLoaded', () => {
