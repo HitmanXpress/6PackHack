@@ -393,7 +393,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
   </div>
 </header>
 
-<div class="free-banner" id="mainBanner">🔓 <strong>Free Preview:</strong> Fast Food & Rules unlocked — Upgrade for all 50+ restaurants, drinks, Alpha-X & more <span style="opacity:0.4;font-size:10px;">v3.0</span></div>
+<div class="free-banner" id="mainBanner">🔓 <strong>Free Preview:</strong> Fast Food & Rules unlocked — Upgrade for all 50+ restaurants &nbsp;·&nbsp; <button onclick="openUnlockModal()" style="background:none;border:none;color:var(--gold);font-weight:700;font-size:12px;cursor:pointer;padding:0;text-decoration:underline;">🔑 Already purchased? Enter key</button> <span style="opacity:0.4;font-size:10px;">v3.0</span></div>
 
 <!-- NAV -->
 <div class="nav-wrap">
@@ -1201,6 +1201,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
   <div class="sticky-cta-inner">
     <a href="https://hitmanxpress.gumroad.com/l/iwreac" class="sticky-cta-btn" target="_blank">🔓 UNLOCK ALL 50+ RESTAURANTS — $9.97</a>
     <div class="sticky-cta-sub">Launch price · Goes to $17 soon · Instant access · Crypto accepted</div>
+    <button onclick="openUnlockModal()" style="margin-top:8px;width:100%;background:none;border:1px solid rgba(255,208,0,0.3);color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:1px;padding:8px;border-radius:3px;cursor:pointer;">🔑 Already purchased? Enter your key</button>
   </div>
 </div>
 
@@ -1317,13 +1318,7 @@ function unlockApp() {
   // 4. Update banner
   const banner = document.querySelector('.free-banner');
   if (banner) {
-    banner.innerHTML = '✅ <strong>Full Access Unlocked</strong> — All 50+ restaurants, drinks, desserts & more <span style="opacity:0.4;font-size:10px;">v3.0</span>';
-    banner.style.background = 'linear-gradient(90deg,rgba(0,255,135,0.15),rgba(0,255,135,0.08))';
-  }
-
-  // 5. Show toast
-  showToast();
-}0+ restaurants, drinks, desserts & more <span style="opacity:0.4;font-size:10px;">v3.0</span>';
+    banner.innerHTML = '✅ <strong>Full Access Unlocked</strong> — All 50+ restaurants, drinks, desserts & more &nbsp;·&nbsp; <button onclick="openUnlockModal()" style="background:none;border:none;color:rgba(0,255,135,0.6);font-size:11px;cursor:pointer;padding:0;text-decoration:underline;">🔑 re-enter key</button> <span style="opacity:0.4;font-size:10px;">v3.0</span>';
     banner.style.background = 'linear-gradient(90deg,rgba(0,255,135,0.15),rgba(0,255,135,0.08))';
   }
 
