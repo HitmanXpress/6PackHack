@@ -64,6 +64,10 @@ h1 em { color:var(--green); font-style:normal; display:block; }
 
 /* NAV */
 .nav-wrap { position:sticky; top:0; z-index:100; background:rgba(8,8,8,0.97); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 16px; }
+.nav-scroll-hint { position:absolute; top:0; right:0; width:60px; height:100%; background:linear-gradient(to right, transparent, rgba(8,8,8,0.97)); pointer-events:none; z-index:101; transition:opacity .4s; }
+.nav-scroll-hint::after { content:'›'; position:absolute; right:10px; top:50%; transform:translateY(-50%); color:var(--gold); font-size:18px; animation:hintBounce 1.5s ease-in-out 1s 3; }
+@keyframes hintBounce { 0%,100%{transform:translateY(-50%) translateX(0)} 50%{transform:translateY(-50%) translateX(5px)} }
+.nav-wrap.scrolled .nav-scroll-hint { opacity:0; }
 .nav-tabs { display:flex; overflow-x:auto; scrollbar-width:none; gap:0; max-width:900px; margin:0 auto; }
 .nav-tabs::-webkit-scrollbar { display:none; }
 .nav-tab { flex-shrink:0; background:none; border:none; border-bottom:2px solid transparent; color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:14px 16px; cursor:pointer; transition:all .2s; display:flex; align-items:center; gap:6px; white-space:nowrap; }
@@ -76,6 +80,10 @@ main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
 .section { display:none; padding-top:32px; }
 
 .section.active { display:block; }
+
+/* Paywall — hide content until unlocked */
+.locked-content { display:none; }
+body[data-unlocked="1"] .locked-content { display:block; }
 
 /* SECTION INTRO */
 .section-intro { margin-bottom:24px; padding-bottom:20px; border-bottom:1px solid var(--border); }
@@ -206,7 +214,7 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
 .unlock-modal-close:hover { color:var(--white); border-color:var(--muted); }
 
 /* ALREADY PURCHASED FLOATING BUTTON */
-.already-purchased-btn { position:fixed; bottom:90px; right:16px; z-index:2000; background:rgba(255,208,0,0.12); border:1px solid rgba(255,208,0,0.4); color:var(--gold); font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:8px 14px; border-radius:4px; cursor:pointer; transition:all .2s; backdrop-filter:blur(8px); text-align:center; line-height:1.4; }
+.already-purchased-btn { display:none !important; }
 .already-purchased-btn:hover { background:rgba(255,208,0,0.2); border-color:var(--gold); }
 .license-divider { display:flex; align-items:center; gap:10px; margin:14px 0; }
 .license-divider::before, .license-divider::after { content:''; flex:1; height:1px; background:var(--border); }
@@ -1624,6 +1632,11 @@ function isUnlocked() {
   return localStorage.getItem('spk_unlocked') === '1';
 }
 
+// Hide nav scroll hint once user scrolls
+document.querySelector('.nav-tabs').addEventListener('scroll', function() {
+  document.querySelector('.nav-wrap').classList.add('scrolled');
+}, { once: true });
+
 function showTab(id, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
@@ -1908,6 +1921,14 @@ window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('spk_unlocked') === '1') {
     setTimeout(() => unlockApp(), 150);
   }
+  setTimeout(() => {
+    const nav = document.querySelector('.nav-tabs');
+    if (nav && !localStorage.getItem('nav_nudged')) {
+      nav.scrollTo({ left: 80, behavior: 'smooth' });
+      setTimeout(() => nav.scrollTo({ left: 0, behavior: 'smooth' }), 700);
+      localStorage.setItem('nav_nudged', '1');
+    }
+  }, 1400);
 });
 
 
@@ -1934,36 +1955,4 @@ function submitSuggestion() {
 (function() {
   const el = document.getElementById('typewriter-text');
   if (!el) return;
-  const text = 'EAT OUT. GET CUT. NO EXCUSES.';
-  let i = 0;
-  const cursor = document.createElement('span');
-  cursor.className = 'typewriter-cursor';
-  el.appendChild(cursor);
-  setTimeout(() => {
-    const interval = setInterval(() => {
-      el.insertBefore(document.createTextNode(text[i]), cursor);
-      i++;
-      if (i >= text.length) {
-        clearInterval(interval);
-        setTimeout(() => cursor.style.display = 'none', 1500);
-      }
-    }, 65);
-  }, 800);
-})();
-
-// ══════════════════════════════════════════
-//  INSTALL SUCCESS HANDLER
-// ══════════════════════════════════════════
-window.addEventListener('appinstalled', () => {
-  installBanner.classList.remove('visible');
-  showToast();
-});
-
-function showToast() {
-  toast.classList.add('visible');
-  setTimeout(() => toast.classList.remove('visible'), 4000);
-}
-</script>
-
-</body>
-</html>
+  c
