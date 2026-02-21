@@ -68,9 +68,9 @@ h1 em { color:var(--green); font-style:normal; display:block; }
 .nav-scroll-hint::after { content:'›'; position:absolute; right:10px; top:50%; transform:translateY(-50%); color:var(--gold); font-size:18px; animation:hintBounce 1.5s ease-in-out 1s 3; }
 @keyframes hintBounce { 0%,100%{transform:translateY(-50%) translateX(0)} 50%{transform:translateY(-50%) translateX(5px)} }
 .nav-wrap.scrolled .nav-scroll-hint { opacity:0; }
-.nav-tabs { display:flex; overflow-x:auto; scrollbar-width:none; gap:0; max-width:900px; margin:0 auto; }
-.nav-tabs::-webkit-scrollbar { display:none; }
-.nav-tab { flex-shrink:0; background:none; border:none; border-bottom:2px solid transparent; color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:14px 16px; cursor:pointer; transition:all .2s; display:flex; align-items:center; gap:6px; white-space:nowrap; }
+.nav-tabs { display:grid; grid-template-columns:repeat(4, 1fr); max-width:900px; margin:0 auto; border-bottom:1px solid var(--border); }
+
+.nav-tab { background:none; border:none; border-bottom:2px solid transparent; color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; padding:10px 2px; cursor:pointer; transition:all .2s; display:flex; align-items:center; justify-content:center; gap:3px; text-align:center; overflow:hidden; }
 .nav-tab:hover { color:var(--white); }
 .nav-tab.active { color:var(--green); border-bottom-color:var(--green); }
 .lock-icon { font-size:10px; color:var(--gold); opacity:.8; }
@@ -194,18 +194,18 @@ body.app-unlocked #alreadyPurchasedBtn { display:none !important; }
 .sticky-cta-sub { text-align:center; font-size:11px; color:var(--muted); margin-top:7px; }
 
 /* UNLOCK MODAL */
-.unlock-modal-backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9000; backdrop-filter:blur(4px); }
+.unlock-modal-backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9000; backdrop-filter:blur(4px); overflow-y:auto; -webkit-overflow-scrolling:touch; align-items:flex-start; padding:40px 16px; }
 .unlock-modal-backdrop.visible { display:flex; align-items:center; justify-content:center; padding:20px; }
 .unlock-modal { background:var(--deep); border:1px solid var(--gold); border-radius:8px; padding:32px 24px; width:min(420px,95vw); text-align:center; animation:modalIn .25s ease; }
 @keyframes modalIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 .unlock-modal-icon { font-size:42px; margin-bottom:12px; }
 .unlock-modal-title { font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:2px; color:var(--gold); margin-bottom:8px; }
 .unlock-modal-sub { font-size:15px; color:#d0d0d0; margin-bottom:24px; line-height:1.6; }
-.unlock-modal-input-wrap { display:flex; gap:8px; margin-bottom:10px; }
-.unlock-modal-input { flex:1; background:#111; border:1px solid var(--border); border-radius:3px; padding:13px 14px; font-family:'Barlow Condensed',sans-serif; font-size:16px; letter-spacing:2px; color:var(--white); outline:none; text-transform:uppercase; transition:border-color .2s; }
+.unlock-modal-input-wrap { display:flex; flex-direction:column; gap:10px; width:100%; }
+.unlock-modal-input { width:100%; padding:14px 16px; background:#1a1a1a; border:1px solid var(--border); border-radius:8px; color:#fff; font-size:16px; box-sizing:border-box; }
 .unlock-modal-input::placeholder { color:#444; letter-spacing:1px; text-transform:none; font-size:13px; }
 .unlock-modal-input:focus { border-color:rgba(255,208,0,0.5); }
-.unlock-modal-btn { background:var(--gold); color:var(--black); font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:1px; padding:13px 20px; border:none; border-radius:3px; cursor:pointer; white-space:nowrap; transition:all .18s; }
+.unlock-modal-btn { width:100%; padding:16px; background:var(--green); color:#000; font-weight:800; font-size:16px; border:none; border-radius:8px; cursor:pointer; letter-spacing:1px; }
 .unlock-modal-btn:hover { background:#ffe44d; }
 .unlock-modal-msg { font-size:13px; color:var(--muted); min-height:20px; margin-bottom:16px; }
 .unlock-modal-msg.error { color:var(--red); }
@@ -441,7 +441,7 @@ body[data-unlocked="1"] .paywall-wall { display:none; }
     <button class="nav-tab" onclick="showTab('ethnic',this)">Elite Ethnic <span class="lock-icon">🔒</span></button>
     <button class="nav-tab" onclick="showTab('drinks',this)">Drinks <span class="lock-icon">🔒</span></button>
     <button class="nav-tab" onclick="showTab('desserts',this)">Desserts <span class="lock-icon">🔒</span></button>
-    <button class="nav-tab" onclick="showTab('alphax',this)">ALPHA-X <span style="font-size:9px; color:var(--gold); letter-spacing:1px;">SOON</span></button>
+    <button class="nav-tab" onclick="showTab('alphax',this)">ALPHA-X</button>
   </div>
 </div>
 
@@ -1762,7 +1762,7 @@ function unlockApp() {
     <div class="unlock-modal-title">Enter Your Key</div>
     <div class="unlock-modal-sub">Enter the license key from your purchase email to unlock all 50+ restaurants instantly.</div>
     <div class="unlock-modal-input-wrap">
-      <input class="unlock-modal-input" type="text" id="modal-lic-input" placeholder="Paste your license key here" autocomplete="off" autocorrect="off" autocapitalize="characters" />
+      <input class="unlock-modal-input" type="text" id="modal-lic-input" placeholder="Paste your license key here" autocomplete="off" autocorrect="off" autocapitalize="characters" inputmode="text" onkeydown="if(event.key==='Enter'){activateLicenseModal();}" />
       <button class="unlock-modal-btn" onclick="activateLicenseModal()">UNLOCK</button>
     </div>
     <div class="unlock-modal-msg" id="modal-lic-msg"></div>
@@ -1955,4 +1955,5 @@ function submitSuggestion() {
 (function() {
   const el = document.getElementById('typewriter-text');
   if (!el) return;
-  c
+  const text = 'EAT OUT. GET CUT. NO EXCUSES.';
+  let i =
