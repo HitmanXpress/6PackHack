@@ -86,9 +86,10 @@ h1 em { color:var(--green); font-style:normal; display:block; }
 
 /* MAIN */
 main { max-width:900px; margin:0 auto; padding:0 16px 120px; }
-.section { display:none; padding-top:32px; }
+.section { display:none; padding-top:32px; overflow:hidden; height:0; }
+.section.active { display:block; height:auto; overflow:visible; }
 
-.section.active { display:block; }
+
 
 /* Paywall — hide content until unlocked */
 .locked-content { display:none; }
@@ -143,7 +144,7 @@ body[data-unlocked="1"] .locked-content { display:block; }
 .macro-cell { font-size:12px; white-space:nowrap; color:#e0e0e0; }
 
 /* CARDS (mobile) */
-.meal-cards { display:grid; gap:10px; }
+
 .meal-card { background:var(--card); border:1px solid var(--border); border-left:3px solid var(--green); border-radius:3px; padding:16px; transition:transform .2s, border-color .2s; }
 .meal-card:hover { transform:translateY(-1px); border-color:rgba(0,255,135,0.35); border-left-color:var(--green); }
 .mc-name { font-weight:700; font-size:18px; margin-bottom:6px; }
@@ -158,8 +159,10 @@ body[data-unlocked="1"] .locked-content { display:block; }
 .macro-val.k { color:var(--red); }
 .macro-lbl { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-top:2px; }
 
-@media(max-width:599px){ .meal-table { display:none; } }
-@media(min-width:600px){ .meal-cards { display:none; } }
+@media(max-width:599px){ .meal-table { display:none; }
+.meal-cards { display:grid; gap:10px; grid-template-columns:1fr; }
+@media(min-width:768px){ .meal-cards { grid-template-columns:1fr 1fr; } } }
+@media(min-width:600px){  }
 
 /* DRINK CARDS */
 .drink-card { background:var(--card); border:1px solid var(--border); border-top:2px solid var(--gold); border-radius:3px; padding:18px; margin-bottom:10px; transition:border-color .2s; }
@@ -467,6 +470,84 @@ body[data-unlocked="1"] .paywall-wall { display:none; }
   letter-spacing:2px;
   text-transform:uppercase;
 }
+
+/* ── MC-NAME FLEX ── */
+.mc-name { font-weight:700; font-size:18px; margin-bottom:6px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+
+/* ── FAVORITES ── */
+.fav-btn { background:none; border:none; cursor:pointer; font-size:16px; padding:2px 4px; opacity:0.35; transition:opacity .2s, transform .2s; flex-shrink:0; line-height:1; }
+.fav-btn:hover { opacity:0.7; }
+.fav-btn.active { opacity:1; transform:scale(1.15); }
+.fav-empty { text-align:center; padding:60px 20px; color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:18px; letter-spacing:2px; line-height:1.8; }
+.fav-empty span { display:block; font-size:48px; margin-bottom:16px; }
+
+/* ── SEARCH ── */
+.search-wrap { padding:12px 16px 0; max-width:900px; margin:0 auto; }
+.search-wrap-inner { position:relative; }
+.search-input { width:100%; box-sizing:border-box; background:#111; border:1px solid #2a2a2a; border-radius:8px; color:#fff; font-size:15px; padding:11px 16px 11px 40px; outline:none; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; transition:border-color .2s; }
+.search-input:focus { border-color:var(--green); }
+.search-icon { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:16px; pointer-events:none; }
+.search-clear { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:18px; cursor:pointer; display:none; background:none; border:none; padding:0; }
+.search-no-results { text-align:center; color:var(--muted); padding:40px 20px; font-family:'Barlow Condensed',sans-serif; font-size:18px; letter-spacing:2px; display:none; }
+
+/* ── SHARE BUTTON ── */
+.share-btn { background:none; border:1px solid #2a2a2a; border-radius:6px; color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:1px; text-transform:uppercase; padding:4px 8px; cursor:pointer; transition:all .2s; flex-shrink:0; }
+.share-btn:hover { border-color:var(--green); color:var(--green); }
+
+/* ── POWER MEAL SYSTEM ── */
+.meal-card { position:relative; }
+.power-badge { display:inline-block; font-size:9px; font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:2px 7px; border-radius:3px; margin-left:6px; vertical-align:middle; flex-shrink:0; }
+.power-badge.power { background:rgba(255,193,7,0.15); color:var(--gold); border:1px solid rgba(255,193,7,0.4); }
+.power-badge.elite { background:rgba(255,53,53,0.15); color:#ff3535; border:1px solid rgba(255,53,53,0.4); }
+.meal-card.power-meal { border-left:3px solid var(--gold); }
+.meal-card.elite-meal { border-left:3px solid #ff3535; }
+
+/* ── POWER FILTER ── */
+.power-filter { display:flex; gap:8px; padding:10px 16px 0; max-width:900px; margin:0 auto; flex-wrap:wrap; }
+.power-filter-btn { background:none; border:1px solid #2a2a2a; border-radius:20px; color:var(--muted); font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; padding:6px 14px; cursor:pointer; transition:all .2s; }
+.power-filter-btn.active { background:rgba(0,255,135,0.1); border-color:var(--green); color:var(--green); }
+.power-filter-btn.active.gold { background:rgba(255,193,7,0.1); border-color:var(--gold); color:var(--gold); }
+.power-filter-btn.active.red { background:rgba(255,53,53,0.1); border-color:#ff3535; color:#ff3535; }
+.meal-card.filtered-hidden { display:none; }
+
+/* ── HACK STREAK ── */
+.streak-bar { max-width:900px; margin:12px auto 0; padding:0 16px; }
+.streak-card { background:linear-gradient(135deg,#0f0f0f 0%,#1a1100 100%); border:1px solid rgba(255,193,7,0.25); border-radius:10px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:12px; cursor:pointer; transition:border-color .2s; }
+.streak-card:hover { border-color:rgba(255,193,7,0.5); }
+.streak-left { display:flex; align-items:center; gap:12px; }
+.streak-fire { font-size:28px; line-height:1; }
+.streak-label { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+.streak-count { font-family:'Bebas Neue',sans-serif; font-size:28px; line-height:1; color:var(--gold); }
+.streak-count span { font-size:13px; font-family:'Barlow Condensed',sans-serif; color:var(--muted); letter-spacing:1px; margin-left:4px; }
+.streak-btn { background:rgba(255,193,7,0.1); border:1px solid rgba(255,193,7,0.4); border-radius:6px; color:var(--gold); font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:8px 14px; cursor:pointer; transition:all .2s; white-space:nowrap; }
+.streak-btn.logged { background:rgba(0,255,135,0.1); border-color:rgba(0,255,135,0.4); color:var(--green); }
+.streak-milestones { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+.streak-mile { font-size:10px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; padding:2px 8px; border-radius:10px; border:1px solid #2a2a2a; color:#444; }
+.streak-mile.earned { border-color:rgba(255,193,7,0.4); color:var(--gold); background:rgba(255,193,7,0.08); }
+
+/* ── TONIGHT'S ORDER ── */
+.tonight-wrap { max-width:900px; margin:12px auto 0; padding:0 16px; }
+.tonight-card { background:linear-gradient(135deg,#0a0f0a 0%,#001a0a 100%); border:1px solid rgba(0,255,135,0.2); border-radius:10px; padding:16px 18px; cursor:pointer; transition:border-color .2s; }
+.tonight-card:hover { border-color:rgba(0,255,135,0.4); }
+.tonight-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.tonight-label { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--green); }
+.tonight-refresh { font-size:11px; color:var(--muted); font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; cursor:pointer; background:none; border:none; padding:0; }
+.tonight-restaurant { font-family:'Bebas Neue',sans-serif; font-size:22px; color:#fff; letter-spacing:1px; margin-bottom:2px; }
+.tonight-meal { font-size:14px; color:#d0d0d0; font-weight:600; margin-bottom:4px; }
+.tonight-hack-text { font-size:12px; color:#888; margin:4px 0 6px; line-height:1.5; }
+.tonight-macros { display:flex; gap:12px; font-family:'Barlow Condensed',sans-serif; font-size:12px; color:var(--muted); letter-spacing:1px; }
+.tonight-macros strong { color:var(--green); }
+.tonight-nav { margin-top:8px; font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:1px; color:rgba(0,255,135,0.5); }
+
+/* ── ACHIEVEMENTS ── */
+.achievements-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:10px; margin-top:16px; }
+.achievement { background:#111; border:1px solid #1e1e1e; border-radius:8px; padding:14px 10px; text-align:center; transition:border-color .2s; }
+.achievement.earned { border-color:rgba(255,193,7,0.3); background:rgba(255,193,7,0.05); }
+.achievement-icon { font-size:28px; margin-bottom:6px; }
+.achievement-name { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); }
+.achievement.earned .achievement-name { color:var(--gold); }
+.achievement-desc { font-size:10px; color:#333; margin-top:3px; font-family:'Barlow Condensed',sans-serif; }
+.achievement.earned .achievement-desc { color:#666; }
 </style>
 </head>
 <body>
@@ -495,7 +576,54 @@ body[data-unlocked="1"] .paywall-wall { display:none; }
     <button class="nav-tab" onclick="showTab('ethnic',this)">Elite Ethnic <span class="lock-icon">🔒</span></button>
     <button class="nav-tab" onclick="showTab('drinks',this)">Drinks <span class="lock-icon">🔒</span></button>
     <button class="nav-tab" onclick="showTab('desserts',this)">Desserts <span class="lock-icon">🔒</span></button>
-    <button class="nav-tab" onclick="showTab('alphax',this)">ALPHA-X</button>
+    <button class="nav-tab" onclick="showTab('favorites',this)">❤️ Saved</button>
+  </div>
+</div>
+
+
+<!-- SEARCH BAR -->
+<div class="search-wrap" id="searchWrap" style="display:none;">
+  <div class="search-wrap-inner">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" type="text" placeholder="Search restaurants..." oninput="runSearch(this.value)" autocomplete="off" />
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+  </div>
+</div>
+
+<!-- POWER FILTER -->
+<div class="power-filter" id="powerFilter" style="display:none;">
+  <button class="power-filter-btn active" onclick="filterMeals('all',this)">🍽️ All Meals</button>
+  <button class="power-filter-btn" onclick="filterMeals('power',this)">⚡ Power</button>
+  <button class="power-filter-btn" onclick="filterMeals('elite',this)">🔥 Elite</button>
+</div>
+
+<!-- HACK STREAK -->
+<div class="streak-bar">
+  <div class="streak-card" onclick="toggleStreakDetails()">
+    <div class="streak-left">
+      <div class="streak-fire" id="streakFire">🎯</div>
+      <div class="streak-info">
+        <div class="streak-label">Hack Streak</div>
+        <div class="streak-count" id="streakCount">0 <span>DAY HACK STREAK</span></div>
+        <div class="streak-milestones" id="streakMiles" style="display:none;"></div>
+      </div>
+    </div>
+    <button class="streak-btn" id="streakBtn" onclick="event.stopPropagation();logStreak()">LOG TODAY</button>
+  </div>
+</div>
+
+<!-- TONIGHT'S HACK -->
+<div class="tonight-wrap">
+  <div class="tonight-card" id="tonightCard">
+    <div class="tonight-header">
+      <span class="tonight-label">⚡ Tonight's Hack</span>
+      <button class="tonight-refresh" onclick="refreshTonight()">↻ Refresh</button>
+    </div>
+    <div class="tonight-restaurant" id="tonightRest">Loading...</div>
+    <div class="tonight-meal" id="tonightMeal"></div>
+    <div class="tonight-hack-text" id="tonightHack"></div>
+    <div class="tonight-macros" id="tonightMacros"></div>
+    <div class="tonight-nav">TAP TO NAVIGATE →</div>
   </div>
 </div>
 
@@ -515,6 +643,13 @@ body[data-unlocked="1"] .paywall-wall { display:none; }
     <div class="rule-card"><div class="rule-num">5</div><div class="rule-title">🎯 Master the Modification</div><div class="rule-text">"No bun." "Add avocado." "Extra mayo." "Ranch on the side." "No ketchup — mustard instead." These are your weapons. You are always in control. Ask for it exactly how you want it — they will do it.</div></div>
     <div class="rule-card" style="grid-column:1/-1"><div class="rule-num">6</div><div class="rule-title">💧 Never Drink Your Carbs</div><div class="rule-text">Water, black coffee, unsweetened iced tea — that's it. A large Coke is 65g of pure sugar. A "healthy" orange juice is 45g. One bad drink undoes a perfect meal. <strong style="color:var(--green)">Diet sodas are acceptable in a pinch.</strong> Never drink your calories.</div></div>
   </div>
+
+<!-- ACHIEVEMENTS -->
+<div style="margin-top:32px;">
+  <div class="section-label">🏆 Achievements</div>
+  <div class="achievements-grid" id="achievementsGrid"></div>
+</div>
+
 </div>
 
 <!-- ═══════════════════════════ FAST FOOD (FREE) ═══════════════════════════ -->
@@ -729,7 +864,21 @@ body[data-unlocked="1"] .paywall-wall { display:none; }
   <div class="meal-cards">
     <div class="meal-card"><div class="mc-name">Dunkin' 🌅</div><div class="mc-meal">Wake-Up Wrap — No Wrap</div><div class="mc-hack">Filling only — no wrap. Egg, cheese, bacon or sausage + mayo. Cheap, fast, clean breakfast protein.</div><div class="mc-drink">☕ Black Coffee · Cold Brew</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">220</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">12g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">3g</div><div class="macro-lbl">Carbs</div></div></div></div>
     <div class="meal-card"><div class="mc-name">Dunkin' 🌅</div><div class="mc-meal">Bacon Egg & Cheese — No Bread</div><div class="mc-hack">Eat the filling only. Bacon, egg, cheese + mayo. Skip whatever bread it comes on. Pair with black cold brew.</div><div class="mc-drink">☕ Black Cold Brew · Black Coffee</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">290</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">16g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">3g</div><div class="macro-lbl">Carbs</div></div></div></div>
-  </div><!-- end locked-content -->
+  
+
+<div class="meal-card power-meal"><div class="mc-name"><span>McDonald's 💪</span><span class="power-badge power">⚡ Power</span></div><div class="mc-meal">Double Steak Egg &amp; Cheese — No Biscuit</div><div class="mc-hack">Ask for DOUBLE steak patty, double egg, double cheese. Extra grilled onions. No biscuit. Most protein you can get at McDonald's breakfast. Beast mode fuel.</div><div class="mc-drink">☕ Black Coffee · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">580</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">52g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">3g</div><div class="macro-lbl">Carbs</div></div></div></div>
+
+<div class="meal-card elite-meal"><div class="mc-name"><span>McDonald's 🔥</span><span class="power-badge elite">🔥 Elite</span></div><div class="mc-meal">Triple Patty Stack — No Bun, Extra Everything</div><div class="mc-hack">3x McDouble patties, triple cheese, double egg, extra mayo, grilled onions, jalapeños, pickles. Ask nicely — they'll build it. This is not for the weak. 70g protein.</div><div class="mc-drink">🧊 Water · Unsweet Tea</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">780</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">68g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">5g</div><div class="macro-lbl">Carbs</div></div></div></div>
+
+
+<div class="meal-card power-meal"><div class="mc-name"><span>Burger King 💪</span><span class="power-badge power">⚡ Power</span></div><div class="mc-meal">Triple Whopper — No Bun, Double Cheese</div><div class="mc-hack">3 patties, double cheese, extra mayo, grilled onions, mushrooms, jalapeños. No bun, no ketchup. Lettuce wrap. Serious post-workout refuel — over 60g protein.</div><div class="mc-drink">🧊 Unsweet Tea · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">820</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">62g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">6g</div><div class="macro-lbl">Carbs</div></div></div></div>
+
+
+<div class="meal-card power-meal"><div class="mc-name"><span>Wendy's 💪</span><span class="power-badge power">⚡ Power</span></div><div class="mc-meal">Triple Baconator — No Bun, Max Build</div><div class="mc-hack">3 patties, 6 strips bacon, triple cheese, extra mayo, jalapeños, grilled onions. No bun. Lettuce wrap. King of fast food protein. Order it and own the room.</div><div class="mc-drink">🧊 Unsweet Tea · Water</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">960</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">78g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">5g</div><div class="macro-lbl">Carbs</div></div></div></div>
+
+<div class="meal-card elite-meal"><div class="mc-name"><span>Wendy's 🔥</span><span class="power-badge elite">🔥 Elite</span></div><div class="mc-meal">Dave's Fury — Triple + Bacon + Double Egg</div><div class="mc-hack">Dave's Triple + extra bacon + double egg + triple cheese. No bun. Mayo, grilled onions, jalapeños, mushrooms. Ask them to build it custom — they will. 85g protein.</div><div class="mc-drink">🧊 Water only</div><div class="macros-row"><div class="macro-pill"><div class="macro-val c">1080</div><div class="macro-lbl">Cals</div></div><div class="macro-pill"><div class="macro-val p">85g</div><div class="macro-lbl">Protein</div></div><div class="macro-pill"><div class="macro-val k">5g</div><div class="macro-lbl">Carbs</div></div></div></div>
+
+</div><!-- end locked-content -->
 
 </div>
 </div>
@@ -1523,148 +1672,18 @@ body[data-unlocked="1"] .paywall-wall { display:none; }
 </div>
 
 <!-- ═══════════════════════════ ALPHA-X (COMING SOON) ═══════════════════════════ -->
-<div id="tab-alphax" class="section">
+<div id="tab-favorites" class="section">
   <div class="section-intro">
-    <h2>ALPHA-X</h2>
-    <p>The next level. For the dedicated lifter who wants to feast like a king while forging an iron physique. These aren't meals — they're statements.</p>
+    <h2>❤️ SAVED ORDERS</h2>
+    <p>Your favorite meals saved for quick access. Tap the ❤️ on any meal card to save it here.</p>
   </div>
-
-  <!-- LIMITED BADGE -->
-  <div style="background:linear-gradient(135deg,rgba(255,208,0,0.12),rgba(255,208,0,0.04)); border:1px solid rgba(255,208,0,0.4); border-radius:6px; padding:16px 20px; text-align:center; margin-bottom:32px;">
-    <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:3px; color:var(--gold);">⚡ LIMITED AVAILABILITY</div>
-    <div style="font-size:13px; color:#c0c0c0; margin-top:6px;">ALPHA-X is the full gourmet dining program — pre-order coming soon. What you see below is just a taste.</div>
-  </div>
-
-  <!-- MEAL 1: HIGH-END STEAKHOUSE -->
-  <div class="chain-head">
-    <div class="chain-name" style="color:var(--gold)">High-End Steakhouse</div>
-    <div class="chain-divider"></div>
-    <div class="chain-tag">Ruth's Chris · Morton's · STK</div>
-  </div>
-  <div style="background:var(--card); border:1px solid var(--border); border-left:3px solid var(--gold); border-radius:3px; padding:20px; margin-bottom:10px;">
-    <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; color:var(--gold); margin-bottom:10px;">👑 THE TITAN'S TOMAHAWK FEAST</div>
-    <p style="font-size:14px; color:#d0d0d0; line-height:1.7; margin-bottom:14px;">Order the largest bone-in ribeye on the menu — the 32-40oz Tomahawk. This is a jaw-dropping cut, rich in high-quality protein and natural creatine. Refuse all potatoes and creams. Instead, order <strong>double portions of steamed asparagus and garlic-sautéed spinach</strong>. For maximum anabolic punch, add a broiled lobster tail with drawn butter. You're not just eating. You're building.</p>
-    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
-      <span style="background:rgba(255,208,0,0.1); border:1px solid rgba(255,208,0,0.3); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:var(--gold);">32-40oz TOMAHAWK RIBEYE</span>
-      <span style="background:rgba(255,208,0,0.1); border:1px solid rgba(255,208,0,0.3); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:var(--gold);">BROILED LOBSTER TAIL</span>
-      <span style="background:rgba(255,208,0,0.1); border:1px solid rgba(255,208,0,0.3); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:var(--gold);">DRAWN BUTTER</span>
-      <span style="background:rgba(255,208,0,0.1); border:1px solid rgba(255,208,0,0.3); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:var(--gold);">DOUBLE ASPARAGUS</span>
-      <span style="background:rgba(255,208,0,0.1); border:1px solid rgba(255,208,0,0.3); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:var(--gold);">GARLIC SAUTÉED SPINACH</span>
-    </div>
-    <div style="display:flex; gap:16px; flex-wrap:wrap;">
-      <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--orange);">~1,400</div><div style="font-size:11px; color:var(--muted); letter-spacing:1px;">CALORIES</div></div>
-      <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--green);">~140g</div><div style="font-size:11px; color:var(--muted); letter-spacing:1px;">PROTEIN</div></div>
-      <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--red);">~8g</div><div style="font-size:11px; color:var(--muted); letter-spacing:1px;">CARBS</div></div>
+  <div id="favoritesContainer">
+    <div class="fav-empty" id="favEmpty">
+      <span>❤️</span>
+      No saved meals yet.<br>
+      Tap ❤️ on any meal to save it here.
     </div>
   </div>
-  <div class="meal-cards">
-    <div class="meal-card" style="border-left-color:var(--gold)">
-      <div class="mc-name" style="color:var(--gold)">Steakhouse 👑</div>
-      <div class="mc-meal">The Titan's Tomahawk Feast</div>
-      <div class="mc-hack">32-40oz bone-in Tomahawk ribeye. Add broiled lobster tail + drawn butter. Double asparagus + garlic spinach. Refuse all potatoes. You're not eating — you're building.</div>
-      <div class="mc-drink">🍷 Dry Cabernet · Still Water</div>
-      <div class="macros-row">
-        <div class="macro-pill"><div class="macro-val c">1400</div><div class="macro-lbl">Cals</div></div>
-        <div class="macro-pill"><div class="macro-val p">140g</div><div class="macro-lbl">Protein</div></div>
-        <div class="macro-pill"><div class="macro-val k">8g</div><div class="macro-lbl">Carbs</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MEAL 2: PREMIER SEAFOOD -->
-  <div class="chain-head">
-    <div class="chain-name" style="color:#4fc3f7">Premier Seafood House</div>
-    <div class="chain-divider"></div>
-    <div class="chain-tag">Truluck's · Oceanaire · Eddie V's</div>
-  </div>
-  <div style="background:var(--card); border:1px solid var(--border); border-left:3px solid #4fc3f7; border-radius:3px; padding:20px; margin-bottom:10px;">
-    <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; color:#4fc3f7; margin-bottom:10px;">🔱 POSEIDON'S PLATTER</div>
-    <p style="font-size:14px; color:#d0d0d0; line-height:1.7; margin-bottom:14px;">This isn't a meal. It's a statement. Order the grandest seafood tower they have — a mountain of <strong>colossal King Crab legs, jumbo shrimp, fresh oysters, and split lobster tails</strong>. Pure lean protein packed with muscle-fueling minerals: zinc, iodine, omega-3s. Your only condiments are lemon wedges, fresh horseradish, and melted butter. A decadent, zero-guilt assault of the highest-quality protein from the sea.</p>
-    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
-      <span style="background:rgba(79,195,247,0.1); border:1px solid rgba(79,195,247,0.3); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:#4fc3f7;">KING CRAB LEGS</span>
-      <span style="background:rgba(79,195,247,0.1); border:1px solid rgba(79,195,247,0.3); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:#4fc3f7;">JUMBO SHRIMP</span>
-      <span style="background:rgba(79,195,247,0.1); border:1px solid rgba(79,195,247,0.3); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:#4fc3f7;">FRESH OYSTERS</span>
-      <span style="background:rgba(79,195,247,0.1); border:1px solid rgba(79,195,247,0.3); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:#4fc3f7;">SPLIT LOBSTER TAILS</span>
-      <span style="background:rgba(79,195,247,0.1); border:1px solid rgba(79,195,247,0.3); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:#4fc3f7;">DRAWN BUTTER + HORSERADISH</span>
-    </div>
-    <div style="display:flex; gap:16px; flex-wrap:wrap;">
-      <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--orange);">~800</div><div style="font-size:11px; color:var(--muted); letter-spacing:1px;">CALORIES</div></div>
-      <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--green);">~120g</div><div style="font-size:11px; color:var(--muted); letter-spacing:1px;">PROTEIN</div></div>
-      <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--red);">~6g</div><div style="font-size:11px; color:var(--muted); letter-spacing:1px;">CARBS</div></div>
-    </div>
-  </div>
-  <div class="meal-cards">
-    <div class="meal-card" style="border-left-color:#4fc3f7">
-      <div class="mc-name" style="color:#4fc3f7">Seafood House 🔱</div>
-      <div class="mc-meal">Poseidon's Platter</div>
-      <div class="mc-hack">Grandest seafood tower: King Crab, jumbo shrimp, oysters, split lobster tails. Lemon, horseradish, drawn butter only. Pure mineral-loaded protein from the sea.</div>
-      <div class="mc-drink">🍾 Brut Champagne · Still Water</div>
-      <div class="macros-row">
-        <div class="macro-pill"><div class="macro-val c">800</div><div class="macro-lbl">Cals</div></div>
-        <div class="macro-pill"><div class="macro-val p">120g</div><div class="macro-lbl">Protein</div></div>
-        <div class="macro-pill"><div class="macro-val k">6g</div><div class="macro-lbl">Carbs</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MEAL 3: BRAZILIAN CHURRASCARIA -->
-  <div class="chain-head">
-    <div class="chain-name" style="color:#ef5350">Brazilian Churrascaria</div>
-    <div class="chain-divider"></div>
-    <div class="chain-tag">Fogo de Chão · Texas de Brazil · Chama Gaúcha</div>
-  </div>
-  <div style="background:var(--card); border:1px solid var(--border); border-left:3px solid #ef5350; border-radius:3px; padding:20px; margin-bottom:10px;">
-    <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; color:#ef5350; margin-bottom:10px;">🔥 THE ENDLESS MEAT GAUNTLET</div>
-    <p style="font-size:14px; color:#d0d0d0; line-height:1.7; margin-bottom:14px;">This is your all-you-can-eat protein paradise. Signal the gauchos and <strong>never stop</strong>. Focus exclusively on <strong>Picanha (prime sirloin cap), Filet Mignon, and Cordeiro (lamb chops)</strong>. Wave off the bread, the fried sides, and even the salad bar. Your plate should have one thing on it: meat. A true test of your carnivorous spirit — designed to flood your system with the building blocks of pure muscle.</p>
-    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
-      <span style="background:rgba(239,83,80,0.1); border:1px solid rgba(239,83,80,0.4); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:#ef5350;">PICANHA — PRIME SIRLOIN CAP</span>
-      <span style="background:rgba(239,83,80,0.1); border:1px solid rgba(239,83,80,0.4); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:#ef5350;">FILET MIGNON</span>
-      <span style="background:rgba(239,83,80,0.1); border:1px solid rgba(239,83,80,0.4); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:#ef5350;">CORDEIRO — LAMB CHOPS</span>
-      <span style="background:rgba(239,83,80,0.1); border:1px solid rgba(239,83,80,0.4); border-radius:3px; padding:5px 12px; font-size:12px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; color:#ef5350;">NO BREAD · NO SIDES · MEAT ONLY</span>
-    </div>
-    <div style="display:flex; gap:16px; flex-wrap:wrap;">
-      <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--orange);">~1,800</div><div style="font-size:11px; color:var(--muted); letter-spacing:1px;">CALORIES</div></div>
-      <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--green);">~180g</div><div style="font-size:11px; color:var(--muted); letter-spacing:1px;">PROTEIN</div></div>
-      <div style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--red);">~0g</div><div style="font-size:11px; color:var(--muted); letter-spacing:1px;">CARBS</div></div>
-    </div>
-  </div>
-  <div class="meal-cards">
-    <div class="meal-card" style="border-left-color:#ef5350">
-      <div class="mc-name" style="color:#ef5350">Churrascaria 🔥</div>
-      <div class="mc-meal">The Endless Meat Gauntlet</div>
-      <div class="mc-hack">Signal the gauchos and never stop. Picanha, Filet Mignon, Cordeiro (lamb). Wave off bread, sides, salad bar. Plate has ONE thing: meat. Pure muscle fuel.</div>
-      <div class="mc-drink">🍷 Dry Malbec · Still Water</div>
-      <div class="macros-row">
-        <div class="macro-pill"><div class="macro-val c">1800</div><div class="macro-lbl">Cals</div></div>
-        <div class="macro-pill"><div class="macro-val p">180g</div><div class="macro-lbl">Protein</div></div>
-        <div class="macro-pill"><div class="macro-val k">0g</div><div class="macro-lbl">Carbs</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PRE-ORDER CTA -->
-  <div style="text-align:center; padding:40px 20px 20px;">
-    <div style="font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:3px; color:var(--gold); line-height:1; margin-bottom:10px;">WANT THE FULL PROGRAM?</div>
-    <p style="font-size:14px; color:#b0b0b0; line-height:1.6; max-width:380px; margin:0 auto 24px;">The complete ALPHA-X system covers 20+ elite dining protocols, weekly feast templates, and the full gourmet performance diet. Limited to the first 1,000 members.</p>
-    <div style="background:rgba(255,208,0,0.06); border:1px solid rgba(255,208,0,0.25); border-radius:6px; padding:20px 24px; max-width:400px; margin:0 auto;">
-      <div style="font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">🔒 Pre-Order Coming Soon</div>
-      <p style="font-size:14px; color:#c0c0c0; line-height:1.6; margin-bottom:0;">Current 6-Pack Hack members get first access and a founding member discount when ALPHA-X launches.</p>
-    </div>
-  </div>
-
-  <!-- SUGGESTION BOX -->
-  <div style="max-width:440px; margin:30px auto 50px; padding:0 20px;">
-    <div style="background:var(--deep); border:1px solid var(--border); border-radius:8px; padding:28px 24px; text-align:center;">
-      <div style="font-size:32px; margin-bottom:12px;">💬</div>
-      <div style="font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:2px; color:var(--white); margin-bottom:8px;">Suggest a Restaurant</div>
-      <p style="font-size:14px; color:#b0b0b0; line-height:1.6; margin-bottom:20px;">Don't see your favorite spot? Tell us and we'll add it to the next update.</p>
-      <input id="suggest-input" type="text" placeholder="e.g. Raising Cane's, Culver's, In-N-Out..." style="width:100%; box-sizing:border-box; background:#111; border:1px solid var(--border); border-radius:3px; padding:13px 14px; font-family:'Barlow Condensed',sans-serif; font-size:15px; color:var(--white); outline:none; margin-bottom:10px;" />
-      <textarea id="suggest-notes" placeholder="Any specific meals or hacks you want? (optional)" style="width:100%; box-sizing:border-box; background:#111; border:1px solid var(--border); border-radius:3px; padding:13px 14px; font-family:'Barlow Condensed',sans-serif; font-size:14px; color:var(--white); outline:none; margin-bottom:14px; height:80px; resize:none;"></textarea>
-      <button onclick="submitSuggestion()" style="width:100%; background:var(--green); color:var(--black); font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:2px; padding:14px; border:none; border-radius:3px; cursor:pointer;">SUBMIT SUGGESTION</button>
-      <div id="suggest-msg" style="margin-top:12px; font-size:13px; min-height:20px; color:var(--muted);"></div>
-    </div>
-  </div>
-
 </div>
 
 </main>
@@ -1699,6 +1718,17 @@ function showTab(id, btn) {
   const cta = document.getElementById('stickyCta');
   if (cta) cta.style.display = (!isUnlocked() && LOCKED.includes(id)) ? 'block' : 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  // V2 features
+  const sw = document.getElementById('searchWrap');
+  if (sw) sw.style.display = ['rules','favorites'].includes(id)?'none':'block';
+  const pf = document.getElementById('powerFilter');
+  if (pf) pf.style.display = ['rules','favorites'].includes(id)?'none':'flex';
+  const si = document.getElementById('searchInput');
+  if (si) { si.value=''; runSearch(''); }
+  const allBtn = document.querySelector('.power-filter-btn');
+  if (allBtn && typeof filterMeals !== 'undefined') filterMeals('all', allBtn);
+  if (id==='favorites') { if (typeof renderFavs !== 'undefined') renderFavs(); }
+  setTimeout(function(){ if (typeof addShareAndFavButtons !== 'undefined') addShareAndFavButtons(); }, 100);
 }
 
 function openUnlockModal() {
@@ -2054,6 +2084,317 @@ function submitSuggestion() {
   // Fallback for Capacitor/Android — run after short delay
   setTimeout(initKITT, 800);
 })();
+
+// ══════════════════════════════════════════
+// SEARCH
+// ══════════════════════════════════════════
+function runSearch(val) {
+  const clear = document.getElementById('searchClear');
+  if (clear) clear.style.display = val ? 'block' : 'none';
+  const term = val.toLowerCase().trim();
+  const activeSection = document.querySelector('.section.active');
+  if (!activeSection) return;
+  const chains = activeSection.querySelectorAll('.chain-head');
+  let found = 0;
+  chains.forEach(chain => {
+    const matches = !term || chain.innerText.toLowerCase().includes(term);
+    chain.style.display = matches ? '' : 'none';
+    let sib = chain.nextElementSibling;
+    while (sib && !sib.classList.contains('chain-head') && !sib.classList.contains('paywall-wall') && !sib.classList.contains('section-divider')) {
+      sib.style.display = matches ? '' : 'none';
+      sib = sib.nextElementSibling;
+    }
+    if (matches) found++;
+  });
+  const noResults = activeSection.querySelector('.search-no-results');
+  if (noResults) noResults.style.display = found === 0 ? 'block' : 'none';
+}
+function clearSearch() {
+  const input = document.getElementById('searchInput');
+  if (input) { input.value = ''; runSearch(''); input.focus(); }
+}
+
+// ══════════════════════════════════════════
+// POWER FILTER
+// ══════════════════════════════════════════
+function filterMeals(type, btn) {
+  document.querySelectorAll('.power-filter-btn').forEach(b => b.classList.remove('active','gold','red'));
+  btn.classList.add('active');
+  if (type === 'power') btn.classList.add('gold');
+  if (type === 'elite') btn.classList.add('red');
+  const activeSection = document.querySelector('.section.active');
+  if (!activeSection) return;
+  activeSection.querySelectorAll('.meal-card').forEach(card => {
+    if (type === 'all') card.classList.remove('filtered-hidden');
+    else if (type === 'power') card.classList.toggle('filtered-hidden', !card.classList.contains('power-meal') && !card.classList.contains('elite-meal'));
+    else if (type === 'elite') card.classList.toggle('filtered-hidden', !card.classList.contains('elite-meal'));
+  });
+  activeSection.querySelectorAll('.chain-head').forEach(chain => {
+    let sib = chain.nextElementSibling;
+    let hasVisible = false;
+    while (sib && !sib.classList.contains('chain-head') && !sib.classList.contains('paywall-wall')) {
+      if (sib.classList.contains('meal-card') && !sib.classList.contains('filtered-hidden')) hasVisible = true;
+      sib = sib.nextElementSibling;
+    }
+    chain.style.display = hasVisible ? '' : 'none';
+  });
+}
+
+// ══════════════════════════════════════════
+// FAVORITES
+// ══════════════════════════════════════════
+function getFavs() {
+  try { return JSON.parse(localStorage.getItem('spk_favs') || '{}'); } catch(e) { return {}; }
+}
+function saveFavs(f) { localStorage.setItem('spk_favs', JSON.stringify(f)); }
+
+function toggleFav(id, btn) {
+  const favs = getFavs();
+  const card = btn.closest('.meal-card');
+  if (!card) return;
+  if (favs[id]) {
+    delete favs[id];
+    btn.classList.remove('active');
+  } else {
+    const clone = card.cloneNode(true);
+    const cloneBtn = clone.querySelector('.fav-btn');
+    if (cloneBtn) cloneBtn.remove();
+    favs[id] = { html: clone.outerHTML };
+    btn.classList.add('active');
+  }
+  saveFavs(favs);
+  renderFavs();
+  checkAchievements();
+}
+
+function renderFavs() {
+  const favs = getFavs();
+  const container = document.getElementById('favoritesContainer');
+  const empty = document.getElementById('favEmpty');
+  if (!container) return;
+  container.querySelectorAll('.meal-card').forEach(c => c.remove());
+  const keys = Object.keys(favs);
+  if (keys.length === 0) { if (empty) empty.style.display = 'block'; return; }
+  if (empty) empty.style.display = 'none';
+  keys.forEach(id => {
+    const wrap = document.createElement('div');
+    wrap.innerHTML = favs[id].html;
+    const card = wrap.firstChild;
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'fav-btn active';
+    removeBtn.innerHTML = '❤️';
+    removeBtn.onclick = function() {
+      const f = getFavs(); delete f[id]; saveFavs(f);
+      const orig = document.getElementById('fav_' + id);
+      if (orig) orig.classList.remove('active');
+      renderFavs();
+    };
+    const mcName = card.querySelector('.mc-name');
+    if (mcName) mcName.appendChild(removeBtn);
+    container.appendChild(card);
+  });
+}
+
+function initFavBtns() {
+  const favs = getFavs();
+  Object.keys(favs).forEach(id => {
+    const btn = document.getElementById('fav_' + id);
+    if (btn) btn.classList.add('active');
+  });
+  renderFavs();
+}
+
+function addShareAndFavButtons() {
+  document.querySelectorAll('.meal-card').forEach(card => {
+    const mcName = card.querySelector('.mc-name');
+    if (!mcName) return;
+    // Add fav button if not present
+    if (!card.querySelector('.fav-btn')) {
+      const restEl = mcName.querySelector('span:first-child');
+      const mealEl = card.querySelector('.mc-meal');
+      if (restEl && mealEl) {
+        const rest = restEl.textContent.trim();
+        const meal = mealEl.textContent.trim();
+        const safeId = (rest + '_' + meal).replace(/[^a-zA-Z0-9]/g,'_').substring(0,50);
+        const favBtn = document.createElement('button');
+        favBtn.className = 'fav-btn';
+        favBtn.id = 'fav_' + safeId;
+        favBtn.innerHTML = '❤️';
+        favBtn.title = 'Save meal';
+        favBtn.onclick = function() { toggleFav(safeId, this); };
+        mcName.appendChild(favBtn);
+        // Restore active state
+        const favs = getFavs();
+        if (favs[safeId]) favBtn.classList.add('active');
+      }
+    }
+    // Add share button if not present
+    if (!card.querySelector('.share-btn')) {
+      const restEl = mcName.querySelector('span:first-child');
+      const mealEl = card.querySelector('.mc-meal');
+      const calEl = card.querySelector('.macro-val.c');
+      const protEl = card.querySelector('.macro-val.p');
+      const carbEl = card.querySelector('.macro-val.k');
+      if (restEl && mealEl) {
+        const rest = restEl.textContent.trim();
+        const meal = mealEl.textContent.trim();
+        const macros = (calEl?calEl.textContent:'?') + ' cal · ' + (protEl?protEl.textContent:'?') + ' P · ' + (carbEl?carbEl.textContent:'?') + ' C';
+        const shareBtn = document.createElement('button');
+        shareBtn.className = 'share-btn';
+        shareBtn.textContent = '📲';
+        shareBtn.title = 'Share this meal';
+        shareBtn.onclick = function(e) { e.stopPropagation(); shareMeal(rest, meal, macros); };
+        mcName.appendChild(shareBtn);
+      }
+    }
+  });
+}
+
+// ══════════════════════════════════════════
+// SHARE
+// ══════════════════════════════════════════
+function shareMeal(restaurant, meal, macros) {
+  localStorage.setItem('spk_shared','1');
+  checkAchievements();
+  const text = '💪 ' + restaurant + ': ' + meal + '\n📊 ' + macros + '\n\nFound on 6-Pack Hack — eat out, stay shredded.\nhttps://hitmanxpress.github.io/6PackHack/6packhack-pwa.html';
+  if (navigator.share) {
+    navigator.share({ title: '6-Pack Hack', text });
+  } else {
+    navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard! Paste anywhere 📋'));
+  }
+}
+
+// ══════════════════════════════════════════
+// HACK STREAK
+// ══════════════════════════════════════════
+const MILESTONES = [
+  {days:3,label:'3 Day',emoji:'⚡'},{days:7,label:'1 Week',emoji:'🔥'},
+  {days:14,label:'2 Weeks',emoji:'💪'},{days:30,label:'1 Month',emoji:'🏆'},
+  {days:60,label:'2 Months',emoji:'⚔️'},{days:90,label:'90 Days',emoji:'👑'},
+];
+function getStreak() {
+  try { return JSON.parse(localStorage.getItem('spk_streak') || '{"count":0,"lastLog":null}'); } catch(e) { return {count:0,lastLog:null}; }
+}
+function saveStreak(s) { localStorage.setItem('spk_streak', JSON.stringify(s)); }
+function logStreak() {
+  const s = getStreak();
+  const today = new Date().toDateString();
+  const yesterday = new Date(Date.now()-86400000).toDateString();
+  if (s.lastLog === today) { showToast('Already logged today! Come back tomorrow 💪'); return; }
+  s.count = s.lastLog === yesterday ? s.count + 1 : 1;
+  s.lastLog = today;
+  saveStreak(s);
+  renderStreak();
+  const hit = MILESTONES.find(m => m.days === s.count);
+  if (hit) setTimeout(() => showToast(hit.emoji + ' ' + hit.label + ' Hack Streak! Locked in!'), 800);
+  else showToast('Hack logged! Streak: ' + s.count + ' days 🔥');
+  checkAchievements();
+}
+function renderStreak() {
+  const s = getStreak();
+  const today = new Date().toDateString();
+  const countEl = document.getElementById('streakCount');
+  const btnEl = document.getElementById('streakBtn');
+  const fireEl = document.getElementById('streakFire');
+  const milesEl = document.getElementById('streakMiles');
+  if (countEl) countEl.innerHTML = s.count + ' <span>DAY HACK STREAK</span>';
+  if (fireEl) fireEl.textContent = s.count>=90?'👑':s.count>=30?'⚔️':s.count>=14?'💪':s.count>=7?'🔥':s.count>=3?'⚡':'🎯';
+  if (btnEl) { const logged = s.lastLog===today; btnEl.textContent = logged?'✅ LOGGED':'LOG TODAY'; btnEl.classList.toggle('logged',logged); }
+  if (milesEl) milesEl.innerHTML = MILESTONES.map(m=>'<span class="streak-mile '+(s.count>=m.days?'earned':'')+'">'+m.emoji+' '+m.label+'</span>').join('');
+}
+function toggleStreakDetails() {
+  const miles = document.getElementById('streakMiles');
+  if (miles) miles.style.display = miles.style.display==='none'?'flex':'none';
+}
+
+// ══════════════════════════════════════════
+// TONIGHT'S HACK
+// ══════════════════════════════════════════
+const tonightSuggestions = [
+  {rest:"McDonald's",meal:"Double Quarter Pounder — No Bun",hack:"Lettuce wrap. Extra mayo, extra cheese, grilled onions, jalapeños, pickles, tomato. No ketchup ever. Load every topping. Ranch on side salad.",macros:"580 cal · 48g P · 5g C",tab:"fastfood"},
+  {rest:"Chick-fil-A",meal:"Grilled Nuggets 12pc + Side Salad",hack:"Grilled not fried. Ranch dressing on salad — use all of it. Add extra sauce (1g carb). Best lean fast food protein per dollar.",macros:"330 cal · 42g P · 5g C",tab:"fastfood"},
+  {rest:"Wendy's",meal:"Dave's Double — No Bun",hack:"Lettuce wrap. Extra mayo, extra cheese, grilled onions, mushrooms, jalapeños, tomato, pickles. Stack every topping. Ranch on salad. No ketchup.",macros:"540 cal · 42g P · 5g C",tab:"fastfood"},
+  {rest:"Chipotle",meal:"Double Chicken Bowl — No Rice, No Beans",hack:"Double chicken, fajita veggies, extra cheese, sour cream, guacamole, salsa verde, lettuce. Skip rice and beans entirely. Extra guac always worth it.",macros:"520 cal · 56g P · 8g C",tab:"fastcasual"},
+  {rest:"Burger King",meal:"Whopper — No Bun, Extra Mayo",hack:"Lettuce wrap. Extra mayo, extra cheese, grilled onions, mushrooms, jalapeños, tomato, pickles. No ketchup. Side salad with ranch.",macros:"520 cal · 28g P · 5g C",tab:"fastfood"},
+  {rest:"Five Guys",meal:"Bunless Double Burger + Bacon",hack:"Double patty, extra bacon, extra mayo, grilled onions, mushrooms, jalapeños, green peppers. No bun. They wrap it in foil — eat it like a pro.",macros:"690 cal · 52g P · 3g C",tab:"fastcasual"},
+  {rest:"Texas Roadhouse",meal:"6oz Sirloin + Grilled Veggies",hack:"Sirloin cooked medium. Grilled vegetables, side salad with ranch (no croutons). Add extra butter on steak. Skip the bread rolls — don't let them put them on the table.",macros:"480 cal · 48g P · 8g C",tab:"sitdown"},
+  {rest:"Popeyes",meal:"Blackened Chicken Tenders — No Sauce",hack:"Blackened not fried. Ask for extra blackened seasoning. Ranch only — skip all sweet sauces. Side of green beans. Lean and clean.",macros:"310 cal · 36g P · 2g C",tab:"fastfood"},
+  {rest:"Shake Shack",meal:"Double ShackBurger — No Bun",hack:"Double patty, extra ShackSauce, extra cheese, lettuce wrap, tomato, pickles, grilled onions. They wrap it in paper. Messy but worth it.",macros:"580 cal · 44g P · 5g C",tab:"fastcasual"},
+  {rest:"KFC",meal:"Grilled Chicken Breast + Green Beans",hack:"Grilled not original recipe. Two grilled breasts if hungry. Green beans as side. Add hot sauce. Skip biscuit and mashed potatoes — both carb bombs.",macros:"280 cal · 38g P · 5g C",tab:"fastfood"},
+  {rest:"Arby's",meal:"Double Roast Beef — No Bun",hack:"Double roast beef, extra horsey sauce (low carb), extra cheese, grilled onions, jalapeños. Lettuce wrap. Side salad with ranch. Surprisingly lean.",macros:"420 cal · 40g P · 3g C",tab:"fastfood"},
+  {rest:"Olive Garden",meal:"Herb-Grilled Salmon + Salad",hack:"Grilled salmon, extra lemon butter. Side salad — no croutons, Italian dressing on side. Ask for extra grilled zucchini. Tell them to skip the breadsticks.",macros:"520 cal · 46g P · 8g C",tab:"sitdown"},
+  {rest:"Chili's",meal:"Classic Sirloin + Broccoli",hack:"6oz sirloin, extra butter, steamed broccoli (no cheese sauce), side salad with ranch. Ask for grilled onions on steak. No fries, no rice.",macros:"460 cal · 44g P · 7g C",tab:"sitdown"},
+  {rest:"Taco Bell",meal:"Power Bowl — No Rice, Extra Chicken",hack:"Double chicken, fajita veggies, extra guac, sour cream, cheese, jalapeños. No rice/beans. Double the guac — avocado is your friend.",macros:"430 cal · 38g P · 10g C",tab:"fastcasual"},
+  {rest:"Subway",meal:"Double Protein Steak — Protein Bowl",hack:"Double steak, extra mayo, pepper jack cheese, spinach, cucumber, jalapeños, black olives, red onion. Bowl only. No bread. Ask for extra mayo packets on side.",macros:"480 cal · 44g P · 4g C",tab:"fastcasual"},
+];
+function getTonightIndex() {
+  const today = new Date();
+  const day = Math.floor((today - new Date(today.getFullYear(),0,0))/86400000);
+  return (day + parseInt(localStorage.getItem('spk_tonight_refresh')||'0')) % tonightSuggestions.length;
+}
+function renderTonight() {
+  const s = tonightSuggestions[getTonightIndex()];
+  const el = id => document.getElementById(id);
+  if (el('tonightRest')) el('tonightRest').textContent = s.rest;
+  if (el('tonightMeal')) el('tonightMeal').textContent = s.meal;
+  if (el('tonightHack')) el('tonightHack').textContent = s.hack;
+  if (el('tonightMacros')) el('tonightMacros').innerHTML = s.macros.replace(/(\d+g?\s*[PC])/g,'<strong>$1</strong>');
+  const card = document.getElementById('tonightCard');
+  if (card && s.tab) {
+    card.onclick = function() {
+      document.querySelectorAll('.nav-tab').forEach(b => {
+        if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+s.tab+"'")) b.click();
+      });
+    };
+  }
+}
+function refreshTonight() {
+  localStorage.setItem('spk_tonight_refresh', (parseInt(localStorage.getItem('spk_tonight_refresh')||'0')+1));
+  renderTonight();
+}
+
+// ══════════════════════════════════════════
+// ACHIEVEMENTS
+// ══════════════════════════════════════════
+const ACHIEVEMENTS = [
+  {id:'first_log',icon:'🎯',name:'First Hack',desc:'Log your first lean day',check:()=>getStreak().count>=1},
+  {id:'streak_3',icon:'⚡',name:'3-Day Streak',desc:'Stay locked in 3 days',check:()=>getStreak().count>=3},
+  {id:'streak_7',icon:'🔥',name:'Week Warrior',desc:'7-day Hack Streak',check:()=>getStreak().count>=7},
+  {id:'streak_30',icon:'🏆',name:'Month Machine',desc:'30-day Hack Streak',check:()=>getStreak().count>=30},
+  {id:'streak_90',icon:'👑',name:'Hall of Fame',desc:'90-day Hack Streak',check:()=>getStreak().count>=90},
+  {id:'first_fav',icon:'❤️',name:'First Save',desc:'Save your first meal',check:()=>Object.keys(getFavs()).length>=1},
+  {id:'fav_5',icon:'💾',name:'Meal Collector',desc:'Save 5 meals',check:()=>Object.keys(getFavs()).length>=5},
+  {id:'power_found',icon:'💪',name:'Power Hunter',desc:'Find a Power meal',check:()=>!!localStorage.getItem('spk_power_found')},
+  {id:'elite_found',icon:'🔥',name:'Elite Status',desc:'Find an Elite meal',check:()=>!!localStorage.getItem('spk_elite_found')},
+  {id:'shared',icon:'📲',name:'Spread the Hack',desc:'Share a meal card',check:()=>!!localStorage.getItem('spk_shared')},
+];
+function checkAchievements() {
+  const grid = document.getElementById('achievementsGrid');
+  if (!grid) return;
+  grid.innerHTML = ACHIEVEMENTS.map(a => {
+    const earned = a.check();
+    return '<div class="achievement '+(earned?'earned':'')+'"><div class="achievement-icon">'+a.icon+'</div><div class="achievement-name">'+a.name+'</div><div class="achievement-desc">'+a.desc+'</div></div>';
+  }).join('');
+}
+
+// ══════════════════════════════════════════
+// UPDATED SHOWTAB — includes search/filter/favorites
+// ══════════════════════════════════════════
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function() {
+  renderStreak();
+  renderTonight();
+  checkAchievements();
+  addShareAndFavButtons();
+  initFavBtns();
+
+  // Track power/elite clicks
+  document.querySelectorAll('.power-meal').forEach(el => el.addEventListener('click', () => { localStorage.setItem('spk_power_found','1'); checkAchievements(); }));
+  document.querySelectorAll('.elite-meal').forEach(el => el.addEventListener('click', () => { localStorage.setItem('spk_elite_found','1'); checkAchievements(); }));
+});
 </script>
 
 
