@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S9XGZHFD1J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-S9XGZHFD1J');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>The 6-Pack Hack | Eat Out & Get Cut</title>
@@ -431,6 +440,33 @@ body[data-unlocked="1"] .paywall-wall { display:none; }
 
 /* :target makes tabs work via URL hash without JS */
 
+
+/* HitmanXai Footer Banner */
+.hitmanxai-footer {
+  background:#0a0a0a;
+  border-top:1px solid #1a1a1a;
+  padding:16px 20px;
+  text-align:center;
+  margin-top:40px;
+}
+.hitmanxai-footer a {
+  color:#00ff87;
+  text-decoration:none;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  opacity:0.6;
+  transition:opacity .2s;
+}
+.hitmanxai-footer a:hover { opacity:1; }
+.hitmanxai-footer span {
+  color:#444;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
 </style>
 </head>
 <body>
@@ -2020,5 +2056,10 @@ function submitSuggestion() {
 })();
 </script>
 
+
+<!-- HitmanXai Footer -->
+<div class="hitmanxai-footer">
+  <span>Built by </span><a href="https://hitmanxai.com" target="_blank">HitmanXai</a><span> — AI-Powered Apps &amp; Systems</span>
+</div>
 </body>
 </html>
